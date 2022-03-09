@@ -10,10 +10,11 @@
   margin-top: 50px;
 }
 
-.item {
+.item a {
+  display: block;
   padding: 0.2rem 1rem;
 }
-.item.active {
+.item a.active {
   background: rgba(122, 191, 212, 0.164);
   border-radius: 5px;
 }

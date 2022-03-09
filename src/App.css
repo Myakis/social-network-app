@@ -33,3 +33,10 @@ body {
     "header header"
     "aside main";
 }
+.content {
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+  grid-area: main;
+  border: 1px solid #eee;
+  background-color: #fff;
+}
