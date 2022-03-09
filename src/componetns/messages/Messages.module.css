@@ -1,0 +1,56 @@
+.dialogsWrapper {
+  display: flex;
+  min-height: calc(100vh - 68px);
+}
+.dialogs {
+  background: rgba(221, 221, 221, 0.562);
+  flex: 0 0 200px;
+}
+.dialogs .item {
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.363);
+}
+.dialogs .item:not(:last-child) {
+  margin-bottom: 5px;
+}
+.list {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+.list .item {
+  flex: 1 1 auto;
+}
+.form {
+  display: flex;
+}
+.input {
+  outline: 0;
+  width: 100%;
+  background: inherit;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid #ddd;
+  border-right: none;
+  padding: 0.5rem 1rem;
+  transition: all 0.1s ease 0s;
+}
+.inout:focus {
+  border: 1px solid rgb(172, 171, 171);
+}
+.button {
+  background: inherit;
+  border-radius: 0 10px 10px 0;
+  border: 1px solid #eee;
+  padding: 0.5rem 1rem;
+  display: block;
+  cursor: pointer;
+  transition: background 0.3s ease 0s, transform 0.2s ease-in-out;
+}
+.button:hover {
+  background: rgba(223, 222, 222, 0.137);
+}
+.button:active {
+  transform: translate(1px, 1px);
+}
