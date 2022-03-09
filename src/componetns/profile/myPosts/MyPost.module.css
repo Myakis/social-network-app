@@ -1,0 +1,36 @@
+.form {
+  margin-top: 50px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #ddd;
+}
+.textarea {
+  outline: 0;
+  width: 100%;
+  resize: none;
+  background: inherit;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  height: 130px;
+  transition: all 0.1s ease 0s;
+}
+.textarea:focus {
+  border: 1px solid rgb(172, 171, 171);
+}
+.button {
+  background: inherit;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  padding: 0.5rem 1rem;
+  display: block;
+  margin-top: 10px;
+  margin-left: auto;
+  cursor: pointer;
+  transition: background 0.3s ease 0s, transform 0.2s ease-in-out;
+}
+.button:hover {
+  background: rgba(223, 222, 222, 0.137);
+}
+.button:active {
+  transform: translate(1px, 1px);
+}

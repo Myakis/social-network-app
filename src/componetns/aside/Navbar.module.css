@@ -1,0 +1,22 @@
+.navigation {
+  font-size: 18px;
+  grid-area: aside;
+  border: 1px solid #eee;
+  background-color: #fff;
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+}
+.item:last-child {
+  margin-top: 50px;
+}
+
+.item {
+  padding: 0.2rem 1rem;
+}
+.item.active {
+  background: rgba(122, 191, 212, 0.164);
+  border-radius: 5px;
+}
+.item a:hover {
+  text-decoration: underline;
+}
