@@ -6,10 +6,12 @@
   background: rgba(221, 221, 221, 0.562);
   flex: 0 0 200px;
 }
-.dialogs .item {
+.dialogs .item a {
+  display: block;
   padding: 0.7rem 1rem;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.363);
+  display: block;
 }
 .dialogs .item:not(:last-child) {
   margin-bottom: 5px;
