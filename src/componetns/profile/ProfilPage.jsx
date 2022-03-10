@@ -2,7 +2,7 @@ import AboutMe from './aboutMe/AboutMe';
 import MyPost from './myPosts/MyPosts';
 import classes from './Profile.module.css';
 
-const ProfilPage = () => {
+const ProfilPage = props => {
   return (
     <div>
       <div className={classes.header}>
@@ -10,7 +10,7 @@ const ProfilPage = () => {
       </div>
       <div className={classes.wrapper}>
         <AboutMe />
-        <MyPost />
+        <MyPost post={props.post} />
       </div>
     </div>
   );
