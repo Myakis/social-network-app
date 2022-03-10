@@ -17,7 +17,7 @@ const ProfileInfo = () => {
         <div className={classes.item}>
           <span>Веб-сайт:</span> <a href='https://frontandrew.ru/'> https://frontandrew.ru</a>
         </div>
-      </div>
+      </div>{' '}
     </div>
   );
 };

@@ -1,8 +1,7 @@
 import classes from './Post.module.css';
 const Post = props => {
-  const key = props.id.toString();
   return (
-    <div key={key} className={classes.post}>
+    <div className={classes.post}>
       <div className={classes.body}>
         <div className={classes.avatar}>
           <img src='https://frontandrew.ru/img/avatar.webp' alt='' />

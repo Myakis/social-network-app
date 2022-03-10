@@ -1,20 +1,46 @@
-import Dialog from './dialogUser/Dialog';
-import Message from './message/Message';
+import { NavLink } from 'react-router-dom';
 import classes from './Messages.module.css';
 
-const Messages = props => {
+const Dialog = props => {
+  return (
+    <div className={classes.item}>
+      <NavLink to={'/messages/' + props.id}>{props.name}</NavLink>
+    </div>
+  );
+};
+
+const Message = props => {
+  return <div className={classes.message}>{props.message}</div>;
+};
+
+const Messages = () => {
+  let listUserDialog = [
+    {
+      id: '1',
+      name: 'Андрей',
+    },
+    {
+      id: '2',
+      name: 'Леонид',
+    },
+    {
+      id: '3',
+      name: 'Алексей',
+    },
+  ];
+
   return (
     <div className={classes.dialogsWrapper}>
       <div className={classes.dialogs}>
-        {props.dialogs.map(item => (
-          <Dialog name={item.name} id={item.id} />
-        ))}
+        {listUserDialog.map(item => {
+          return <Dialog name={item.name} id={item.id} />;
+        })}
       </div>
       <div className={classes.list}>
         <div className={classes.item}>
-          {props.message.map(item => (
-            <Message id={item.id} message={item.message} />
-          ))}
+          <Message message='Привет' />
+          <Message message='Привет' />
+          <Message message='Как дела' />
         </div>
         <form action='#' className={classes.form}>
           <input className={classes.input} type='text'></input>
