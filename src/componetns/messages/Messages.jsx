@@ -4,7 +4,7 @@ import classes from './Messages.module.css';
 const Dialog = props => {
   return (
     <div className={classes.item}>
-      <NavLink to={'/messages/1' + props.id}>{props.name}</NavLink>
+      <NavLink to={'/messages/' + props.id}>{props.name}</NavLink>
     </div>
   );
 };
@@ -14,12 +14,27 @@ const Message = props => {
 };
 
 const Messages = () => {
+  let listUserDialog = [
+    {
+      id: '1',
+      name: 'Андрей',
+    },
+    {
+      id: '2',
+      name: 'Леонид',
+    },
+    {
+      id: '3',
+      name: 'Алексей',
+    },
+  ];
+
   return (
     <div className={classes.dialogsWrapper}>
       <div className={classes.dialogs}>
-        <Dialog name='Андей' id='1' />
-        <Dialog name='Алексей' id='2' />
-        <Dialog name='Леонид' id='3' />
+        {listUserDialog.map(item => {
+          return <Dialog name={item.name} id={item.id} />;
+        })}
       </div>
       <div className={classes.list}>
         <div className={classes.item}>
