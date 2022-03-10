@@ -1,25 +1,31 @@
 import { NavLink } from 'react-router-dom';
 import classes from './Messages.module.css';
 
+const Dialog = props => {
+  return (
+    <div className={classes.item}>
+      <NavLink to={'/messages/1' + props.id}>{props.name}</NavLink>
+    </div>
+  );
+};
+
+const Message = props => {
+  return <div className={classes.message}>{props.message}</div>;
+};
+
 const Messages = () => {
   return (
     <div className={classes.dialogsWrapper}>
       <div className={classes.dialogs}>
-        <div className={classes.item}>
-          <NavLink to='/messages/1'>Андрей</NavLink>
-        </div>
-        <div className={classes.item}>
-          <NavLink to='/messages/2'>Алексей</NavLink>
-        </div>
-        <div className={classes.item}>
-          <NavLink to='/messages/3'>Леонид</NavLink>
-        </div>
+        <Dialog name='Андей' id='1' />
+        <Dialog name='Алексей' id='2' />
+        <Dialog name='Леонид' id='3' />
       </div>
       <div className={classes.list}>
         <div className={classes.item}>
-          <div className={classes.message}>Привет</div>
-          <div className={classes.message}>Привет</div>
-          <div className={classes.message}>Как дела</div>
+          <Message message='Привет' />
+          <Message message='Привет' />
+          <Message message='Как дела' />
         </div>
         <form action='#' className={classes.form}>
           <input className={classes.input} type='text'></input>
