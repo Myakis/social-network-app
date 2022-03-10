@@ -1,4 +1,4 @@
-# Попытка сделать своб соц. сеть на реакте
+# Попытка сделать свою соц. сеть на реакте
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
