@@ -1,8 +1,8 @@
 let state = {
   profile: {
     post: [
-      { message: 'Какое-то сообщение, которое потом будет написано мной для теста ', likeCount: 23, shareCount: 1, id: 1 },
-      { message: 'Какое-то сообщение, которое потом будет написано мной для теста 22', likeCount: 223, shareCount: 21, id: 2 },
+      { id: 1, message: 'Какое-то сообщение, которое потом будет написано мной для теста ', likeCount: 23, shareCount: 1 },
+      { id: 2, message: 'Какое-то сообщение, которое потом будет написано мной для теста 22', likeCount: 223, shareCount: 21 },
     ],
   },
   dialog: {
@@ -28,3 +28,14 @@ let state = {
 };
 
 export default state;
+
+export let addPost = postMessage => {
+  const newPost = {
+    id: 6,
+    message: postMessage,
+    likeCount: 0,
+    shareCount: 0,
+  };
+  state.profile.post.push(newPost);
+  console.log(state);
+};

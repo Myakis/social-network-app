@@ -4,17 +4,19 @@ import Post from './post/MyPosts';
 
 let newPostEl = React.createRef();
 
-const addPost = e => {
-  e.preventDefalult();
-  let textPost = newPostEl.current.value;
-};
-
 const MyPost = props => {
+  const addPost = e => {
+    e.preventDefault();
+    let textPost = newPostEl.current.value;
+    props.addPost(textPost);
+    newPostEl.current.value = '';
+  };
+
   return (
     <div>
-      <form action='#' className={classes.form}>
+      <form onClick={addPost} action='#' className={classes.form}>
         <textarea ref={newPostEl} className={classes.textarea} name='post'></textarea>
-        <button onClick={addPost} className={classes.button}>
+        <button type='submit' className={classes.button}>
           Добавить запись
         </button>
       </form>
