@@ -17,9 +17,9 @@ const MyPost = props => {
   };
   return (
     <div>
-      <form onClick={addPost} action='#' className={classes.form}>
+      <form action='#' className={classes.form}>
         <textarea onChange={onChangePost} value={props.valueText} ref={newPostEl} className={classes.textarea} name='post' />
-        <button type='submit' className={classes.button}>
+        <button onClick={addPost} type='submit' className={classes.button}>
           Добавить запись
         </button>
       </form>

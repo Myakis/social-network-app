@@ -27,6 +27,7 @@ let state = {
       },
       { id: 3, message: 'Как дела' },
     ],
+    messageText: '',
   },
 };
 
@@ -36,6 +37,10 @@ export default state;
 
 export let updateTextPost = newText => {
   state.profile.textPost = newText;
+  renderDomTree(state);
+};
+export let updateTextMessage = newText => {
+  state.dialog.messageText = newText;
   renderDomTree(state);
 };
 
@@ -50,5 +55,15 @@ export let addPost = () => {
     state.profile.post.push(newPost);
 
     renderDomTree(state);
+  }
+};
+export let addMessage = () => {
+  if (state.dialog.messageText) {
+    const newMessage = {
+      id: 5,
+      message: state.dialog.messageText,
+      user: 'me',
+    };
+    state.dialog.message.push(newMessage);
   }
 };

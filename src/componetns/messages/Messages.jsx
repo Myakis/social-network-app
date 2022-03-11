@@ -1,8 +1,21 @@
 import Dialog from './dialog/Dialog';
 import Message from './message/Message';
 import classes from './Messages.module.css';
+import React from 'react';
+
+let newMessageEl = React.createRef();
 
 const Messages = props => {
+  const onChangeMessage = () => {
+    let textMessage = newMessageEl.current.value;
+    props.updateTextMessage(textMessage);
+  };
+  const addMessage = e => {
+    e.preventDefault();
+    props.addMessage(props.state.messageText);
+    props.updateTextMessage('');
+  };
+
   return (
     <div className={classes.dialogsWrapper}>
       <div className={classes.dialogs}>
@@ -17,8 +30,15 @@ const Messages = props => {
           })}
         </div>
         <form action='#' className={classes.form}>
-          <input className={classes.input} type='text'></input>
-          <button className={classes.button}>Отправить</button>
+          <input
+            onChange={onChangeMessage}
+            value={props.state.messageText}
+            className={classes.input}
+            type='text'
+            ref={newMessageEl}></input>
+          <button onClick={addMessage} type='submit' className={classes.button}>
+            Отправить
+          </button>
         </form>
       </div>
     </div>
