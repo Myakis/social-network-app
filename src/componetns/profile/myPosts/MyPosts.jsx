@@ -11,11 +11,14 @@ const MyPost = props => {
     props.addPost(textPost);
     newPostEl.current.value = '';
   };
-
+  const onChangePost = () => {
+    let textPost = newPostEl.current.value;
+    props.updateTextPost(textPost);
+  };
   return (
     <div>
       <form onClick={addPost} action='#' className={classes.form}>
-        <textarea ref={newPostEl} className={classes.textarea} name='post'></textarea>
+        <textarea onChange={onChangePost} value={props.valueText} ref={newPostEl} className={classes.textarea} name='post' />
         <button type='submit' className={classes.button}>
           Добавить запись
         </button>

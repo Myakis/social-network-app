@@ -6,6 +6,7 @@ let state = {
       { id: 1, message: 'Какое-то сообщение, которое потом будет написано мной для теста ', likeCount: 23, shareCount: 1 },
       { id: 2, message: 'Какое-то сообщение, которое потом будет написано мной для теста 22', likeCount: 223, shareCount: 21 },
     ],
+    textPost: '',
   },
   dialog: {
     users: [
@@ -29,7 +30,14 @@ let state = {
   },
 };
 
+window.state = state;
+
 export default state;
+
+export let updateTextPost = newText => {
+  state.profile.textPost = newText;
+  renderDomTree(state);
+};
 
 export let addPost = postMessage => {
   if (postMessage) {
