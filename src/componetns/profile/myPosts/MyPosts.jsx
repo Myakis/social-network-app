@@ -8,7 +8,6 @@ const MyPost = props => {
   const addPost = e => {
     e.preventDefault();
     props.addPost(props.valueText);
-    props.updateTextPost('');
   };
 
   const onChangePost = () => {

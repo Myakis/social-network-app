@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import state, { addMessage, addPost, subscribe, updateTextMessage, updateTextPost } from './redux/state.js';
+import store from './redux/state.js';
 
 let renderDomTree = state => {
   ReactDOM.render(
@@ -12,10 +12,10 @@ let renderDomTree = state => {
       <React.StrictMode>
         <App
           state={state}
-          addPost={addPost}
-          addMessage={addMessage}
-          updateTextPost={updateTextPost}
-          updateTextMessage={updateTextMessage}
+          addPost={store.addPost.bind(store)}
+          addMessage={store.addMessage.bind(store)}
+          updateTextPost={store.updateTextPost.bind(store)}
+          updateTextMessage={store.updateTextMessage.bind(store)}
         />
       </React.StrictMode>
     </BrowserRouter>,
@@ -23,8 +23,8 @@ let renderDomTree = state => {
   );
 };
 
-renderDomTree(state);
-subscribe(renderDomTree);
+renderDomTree(store.state);
+store.subscribe(renderDomTree);
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
