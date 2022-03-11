@@ -1,4 +1,4 @@
-import { renderDomTree } from '../render';
+let renderDomTree = () => {};
 
 let state = {
   profile: {
@@ -35,16 +35,23 @@ window.state = state;
 
 export default state;
 
-export let updateTextPost = newText => {
+export const subscribe = obsever => {
+  renderDomTree = obsever;
+};
+//Изменение текста постов в bll
+export const updateTextPost = newText => {
   state.profile.textPost = newText;
   renderDomTree(state);
 };
-export let updateTextMessage = newText => {
+//Изменение текста сообщений в bll
+export const updateTextMessage = newText => {
   state.dialog.messageText = newText;
   renderDomTree(state);
 };
 
-export let addPost = () => {
+//Добавление постов в bll и рендер страницы
+
+export const addPost = () => {
   if (state.profile.textPost) {
     const newPost = {
       id: 6,
@@ -57,7 +64,9 @@ export let addPost = () => {
     renderDomTree(state);
   }
 };
-export let addMessage = () => {
+
+//Добавление сообщений в bll и рендер страницы
+export const addMessage = () => {
   if (state.dialog.messageText) {
     const newMessage = {
       id: 5,

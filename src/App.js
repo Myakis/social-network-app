@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 import Music from './componetns/music/Music';
 import News from './componetns/news/News';
 import Setting from './componetns/setting/Setting';
+
 const App = props => {
   return (
     <div className='wrapper'>
