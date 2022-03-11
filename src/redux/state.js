@@ -1,3 +1,5 @@
+import { renderDomTree } from '../render';
+
 let state = {
   profile: {
     post: [
@@ -30,12 +32,15 @@ let state = {
 export default state;
 
 export let addPost = postMessage => {
-  const newPost = {
-    id: 6,
-    message: postMessage,
-    likeCount: 0,
-    shareCount: 0,
-  };
-  state.profile.post.push(newPost);
-  console.log(state);
+  if (postMessage) {
+    const newPost = {
+      id: 6,
+      message: postMessage,
+      likeCount: 0,
+      shareCount: 0,
+    };
+    state.profile.post.push(newPost);
+
+    renderDomTree(state);
+  }
 };
