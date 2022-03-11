@@ -1,11 +1,22 @@
+import React from 'react';
 import classes from './MyPost.module.css';
 import Post from './post/MyPosts';
+
+let newPostEl = React.createRef();
+
+const addPost = e => {
+  e.preventDefalult();
+  let textPost = newPostEl.current.value;
+};
+
 const MyPost = props => {
   return (
     <div>
       <form action='#' className={classes.form}>
-        <textarea className={classes.textarea} name='post'></textarea>
-        <button className={classes.button}>Добавить запись </button>
+        <textarea ref={newPostEl} className={classes.textarea} name='post'></textarea>
+        <button onClick={addPost} className={classes.button}>
+          Добавить запись
+        </button>
       </form>
 
       {props.post.map(post => {
