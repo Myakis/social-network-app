@@ -3,34 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-let listUserDialog = [
-  {
-    id: '1',
-    name: 'Андрей',
-  },
-  {
-    id: '2',
-    name: 'Леонид',
-  },
-  {
-    id: '3',
-    name: 'Алексей',
-  },
-];
+import state from './redux/state.js';
 
-let postData = [
-  { message: 'Какое-то сообщение, которое потом будет написано мной для теста ', likeCount: 23, shareCount: 1, id: 1 },
-  { message: 'Какое-то сообщение, которое потом будет написано мной для теста 22', likeCount: 223, shareCount: 21, id: 2 },
-];
-
-let messageData = [
-  { id: 1, message: 'Привет' },
-  { id: 2, message: 'Привет' },
-  { id: 3, message: 'Как дела' },
-];
 ReactDOM.render(
   <React.StrictMode>
-    <App dialog={listUserDialog} post={postData} message={messageData} />
+    <App state={state} />
   </React.StrictMode>,
   document.getElementById('root')
 );

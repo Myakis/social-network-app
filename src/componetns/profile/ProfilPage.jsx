@@ -10,7 +10,7 @@ const ProfilPage = props => {
       </div>
       <div className={classes.wrapper}>
         <AboutMe />
-        <MyPost post={props.post} />
+        <MyPost post={props.state.post} />
       </div>
     </div>
   );

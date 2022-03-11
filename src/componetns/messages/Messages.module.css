@@ -4,15 +4,38 @@
 }
 .dialogs {
   background: rgba(221, 221, 221, 0.562);
-  flex: 0 0 200px;
+  flex: 0 0 230px;
 }
-.dialogs .item a {
-  display: block;
+
+.user {
   padding: 0.7rem 1rem;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.363);
-  display: block;
+  display: flex;
+  gap: 1rem;
+  transition: all 0.3s ease 0s;
 }
+.user .name {
+  font-weight: 600;
+}
+
+.avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  overflow: hidden;
+  flex: 0 0 40px;
+}
+
+.last__message {
+  height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
 .dialogs .item:not(:last-child) {
   margin-bottom: 5px;
 }
@@ -51,8 +74,26 @@
   transition: background 0.3s ease 0s, transform 0.2s ease-in-out;
 }
 .button:hover {
-  background: rgba(223, 222, 222, 0.137);
+  background: #dfdede23;
 }
 .button:active {
   transform: translate(1px, 1px);
+}
+.message {
+  padding: 0.3rem 1rem;
+  margin-right: 50px;
+  background: #96c1ce;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  border-radius: 20px 20px 20px 0;
+  position: relative;
+}
+
+.message.me {
+  margin-right: 0;
+  margin-left: 50px;
+  border-radius: 20px 20px 0 20px;
+}
+.dialogs .active {
+  background: rgba(255, 255, 255, 1);
 }

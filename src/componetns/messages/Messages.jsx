@@ -6,14 +6,14 @@ const Messages = props => {
   return (
     <div className={classes.dialogsWrapper}>
       <div className={classes.dialogs}>
-        {props.dialog.map(item => {
+        {props.state.users.map(item => {
           return <Dialog name={item.name} id={item.id} />;
         })}
       </div>
       <div className={classes.list}>
         <div className={classes.item}>
-          {props.message.map(item => {
-            return <Message message={item.message} id={item.id} />;
+          {props.state.message.map(item => {
+            return <Message message={item.message} id={item.id} user={item.user} />;
           })}
         </div>
         <form action='#' className={classes.form}>
