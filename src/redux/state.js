@@ -39,11 +39,11 @@ export let updateTextPost = newText => {
   renderDomTree(state);
 };
 
-export let addPost = postMessage => {
-  if (postMessage) {
+export let addPost = () => {
+  if (state.profile.textPost) {
     const newPost = {
       id: 6,
-      message: postMessage,
+      message: state.profile.textPost,
       likeCount: 0,
       shareCount: 0,
     };
