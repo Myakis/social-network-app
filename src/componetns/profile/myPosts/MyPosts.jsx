@@ -11,7 +11,6 @@ const MyPost = props => {
 
   const addPost = e => {
     e.preventDefault();
-
     let action = addPostActionCreator();
     props.dispatch(action);
   };

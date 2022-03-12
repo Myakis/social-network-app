@@ -32,7 +32,7 @@ let store = {
       messageText: '',
     },
   },
-  get state() {
+  getState() {
     return this._state;
   },
   _callSubscribe() {},

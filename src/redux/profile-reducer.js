@@ -1,7 +1,15 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
 
-const profileReducer = (state, action) => {
+let initialState = {
+  post: [
+    { id: 1, message: 'Какое-то сообщение, которое потом будет написано мной для теста ', likeCount: 23, shareCount: 1 },
+    { id: 2, message: 'Какое-то сообщение, которое потом будет написано мной для теста 22', likeCount: 223, shareCount: 21 },
+  ],
+  textPost: '',
+};
+
+const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
       //Добавление постов в bll и рендер страницы
@@ -19,6 +27,8 @@ const profileReducer = (state, action) => {
     case UPDATE_TEXT_POST:
       //Изменение текста постов в bll
       state.textPost = action.newText;
+      return state;
+    default:
       return state;
   }
 };
