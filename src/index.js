@@ -12,10 +12,9 @@ let renderDomTree = state => {
       <React.StrictMode>
         <App
           state={state}
-          addPost={store.addPost.bind(store)}
-          addMessage={store.addMessage.bind(store)}
           updateTextPost={store.updateTextPost.bind(store)}
           updateTextMessage={store.updateTextMessage.bind(store)}
+          dispatch={store.dispatch.bind(store)}
         />
       </React.StrictMode>
     </BrowserRouter>,

@@ -18,7 +18,14 @@ const App = props => {
         <Routes>
           <Route
             path='/profile'
-            element={<MainBlog state={props.state.profile} addPost={props.addPost} updateTextPost={props.updateTextPost} />}
+            element={
+              <MainBlog
+                state={props.state.profile}
+                dispatch={props.dispatch}
+                addPost={props.addPost}
+                updateTextPost={props.updateTextPost}
+              />
+            }
           />
           <Route
             path='/messages/*'

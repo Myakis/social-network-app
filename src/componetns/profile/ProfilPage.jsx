@@ -12,6 +12,7 @@ const ProfilPage = props => {
         <AboutMe />
         <MyPost
           post={props.state.post}
+          dispatch={props.dispatch}
           addPost={props.addPost}
           updateTextPost={props.updateTextPost}
           valueText={props.state.textPost}

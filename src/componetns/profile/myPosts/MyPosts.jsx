@@ -7,12 +7,16 @@ let newPostEl = React.createRef();
 const MyPost = props => {
   const addPost = e => {
     e.preventDefault();
-    props.addPost(props.valueText);
+
+    let action = { type: 'ADD-POST' };
+    props.dispatch(action);
   };
 
   const onChangePost = () => {
     let textPost = newPostEl.current.value;
-    props.updateTextPost(textPost);
+    // props.updateTextPost(textPost);
+    let action = { type: 'UPDATE-TEXT-POST', newText: textPost };
+    props.dispatch(action);
   };
   return (
     <div>

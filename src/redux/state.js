@@ -74,6 +74,24 @@ let store = {
     this._state.dialog.messageText = newText;
     this._callSubscribe(this._state);
   },
+  dispatch(action) {
+    if (action.type === 'ADD-POST') {
+      if (this._state.profile.textPost) {
+        const newPost = {
+          id: 6,
+          message: this._state.profile.textPost,
+          likeCount: 0,
+          shareCount: 0,
+        };
+        this._state.profile.post.push(newPost);
+        this.updateTextPost('');
+        this._callSubscribe(this._state);
+      }
+    } else if (action.type === 'UPDATE-TEXT-POST') {
+      this._state.profile.textPost = action.newText;
+      this._callSubscribe(this._state);
+    }
+  },
 
   subscribe(obsever) {
     this._callSubscribe = obsever;
