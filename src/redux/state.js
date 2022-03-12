@@ -1,3 +1,7 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
 let store = {
   _state: {
     profile: {
@@ -34,47 +38,8 @@ let store = {
   },
   _callSubscribe() {},
 
-  //Добавление постов в bll и рендер страницы
-
-  addPost() {
-    if (this._state.profile.textPost) {
-      const newPost = {
-        id: 6,
-        message: this._state.profile.textPost,
-        likeCount: 0,
-        shareCount: 0,
-      };
-      this._state.profile.post.push(newPost);
-      this.updateTextPost('');
-      this._callSubscribe(this._state);
-    }
-  },
-  //Изменение текста постов в bll
-
-  updateTextPost(newText) {
-    this._state.profile.textPost = newText;
-    this._callSubscribe(this._state);
-  },
-
-  //Добавление сообщений в bll и рендер страницы
-  addMessage() {
-    if (this._state.dialog.messageText) {
-      const newMessage = {
-        id: 5,
-        message: this._state.dialog.messageText,
-        user: 'me',
-      };
-      this._state.dialog.message.push(newMessage);
-      this._callSubscribe('');
-    }
-  },
-
-  //Изменение текста сообщений в bll
-  updateTextMessage(newText) {
-    this._state.dialog.messageText = newText;
-    this._callSubscribe(this._state);
-  },
   dispatch(action) {
+    //Добавление постов в bll и рендер страницы
     if (action.type === 'ADD-POST') {
       if (this._state.profile.textPost) {
         const newPost = {
@@ -84,11 +49,27 @@ let store = {
           shareCount: 0,
         };
         this._state.profile.post.push(newPost);
-        this.updateTextPost('');
         this._callSubscribe(this._state);
       }
     } else if (action.type === 'UPDATE-TEXT-POST') {
+      //Изменение текста постов в bll
       this._state.profile.textPost = action.newText;
+      this._callSubscribe(this._state);
+    } else if (action.type === 'ADD-MESSAGE') {
+      //Добавление сообщений в bll и рендер страницы
+      if (this._state.dialog.messageText) {
+        const newMessage = {
+          id: 5,
+          message: this._state.dialog.messageText,
+          user: 'me',
+        };
+        this._state.dialog.message.push(newMessage);
+        // this._callSubscribe('');
+        this._callSubscribe(this._state);
+      }
+    } else if (action.type === 'UPDATE-TEXT-MESSAGE') {
+      //Изменение текста сообщений в bll
+      this._state.dialog.messageText = action.newText;
       this._callSubscribe(this._state);
     }
   },
@@ -97,6 +78,11 @@ let store = {
     this._callSubscribe = obsever;
   },
 };
+
+export const addPostActionCreator = () => ({ type: ADD_POST });
+export const updateTextPostActionCreator = textPost => ({ type: UPDATE_TEXT_POST, newText: textPost });
+export const addMessageActionCreator = () => ({ type: ADD_MESSAGE });
+export const updateTextMessageActionCreator = textMessage => ({ type: UPDATE_TEXT_MESSAGE, newText: textMessage });
 
 export default store;
 window.store = store;

@@ -13,6 +13,7 @@
   padding: 0.5rem 1rem;
   height: 130px;
   transition: all 0.1s ease 0s;
+  font-size: 17px;
 }
 .textarea:focus {
   border: 1px solid rgb(172, 171, 171);
