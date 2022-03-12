@@ -4,11 +4,9 @@ import classes from './Messages.module.css';
 import React from 'react';
 import { addMessageActionCreator, updateTextMessageActionCreator } from '../../redux/state';
 
-let newMessageEl = React.createRef();
-
 const Messages = props => {
-  const onChangeMessage = () => {
-    let textMessage = newMessageEl.current.value;
+  const onChangeMessage = e => {
+    let textMessage = e.target.value;
     let action = updateTextMessageActionCreator(textMessage);
     props.dispatch(action);
   };
@@ -16,9 +14,6 @@ const Messages = props => {
     e.preventDefault();
 
     let action = addMessageActionCreator();
-    props.dispatch(action);
-
-    action = updateTextMessageActionCreator('');
     props.dispatch(action);
   };
 
@@ -36,12 +31,7 @@ const Messages = props => {
           })}
         </div>
         <form action='#' className={classes.form}>
-          <input
-            onChange={onChangeMessage}
-            value={props.state.messageText}
-            className={classes.input}
-            type='text'
-            ref={newMessageEl}></input>
+          <input onChange={onChangeMessage} value={props.state.messageText} className={classes.input} type='text' />
           <button onClick={addMessage} type='submit' className={classes.button}>
             Отправить
           </button>

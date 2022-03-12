@@ -2,10 +2,9 @@ import React from 'react';
 import { addPostActionCreator, updateTextPostActionCreator } from '../../../redux/state';
 import classes from './MyPost.module.css';
 import Post from './post/MyPosts';
-let newPostEl = React.createRef();
 const MyPost = props => {
-  const onChangePost = () => {
-    let textPost = newPostEl.current.value;
+  const onChangePost = e => {
+    let textPost = e.target.value;
     let action = updateTextPostActionCreator(textPost);
     props.dispatch(action);
   };
@@ -15,15 +14,12 @@ const MyPost = props => {
 
     let action = addPostActionCreator();
     props.dispatch(action);
-
-    action = updateTextPostActionCreator('');
-    props.dispatch(action);
   };
 
   return (
     <div>
       <form action='#' className={classes.form}>
-        <textarea onChange={onChangePost} value={props.valueText} ref={newPostEl} className={classes.textarea} name='post' />
+        <textarea onChange={onChangePost} value={props.valueText} className={classes.textarea} name='post' />
         <button onClick={addPost} type='submit' className={classes.button}>
           Добавить запись
         </button>

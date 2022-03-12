@@ -49,6 +49,7 @@ let store = {
           shareCount: 0,
         };
         this._state.profile.post.push(newPost);
+        this._state.profile.textPost = '';
         this._callSubscribe(this._state);
       }
     } else if (action.type === 'UPDATE-TEXT-POST') {
@@ -64,7 +65,7 @@ let store = {
           user: 'me',
         };
         this._state.dialog.message.push(newMessage);
-        // this._callSubscribe('');
+        this._state.dialog.messageText = '';
         this._callSubscribe(this._state);
       }
     } else if (action.type === 'UPDATE-TEXT-MESSAGE') {
