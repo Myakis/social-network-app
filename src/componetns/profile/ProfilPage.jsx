@@ -11,7 +11,7 @@ const ProfilPage = props => {
       </div>
       <div className={classes.wrapper}>
         <AboutMe />
-        <MyPostConteiner store={props.store} />
+        <MyPostConteiner />
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ let initialState = {
     { id: 1, message: 'Какое-то сообщение, которое потом будет написано мной для теста ', likeCount: 23, shareCount: 1 },
     { id: 2, message: 'Какое-то сообщение, которое потом будет написано мной для теста 22', likeCount: 223, shareCount: 21 },
   ],
-  textPost: '',
+  textPost: 'ssssss',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -33,5 +33,5 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 export const addPostActionCreator = () => ({ type: ADD_POST });
-export const updateTextPostActionCreator = textPost => ({ type: UPDATE_TEXT_POST, newText: textPost });
+export let updateTextPostActionCreator = textPost => ({ type: UPDATE_TEXT_POST, newText: textPost });
 export default profileReducer;

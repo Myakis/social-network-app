@@ -1,20 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store-redux';
-import StoreContext from './StoreContext';
+import { Provider } from 'react-redux';
 
-let renderDomTree = state => {
+window.store = store.getState();
+
+let renderDomTree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <StoreContext.Provider value={store}>
+      <Provider store={store}>
         <React.StrictMode>
           <App />
         </React.StrictMode>
-      </StoreContext.Provider>
+      </Provider>
     </BrowserRouter>,
     document.getElementById('root')
   );
