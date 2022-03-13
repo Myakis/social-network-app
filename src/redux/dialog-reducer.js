@@ -31,14 +31,12 @@ const dialogsReducer = (state = initialState, action) => {
           message: state.messageText,
           user: 'me',
         };
-        state.message.push(newMessage);
-        state.messageText = '';
+        return { ...state, message: [...state.message, newMessage], messageText: '' };
       }
-      return state;
     case UPDATE_TEXT_MESSAGE:
       //Изменение текста сообщений в bll
-      state.messageText = action.newText;
-      return state;
+      return { ...state, messageText: action.newText };
+
     default:
       return state;
   }

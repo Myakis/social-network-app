@@ -20,19 +20,12 @@ const profileReducer = (state = initialState, action) => {
           likeCount: 0,
           shareCount: 0,
         };
-        let stateCopy = { ...state };
-        stateCopy.post = [...state.post];
-
-        stateCopy.post.push(newPost);
-        stateCopy.textPost = '';
-        return stateCopy;
+        return { ...state, post: [...state.post, newPost], textPost: '' };
       }
     case UPDATE_TEXT_POST:
       //Изменение текста постов в bll
-      let stateCopy = { ...state };
+      return { ...state, textPost: action.newText };
 
-      stateCopy.textPost = action.newText;
-      return stateCopy;
     default:
       return state;
   }

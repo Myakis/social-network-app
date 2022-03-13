@@ -14,9 +14,11 @@ const Messages = props => {
     props.addMessage();
   };
   // Отображение списка пользователей, с кем есть переписка
-  let listUser = props.state.dialog.users.map(item => <Dialog name={item.name} id={item.id} />);
+  let listUser = props.state.dialog.users.map(item => <Dialog key={item.id} name={item.name} id={item.id} />);
   //Отображение сообщений
-  let listMessage = props.state.dialog.message.map(item => <Message message={item.message} id={item.id} user={item.user} />);
+  let listMessage = props.state.dialog.message.map((item, i) => (
+    <Message key={i} message={item.message} id={item.id} user={item.user} />
+  ));
 
   return (
     <div className={classes.dialogsWrapper}>

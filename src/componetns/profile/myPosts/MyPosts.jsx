@@ -14,7 +14,7 @@ const MyPost = props => {
   };
 
   let posts = props.post.map(post => (
-    <Post id={post.id} message={post.message} likeCount={post.likeCount} shareCount={post.shareCount} />
+    <Post key={post.id} id={post.id} message={post.message} likeCount={post.likeCount} shareCount={post.shareCount} />
   ));
 
   return (
