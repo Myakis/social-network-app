@@ -1,37 +1,30 @@
-import Dialog from './dialog/Dialog';
+import Dialog from './dialog/DialogUserItem';
 import Message from './message/Message';
 import classes from './Messages.module.css';
 import React from 'react';
-import { addMessageActionCreator, updateTextMessageActionCreator } from '../../redux/dialog-reducer';
 
 const Messages = props => {
   const onChangeMessage = e => {
     let textMessage = e.target.value;
-    let action = updateTextMessageActionCreator(textMessage);
-    props.dispatch(action);
+
+    props.onChangeMessage(textMessage);
   };
   const addMessage = e => {
     e.preventDefault();
-
-    let action = addMessageActionCreator();
-    props.dispatch(action);
+    props.addMessage();
   };
+  // Отображение списка пользователей, с кем есть переписка
+  let listUser = props.state.dialog.users.map(item => <Dialog name={item.name} id={item.id} />);
+  //Отображение сообщений
+  let listMessage = props.state.dialog.message.map(item => <Message message={item.message} id={item.id} user={item.user} />);
 
   return (
     <div className={classes.dialogsWrapper}>
-      <div className={classes.dialogs}>
-        {props.state.users.map(item => {
-          return <Dialog name={item.name} id={item.id} />;
-        })}
-      </div>
+      <div className={classes.dialogs}>{listUser}</div>
       <div className={classes.list}>
-        <div className={classes.item}>
-          {props.state.message.map(item => {
-            return <Message message={item.message} id={item.id} user={item.user} />;
-          })}
-        </div>
+        <div className={classes.item}>{listMessage}</div>
         <form action='#' className={classes.form}>
-          <input onChange={onChangeMessage} value={props.state.messageText} className={classes.input} type='text' />
+          <input onChange={onChangeMessage} value={props.messageText} className={classes.input} type='text' />
           <button onClick={addMessage} type='submit' className={classes.button}>
             Отправить
           </button>

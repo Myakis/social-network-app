@@ -1,19 +1,21 @@
 import React from 'react';
-import { addPostActionCreator, updateTextPostActionCreator } from '../../../redux/profile-reducer';
 import classes from './MyPost.module.css';
 import Post from './post/MyPosts';
+
 const MyPost = props => {
   const onChangePost = e => {
     let textPost = e.target.value;
-    let action = updateTextPostActionCreator(textPost);
-    props.dispatch(action);
+    props.onChangePost(textPost);
   };
 
   const addPost = e => {
     e.preventDefault();
-    let action = addPostActionCreator();
-    props.dispatch(action);
+    props.addPost();
   };
+
+  let posts = props.post.map(post => (
+    <Post id={post.id} message={post.message} likeCount={post.likeCount} shareCount={post.shareCount} />
+  ));
 
   return (
     <div>
@@ -23,10 +25,7 @@ const MyPost = props => {
           Добавить запись
         </button>
       </form>
-
-      {props.post.map(post => {
-        return <Post id={post.id} message={post.message} likeCount={post.likeCount} shareCount={post.shareCount} />;
-      })}
+      {posts}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import AboutMe from './aboutMe/AboutMe';
 import MyPost from './myPosts/MyPosts';
+import MyPostConteiner from './myPosts/MyPostsConteiner';
 import classes from './Profile.module.css';
 
 const ProfilPage = props => {
@@ -10,7 +11,7 @@ const ProfilPage = props => {
       </div>
       <div className={classes.wrapper}>
         <AboutMe />
-        <MyPost post={props.state.post} dispatch={props.dispatch} valueText={props.state.textPost} />
+        <MyPostConteiner store={props.store} />
       </div>
     </div>
   );
