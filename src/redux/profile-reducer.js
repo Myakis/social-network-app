@@ -6,7 +6,7 @@ let initialState = {
     { id: 1, message: 'Какое-то сообщение, которое потом будет написано мной для теста ', likeCount: 23, shareCount: 1 },
     { id: 2, message: 'Какое-то сообщение, которое потом будет написано мной для теста 22', likeCount: 223, shareCount: 21 },
   ],
-  textPost: 'ssssss',
+  textPost: '',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -14,20 +14,25 @@ const profileReducer = (state = initialState, action) => {
     case ADD_POST:
       //Добавление постов в bll и рендер страницы
       if (state.textPost) {
-        const newPost = {
+        let newPost = {
           id: 6,
           message: state.textPost,
           likeCount: 0,
           shareCount: 0,
         };
-        state.post.push(newPost);
-        state.textPost = '';
-        return state;
+        let stateCopy = { ...state };
+        stateCopy.post = [...state.post];
+
+        stateCopy.post.push(newPost);
+        stateCopy.textPost = '';
+        return stateCopy;
       }
     case UPDATE_TEXT_POST:
       //Изменение текста постов в bll
-      state.textPost = action.newText;
-      return state;
+      let stateCopy = { ...state };
+
+      stateCopy.textPost = action.newText;
+      return stateCopy;
     default:
       return state;
   }
