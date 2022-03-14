@@ -26,6 +26,7 @@ body {
   padding: 0 20px;
   margin: 0 auto;
   min-height: 100vh;
+
   grid-template-columns: minmax(200px, max-content) 1fr;
   grid-template-rows: max-content 1fr;
   grid-gap: 10px;
