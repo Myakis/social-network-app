@@ -3,32 +3,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 
 let initialState = {
-  users: [
-    {
-      id: 1,
-      fullName: 'Леонид',
-      avatarURl: 'https://www.vokrug.tv/pic/person/a/a/f/a/aafaa4fb278f83b398018a1670206a4e.jpg',
-      followed: false,
-      status: 'Какой-то статичный статус, который должен поставить пользователь',
-      location: { cityName: 'Ussuriysk', country: 'Russia' },
-    },
-    {
-      id: 2,
-      fullName: 'Алексей',
-      avatarURl: 'https://www.vokrug.tv/pic/person/a/a/f/a/aafaa4fb278f83b398018a1670206a4e.jpg',
-      followed: true,
-      status: 'Какой-то статичный статус, который должен поставить пользователь',
-      location: { cityName: 'Ussuriysk', country: 'Russia' },
-    },
-    {
-      id: 3,
-      fullName: 'Кирилл',
-      avatarURl: 'https://www.vokrug.tv/pic/person/a/a/f/a/aafaa4fb278f83b398018a1670206a4e.jpg',
-      followed: true,
-      status: 'Какой-то статичный статус, который должен поставить пользователь',
-      location: { cityName: 'Ussuriysk', country: 'Russia' },
-    },
-  ],
+  users: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -64,3 +39,29 @@ export const followActionCreateor = userId => ({ type: FOLLOW, userId });
 export const unfollowActionCreateor = userId => ({ type: UNFOLLOW, userId });
 export const setUsersActionCreateor = users => ({ type: SET_USERS, users });
 export default userReducer;
+//==========================================================================================================
+
+// {
+//   id: 1,
+//   fullName: 'Леонид',
+//   avatarURl: 'https://www.vokrug.tv/pic/person/a/a/f/a/aafaa4fb278f83b398018a1670206a4e.jpg',
+//   followed: false,
+//   status: 'Какой-то статичный статус, который должен поставить пользователь',
+//   location: { cityName: 'Ussuriysk', country: 'Russia' },
+// },
+// {
+//   id: 2,
+//   fullName: 'Алексей',
+//   avatarURl: 'https://www.vokrug.tv/pic/person/a/a/f/a/aafaa4fb278f83b398018a1670206a4e.jpg',
+//   followed: true,
+//   status: 'Какой-то статичный статус, который должен поставить пользователь',
+//   location: { cityName: 'Ussuriysk', country: 'Russia' },
+// },
+// {
+//   id: 3,
+//   fullName: 'Кирилл',
+//   avatarURl: 'https://www.vokrug.tv/pic/person/a/a/f/a/aafaa4fb278f83b398018a1670206a4e.jpg',
+//   followed: true,
+//   status: 'Какой-то статичный статус, который должен поставить пользователь',
+//   location: { cityName: 'Ussuriysk', country: 'Russia' },
+// },
