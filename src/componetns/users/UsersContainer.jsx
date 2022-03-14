@@ -4,6 +4,7 @@ import React from 'react';
 import {
   followActionCreateor,
   setCurrentPageActionCreator,
+  setFetching,
   setTotalCountActionCreator,
   setUsersActionCreateor,
   unfollowActionCreateor,
@@ -11,20 +12,22 @@ import {
 import Users from './Users';
 
 class UsersComponent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
+    this.props.setFetching(true);
     axios
       .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersCount}`)
       .then(respose => {
+        this.props.setFetching(false);
         this.props.setUsers(respose.data.items);
         this.props.setTotalCount(respose.data.totalCount);
       });
   }
   changePage = p => {
     this.props.setCurrentPage(p);
+    this.props.setFetching(true);
+    this.props.setUsers([]);
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersCount}`).then(respose => {
+      this.props.setFetching(false);
       this.props.setUsers(respose.data.items);
     });
   };
@@ -46,6 +49,7 @@ class UsersComponent extends React.Component {
         toFollow={this.props.toFollow}
         toUnFollow={this.props.toUnFollow}
         numbersPage={numbersPage}
+        isFetching={this.props.isFetching}
       />
     );
   }
@@ -57,6 +61,7 @@ const mapStateToProps = state => {
     usersCount: state.users.usersCount,
     currentPage: state.users.currentPage,
     totalUsersCount: state.users.totalUsersCount,
+    isFetching: state.users.ifFetching,
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -79,6 +84,10 @@ const mapDispatchToProps = dispatch => {
     },
     setTotalCount: total => {
       let action = setTotalCountActionCreator(total);
+      dispatch(action);
+    },
+    setFetching: load => {
+      let action = setFetching(load);
       dispatch(action);
     },
   };

@@ -1,11 +1,12 @@
 import classes from './Users.module.css';
 import avatarPhoto from '../../assets/img/avatar.png';
-import * as axios from 'axios';
 import React from 'react';
+import Preloader from '../common/preloader/Preloader';
 
 const Users = props => {
   return (
     <div className={classes.list}>
+      {props.isFetching ? <Preloader /> : ''}
       {props.users.map((u, i) => (
         <div key={i} className={classes.item}>
           <div className={classes.profile}>
