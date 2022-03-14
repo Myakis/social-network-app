@@ -1,14 +1,7 @@
 import { connect } from 'react-redux';
 import * as axios from 'axios';
 import React from 'react';
-import {
-  followActionCreateor,
-  setCurrentPageActionCreator,
-  setFetching,
-  setTotalCountActionCreator,
-  setUsersActionCreateor,
-  unfollowActionCreateor,
-} from '../../redux/user-reducer';
+import { follow, unfollow, setCurrentPage, setFetching, setTotalCount, setUsers } from '../../redux/user-reducer';
 import Users from './Users';
 
 class UsersComponent extends React.Component {
@@ -25,7 +18,6 @@ class UsersComponent extends React.Component {
   changePage = p => {
     this.props.setCurrentPage(p);
     this.props.setFetching(true);
-    this.props.setUsers([]);
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersCount}`).then(respose => {
       this.props.setFetching(false);
       this.props.setUsers(respose.data.items);
@@ -64,34 +56,41 @@ const mapStateToProps = state => {
     isFetching: state.users.ifFetching,
   };
 };
-const mapDispatchToProps = dispatch => {
-  return {
-    toFollow: userId => {
-      let action = followActionCreateor(userId);
-      dispatch(action);
-    },
-    toUnFollow: userId => {
-      let action = unfollowActionCreateor(userId);
-      dispatch(action);
-    },
-    setUsers: userId => {
-      let action = setUsersActionCreateor(userId);
-      dispatch(action);
-    },
-    setCurrentPage: current => {
-      let action = setCurrentPageActionCreator(current);
-      dispatch(action);
-    },
-    setTotalCount: total => {
-      let action = setTotalCountActionCreator(total);
-      dispatch(action);
-    },
-    setFetching: load => {
-      let action = setFetching(load);
-      dispatch(action);
-    },
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     toFollow: userId => {
+//       let action = followActionCreateor(userId);
+//       dispatch(action);
+//     },
+//     toUnFollow: userId => {
+//       let action = unfollowActionCreateor(userId);
+//       dispatch(action);
+//     },
+//     setUsers: userId => {
+//       let action = setUsersActionCreateor(userId);
+//       dispatch(action);
+//     },
+//     setCurrentPage: current => {
+//       let action = setCurrentPageActionCreator(current);
+//       dispatch(action);
+//     },
+//     setTotalCount: total => {
+//       let action = setTotalCountActionCreator(total);
+//       dispatch(action);
+//     },
+//     setFetching: load => {
+//       let action = setFetching(load);
+//       dispatch(action);
+//     },
+//   };
+// };
 
-let UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersComponent);
+let UsersContainer = connect(mapStateToProps, {
+  toFollow: follow,
+  toUnFollow: unfollow,
+  setUsers,
+  setCurrentPage,
+  setTotalCount,
+  setFetching,
+})(UsersComponent);
 export default UsersContainer;
