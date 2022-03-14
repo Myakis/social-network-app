@@ -8,10 +8,19 @@ class Users extends React.Component {
     super(props);
   }
   componentDidMount() {
-    axios.get('https://social-network.samuraijs.com/api/1.0/users').then(respose => {
+    axios
+      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersCount}`)
+      .then(respose => {
+        this.props.setUsers(respose.data.items);
+        this.props.setTotalCount(respose.data.totalCount);
+      });
+  }
+  changePage = p => {
+    this.props.setCurrentPage(p);
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersCount}`).then(respose => {
       this.props.setUsers(respose.data.items);
     });
-  }
+  };
   render() {
     let listUser = this.props.users.map((u, i) => (
       <div key={i} className={classes.item}>
@@ -40,7 +49,30 @@ class Users extends React.Component {
         </div>
       </div>
     ));
-    return <div className={classes.list}>{listUser}</div>;
+    let countPage = Math.ceil(this.props.totalUsersCount / this.props.usersCount);
+    let numbersPage = [];
+    for (let i = 1; i <= countPage; i++) {
+      numbersPage.push(i);
+    }
+    return (
+      <div className={classes.list}>
+        {listUser}{' '}
+        <div className={classes.paginatonPage}>
+          {numbersPage.map((count, i) => {
+            if (count <= 10) {
+              return (
+                <span
+                  key={i}
+                  onClick={() => this.changePage(count)}
+                  className={this.props.currentPage === count ? classes.activePage : ''}>
+                  {count}
+                </span>
+              );
+            }
+          })}
+        </div>
+      </div>
+    );
   }
 }
 
