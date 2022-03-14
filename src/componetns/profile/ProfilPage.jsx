@@ -1,5 +1,4 @@
 import AboutMe from './aboutMe/AboutMe';
-import MyPost from './myPosts/MyPosts';
 import MyPostConteiner from './myPosts/MyPostsConteiner';
 import classes from './Profile.module.css';
 

@@ -6,7 +6,6 @@ import React from 'react';
 const Messages = props => {
   const onChangeMessage = e => {
     let textMessage = e.target.value;
-
     props.onChangeMessage(textMessage);
   };
   const addMessage = e => {

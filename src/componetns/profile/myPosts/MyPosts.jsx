@@ -13,7 +13,7 @@ const MyPost = props => {
     props.addPost();
   };
 
-  let posts = props.post.map(post => (
+  let Posts = props.post.map(post => (
     <Post key={post.id} id={post.id} message={post.message} likeCount={post.likeCount} shareCount={post.shareCount} />
   ));
 
@@ -25,7 +25,7 @@ const MyPost = props => {
           Добавить запись
         </button>
       </form>
-      {posts}
+      {Posts}
     </div>
   );
 };

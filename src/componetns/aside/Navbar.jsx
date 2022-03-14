@@ -12,18 +12,23 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li className={classes.item}>
+            <NavLink className={link => (link.isActive ? classes.active : '')} to='/news'>
+              Новости
+            </NavLink>
+          </li>
+          <li className={classes.item}>
             <NavLink className={link => (link.isActive ? classes.active : '')} to='/messages'>
               Сообщения
+            </NavLink>
+          </li>{' '}
+          <li className={classes.item}>
+            <NavLink className={link => (link.isActive ? classes.active : '')} to='/users'>
+              Пользователи
             </NavLink>
           </li>
           <li className={classes.item}>
             <NavLink className={link => (link.isActive ? classes.active : '')} to='/music'>
               Музыка
-            </NavLink>
-          </li>
-          <li className={classes.item}>
-            <NavLink className={link => (link.isActive ? classes.active : '')} to='/news'>
-              Новости
             </NavLink>
           </li>
           <li className={classes.item}>

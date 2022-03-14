@@ -1,0 +1,31 @@
+.item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(122, 191, 212, 0.164);
+  border-radius: 5px;
+}
+.profile {
+  flex: 0 0 190px;
+}
+.item p {
+  margin: 0;
+}
+.profile button {
+  display: block;
+  width: 100%;
+  padding: 0.4rem 1rem;
+}
+.profile img {
+  width: 100%;
+  object-fit: cover;
+  height: 190px;
+}
+.item:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.name {
+  font-size: 25px;
+  margin-bottom: 50%;
+}
