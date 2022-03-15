@@ -1,5 +1,4 @@
 import './App.css';
-import Header from './componetns/header/Header';
 import Navbar from './componetns/aside/Navbar';
 import { Route, Routes } from 'react-router-dom';
 import Music from './componetns/music/Music';
@@ -8,15 +7,15 @@ import Setting from './componetns/setting/Setting';
 import MessagesConteiner from './componetns/messages/MessagesConteiner';
 import UsersContainer from './componetns/users/UsersContainer';
 import ProfileContainer from './componetns/profile/ProfileContaner';
+import HeaderContainer from './componetns/header/HeaderContainer';
 
 const App = props => {
   return (
     <div className='wrapper'>
-      <Header />
+      <HeaderContainer />
       <Navbar />
       <main className='content'>
         <Routes>
-          {' '}
           <Route path='/profile/' element={<ProfileContainer />} />
           <Route path='/profile/:userId' element={<ProfileContainer />} />
           <Route path='/messages/*' element={<MessagesConteiner />} />

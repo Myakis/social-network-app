@@ -3,7 +3,6 @@ import ProfileInfo from './profileInfo/ProfileInfo';
 import avatar from '../../../assets/img/avatar.png';
 
 const Avatar = props => {
-  console.log(props);
   return (
     <div className={classes.avatar}>
       <img src={!props.photo ? avatar : props.photo} alt='avatar' />
@@ -19,6 +18,10 @@ const AboutMe = props => {
         description={props.profile.aboutMe}
         fullName={props.profile.fullName}
         twitter={props.profile.contacts.twitter}
+        vk={props.profile.contacts.vk}
+        instagram={props.profile.contacts.instagram}
+        github={props.profile.contacts.github}
+        website={props.profile.contacts.website}
       />
     </div>
   );

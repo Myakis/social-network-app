@@ -4,8 +4,12 @@
   grid-area: header;
   border-radius: 0 0 15px 15px;
   overflow: hidden;
+  display: flex;
+  /* margin: 10px; */
+  justify-content: space-between;
+  padding: 0 10px;
+  align-items: center;
 }
 .header img {
   height: 50px;
-  margin-left: 10px;
 }

@@ -25,6 +25,38 @@ const ProfileInfo = props => {
         ) : (
           ''
         )}
+        {props.vk ? (
+          <div className={classes.item}>
+            <span>vk:</span>
+            <a href={props.vk}> {props.vk}</a>
+          </div>
+        ) : (
+          ''
+        )}
+        {props.instagram ? (
+          <div className={classes.item}>
+            <span>instagram:</span>
+            <a href={props.instagram}> {props.instagram}</a>
+          </div>
+        ) : (
+          ''
+        )}
+        {props.github ? (
+          <div className={classes.item}>
+            <span>github:</span>
+            <a href={props.github}> {props.github}</a>
+          </div>
+        ) : (
+          ''
+        )}
+        {props.website ? (
+          <div className={classes.item}>
+            <span>website:</span>
+            <a href={props.website}> {props.website}</a>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );
