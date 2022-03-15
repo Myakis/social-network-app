@@ -1,5 +1,5 @@
 const SET_USER_DATA = 'SET-USER-DATA';
-
+const SET_USER_PROFILE = 'SET-USER-PROFILE';
 let initialState = {
   isAuth: false,
   userId: null,
@@ -12,7 +12,8 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA:
       return { ...state, ...action.data, isAuth: true };
-
+    case SET_USER_PROFILE:
+      return { ...state, profile: action.profile };
     default:
       return state;
   }

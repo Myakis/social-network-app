@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import ProfilePage from './ProfilPage';
 import { setUserProfile } from '../../redux/profile-reducer';
 import widthRouter from './CustomWitdhRouter';
+import { setUsers } from '../../redux/user-reducer';
 
 const mapStateToProps = state => ({
   profile: state.profile.profile,
@@ -13,7 +14,7 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.params.userId;
     if (!userId) {
-      userId = '2';
+      userId = '22851';
     }
     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
       this.props.setUserProfile(response.data);

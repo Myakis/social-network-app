@@ -1,14 +1,21 @@
 import { NavLink } from 'react-router-dom';
 import classes from './Header.module.css';
+import avatar from '../../assets/img/avatar.png';
 
 const Header = props => {
+  console.log(props);
   return (
     <header className={classes.header}>
       <img src='https://frontandrew.ru/img/logo.svg' alt='logo' />
 
-      <div className={classes.profile}>
+      <div className={classes.profileWrapper}>
         {props.isAuth ? (
-          props.login
+          <NavLink to={'/profile'}>
+            <div className={classes.profile}>
+              <img src={props.profile.photos.small ? props.profile.photos.small : avatar} alt='avatatr' />
+              <p>{props.login}</p>
+            </div>
+          </NavLink>
         ) : (
           <NavLink onClick={props.setAutnUSerData} to={'/login'}>
             Войти

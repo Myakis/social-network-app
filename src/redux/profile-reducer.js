@@ -1,6 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
-const SET_USER_PROFILE = 'SET-USER-PROFILE}';
+const SET_USER_PROFILE = 'SET-USER-PROFILE';
 
 let initialState = {
   post: [
