@@ -1,10 +1,13 @@
 import classes from './ProfileInfo.module.css';
 
-const ProfileInfo = () => {
+const ProfileInfo = props => {
   return (
     <div>
       <div className={classes.description}>
-        <div className={`${classes.item} ${classes.name}`}>Андрей М.</div>
+        <div className={`${classes.item} ${classes.name}`}>{props.fullName}</div>
+        <div className={classes.item}>
+          <span>{props.description}</span>
+        </div>
         <div className={classes.item}>
           <span>День рождения:</span> 10.10.2001
         </div>
@@ -14,10 +17,15 @@ const ProfileInfo = () => {
         <div className={classes.item}>
           <span>Образование: </span> Незаконченное высшее
         </div>
-        <div className={classes.item}>
-          <span>Веб-сайт:</span> <a href='https://frontandrew.ru/'> https://frontandrew.ru</a>
-        </div>
-      </div>{' '}
+        {props.twitter ? (
+          <div className={classes.item}>
+            <span>Twitter:</span>
+            <a href={props.twitter}> {props.twitter}</a>
+          </div>
+        ) : (
+          ''
+        )}
+      </div>
     </div>
   );
 };

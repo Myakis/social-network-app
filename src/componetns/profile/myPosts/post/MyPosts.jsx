@@ -4,7 +4,7 @@ const Post = props => {
     <div className={classes.post}>
       <div className={classes.body}>
         <div className={classes.avatar}>
-          <img src='https://frontandrew.ru/img/avatar.webp' alt='' />
+          <img src={props.photo} alt='' />
         </div>
         <div className={classes.content}>{props.message}</div>
       </div>

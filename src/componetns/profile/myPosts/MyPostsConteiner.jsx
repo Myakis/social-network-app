@@ -6,6 +6,7 @@ let mapStateToProps = state => {
   return {
     post: state.profile.post,
     valueText: state.profile.textPost,
+    photo: state.profile.profile.photos.small,
   };
 };
 // let mapDispatchToProps = dispatch => {

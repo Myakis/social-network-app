@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
+const SET_USER_PROFILE = 'SET-USER-PROFILE}';
 
 let initialState = {
   post: [
@@ -7,6 +8,7 @@ let initialState = {
     { id: 2, message: 'Какое-то сообщение, которое потом будет написано мной для теста 22', likeCount: 223, shareCount: 21 },
   ],
   textPost: '',
+  profile: null,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -25,11 +27,14 @@ const profileReducer = (state = initialState, action) => {
     case UPDATE_TEXT_POST:
       //Изменение текста постов в bll
       return { ...state, textPost: action.newText };
+    case SET_USER_PROFILE:
+      return { ...state, profile: action.profile };
 
     default:
       return state;
   }
 };
 export const addPost = () => ({ type: ADD_POST });
-export let updateTextPost = textPost => ({ type: UPDATE_TEXT_POST, newText: textPost });
+export const updateTextPost = textPost => ({ type: UPDATE_TEXT_POST, newText: textPost });
+export const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile });
 export default profileReducer;

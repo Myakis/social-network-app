@@ -47,6 +47,3 @@ let store = {
     this._callSubscribe = obsever;
   },
 };
-
-export default store;
-// window.store = store;

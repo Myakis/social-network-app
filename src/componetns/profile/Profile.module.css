@@ -1,6 +1,7 @@
 .wrapper {
   padding: 0 10px;
   overflow-y: auto;
+  position: relative;
 }
 
 .header {

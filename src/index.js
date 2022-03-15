@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store-redux';
 import { Provider } from 'react-redux';
 
-window.store = store.getState();
+window.store = store;
 
 ReactDOM.render(
   <BrowserRouter>

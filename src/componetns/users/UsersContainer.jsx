@@ -9,18 +9,18 @@ class UsersComponent extends React.Component {
     this.props.setFetching(true);
     axios
       .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersCount}`)
-      .then(respose => {
+      .then(response => {
         this.props.setFetching(false);
-        this.props.setUsers(respose.data.items);
-        this.props.setTotalCount(respose.data.totalCount);
+        this.props.setUsers(response.data.items);
+        this.props.setTotalCount(response.data.totalCount);
       });
   }
   changePage = p => {
     this.props.setCurrentPage(p);
     this.props.setFetching(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersCount}`).then(respose => {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersCount}`).then(response => {
       this.props.setFetching(false);
-      this.props.setUsers(respose.data.items);
+      this.props.setUsers(response.data.items);
     });
   };
   render() {

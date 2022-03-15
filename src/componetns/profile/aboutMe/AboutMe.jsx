@@ -1,19 +1,23 @@
 import classes from './AboutMe.module.css';
 import ProfileInfo from './profileInfo/ProfileInfo';
 
-const Avatar = () => {
+const Avatar = props => {
   return (
     <div className={classes.avatar}>
-      <img src='https://frontandrew.ru/img/avatar.webp' alt='avatar' />
+      <img src={props.photo} alt='avatar' />
     </div>
   );
 };
 
-const AboutMe = () => {
+const AboutMe = props => {
   return (
     <div className={classes.body}>
-      <Avatar />
-      <ProfileInfo />
+      <Avatar photo={props.profile.photos.large} />
+      <ProfileInfo
+        description={props.profile.aboutMe}
+        fullName={props.profile.fullName}
+        twitter={props.profile.contacts.twitter}
+      />
     </div>
   );
 };
