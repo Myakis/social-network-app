@@ -1,10 +1,12 @@
 import classes from './AboutMe.module.css';
 import ProfileInfo from './profileInfo/ProfileInfo';
+import avatar from '../../../assets/img/avatar.png';
 
 const Avatar = props => {
+  console.log(props);
   return (
     <div className={classes.avatar}>
-      <img src={props.photo} alt='avatar' />
+      <img src={!props.photo ? avatar : props.photo} alt='avatar' />
     </div>
   );
 };

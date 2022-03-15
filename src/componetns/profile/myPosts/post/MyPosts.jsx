@@ -1,10 +1,11 @@
 import classes from './Post.module.css';
+import avatar from '../../../../assets/img/avatar.png';
 const Post = props => {
   return (
     <div className={classes.post}>
       <div className={classes.body}>
         <div className={classes.avatar}>
-          <img src={props.photo} alt='' />
+          <img src={!props.photo ? avatar : props.photo} alt='' />
         </div>
         <div className={classes.content}>{props.message}</div>
       </div>
