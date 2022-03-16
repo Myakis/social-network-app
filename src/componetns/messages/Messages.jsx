@@ -19,7 +19,6 @@ const Messages = props => {
   let listMessage = props.state.dialog.message.map((item, i) => (
     <Message key={i} message={item.message} id={item.id} user={item.user} />
   ));
-  if (props.isAuth) return <Navigate to={'/login'} />;
   return (
     <div className={classes.dialogsWrapper}>
       <div className={classes.dialogs}>{listUser}</div>

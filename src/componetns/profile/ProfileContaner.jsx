@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import ProfilePage from './ProfilPage';
 import { setUserProfile } from '../../redux/profile-reducer';
 import widthRouter from './CustomWitdhRouter';
+import { isAuthorization } from '../../redux/auth-reducer';
 
 const mapStateToProps = state => ({
   profile: state.profile.profile,
@@ -26,4 +27,4 @@ class ProfileContainer extends React.Component {
 
 let WidthRouterProfileContainer = widthRouter(ProfileContainer);
 
-export default connect(mapStateToProps, { setUserProfile })(WidthRouterProfileContainer);
+export default connect(mapStateToProps, { setUserProfile, isAuthorization })(WidthRouterProfileContainer);

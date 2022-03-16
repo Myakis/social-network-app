@@ -67,6 +67,7 @@ export const setTotalCount = total => ({ type: SET_TOTAL_COUNT, total });
 export const setFetching = loader => ({ type: SET_FETCHING, loader });
 export const toggleFollowingProgressive = (isFollowing, userId) => ({ type: TOGGLE_FOLLOWING_PROGRESSIVE, isFollowing, userId });
 
+//THUNK
 export const getsUsers = (currentPage, usersCount) => {
   return dispatch => {
     dispatch(setFetching(true));
@@ -79,6 +80,7 @@ export const getsUsers = (currentPage, usersCount) => {
   };
 };
 
+//THUNK
 export const follow = userId => {
   return dispatch => {
     dispatch(toggleFollowingProgressive(true, userId));
@@ -90,6 +92,7 @@ export const follow = userId => {
     });
   };
 };
+//THUNK
 export const unFollow = userId => {
   return dispatch => {
     dispatch(toggleFollowingProgressive(true, userId));

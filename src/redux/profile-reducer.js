@@ -3,6 +3,7 @@ import { userAPI } from '../api';
 const ADD_POST = 'ADD-POST';
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
+const DELETE_USER_PROFILE = 'DELETE-USER-PROFILE';
 
 let initialState = {
   post: [
@@ -31,6 +32,8 @@ const profileReducer = (state = initialState, action) => {
       return { ...state, textPost: action.newText };
     case SET_USER_PROFILE:
       return { ...state, profile: action.profile };
+    case DELETE_USER_PROFILE:
+      return { ...state, profile: null };
 
     default:
       return state;
@@ -39,6 +42,7 @@ const profileReducer = (state = initialState, action) => {
 export const addPost = () => ({ type: ADD_POST });
 export const updateTextPost = textPost => ({ type: UPDATE_TEXT_POST, newText: textPost });
 export const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile });
+export const deleteUserProfile = () => ({ type: SET_USER_PROFILE });
 
 export const getProfile = id => {
   return dispatch => {

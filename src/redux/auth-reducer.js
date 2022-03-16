@@ -1,5 +1,5 @@
 import { userAPI } from '../api';
-import { getProfile } from './profile-reducer';
+// import { getProfile } from './profile-reducer';
 
 const SET_USER_DATA = 'SET-USER-DATA';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -30,7 +30,8 @@ export const isAuthorization = () => {
       if (response.data.resultCode === 0) {
         let { id, login, email } = response.data.data;
         dispatch(setAutnUSerData(id, login, email));
-        dispatch(getProfile(id));
+        console.log(id);
+        // dispatch(getProfile(id));
       }
     });
   };
