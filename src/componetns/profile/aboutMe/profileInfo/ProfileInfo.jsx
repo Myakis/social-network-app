@@ -1,13 +1,15 @@
 import classes from './ProfileInfo.module.css';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = props => {
   return (
-    <div>
+    <div className={classes.ProfileInfo}>
       <div className={classes.description}>
         <div className={`${classes.item} ${classes.name}`}>{props.fullName}</div>
         <div className={classes.item}>
           <span>{props.description}</span>
         </div>
+        <ProfileStatus status='Всем привет, черти поганные' />
         <div className={classes.item}>
           <span>День рождения:</span> 10.10.2001
         </div>

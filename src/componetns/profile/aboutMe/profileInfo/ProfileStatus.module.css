@@ -1,0 +1,31 @@
+.statusWrapper {
+  margin-bottom: 15px;
+}
+.status {
+  font-size: 20px;
+  letter-spacing: 2px;
+  padding: 0.5rem 1rem 0.5rem 0;
+}
+.status input {
+  position: relative;
+  outline: none;
+  font-size: 20px;
+  letter-spacing: 2px;
+  width: 100%;
+  border-radius: 10px;
+  outline: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border: none;
+  box-shadow: 1px 1px 10px #333;
+  z-index: 2;
+}
+.overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgb(196, 166, 166);
+  opacity: 0.1;
+  transition: all 0.3s ease 0s;
+}
