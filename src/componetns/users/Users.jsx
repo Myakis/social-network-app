@@ -18,17 +18,13 @@ const Users = props => {
             </NavLink>
             {u.followed ? (
               <button
+                disabled={props.isFollowing.some(id => id == u.id)}
                 onClick={() => {
-                  // axios
-                  //   .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                  //     withCredentials: true,
-                  //     headers: {
-                  //       'API-KEY': 'ed0127cc-e53e-4779-b436-6cd965e8ebe0',
-                  //     },
-                  //   })
+                  props.toggleFollowingProgressive(true, u.id);
                   userAPI.unFollow(u.id).then(response => {
                     if (response.data.resultCode === 0) {
                       props.toUnFollow(u.id);
+                      props.toggleFollowingProgressive(false, u.id);
                     }
                   });
                 }}>
@@ -36,21 +32,13 @@ const Users = props => {
               </button>
             ) : (
               <button
+                disabled={props.isFollowing.some(id => id == u.id)}
                 onClick={() => {
-                  // axios
-                  //   .post(
-                  //     `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                  //     {},
-                  //     {
-                  //       withCredentials: true,
-                  //       headers: {
-                  //         'API-KEY': 'ed0127cc-e53e-4779-b436-6cd965e8ebe0',
-                  //       },
-                  //     }
-                  //   )
+                  props.toggleFollowingProgressive(true, u.id);
                   userAPI.follow(u.id).then(response => {
                     if (response.data.resultCode === 0) {
                       props.toFollow(u.id);
+                      props.toggleFollowingProgressive(false, u.id);
                     }
                   });
                 }}>

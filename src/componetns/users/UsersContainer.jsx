@@ -1,7 +1,14 @@
 import { connect } from 'react-redux';
-import * as axios from 'axios';
 import React from 'react';
-import { follow, unfollow, setCurrentPage, setFetching, setTotalCount, setUsers } from '../../redux/user-reducer';
+import {
+  follow,
+  unfollow,
+  setCurrentPage,
+  setFetching,
+  setTotalCount,
+  setUsers,
+  toggleFollowingProgressive,
+} from '../../redux/user-reducer';
 import Users from './Users';
 import { userAPI } from '../../api';
 
@@ -15,6 +22,7 @@ class UsersComponent extends React.Component {
       this.props.setTotalCount(response.data.totalCount);
     });
   }
+
   changePage = p => {
     this.props.setCurrentPage(p);
     this.props.setFetching(true);
@@ -24,6 +32,7 @@ class UsersComponent extends React.Component {
       this.props.setUsers(response.data.items);
     });
   };
+
   render() {
     let countPage = Math.ceil(this.props.totalUsersCount / this.props.usersCount);
     let numbersPage = [];
@@ -43,6 +52,8 @@ class UsersComponent extends React.Component {
         toUnFollow={this.props.toUnFollow}
         numbersPage={numbersPage}
         isFetching={this.props.isFetching}
+        isFollowing={this.props.isFollowing}
+        toggleFollowingProgressive={this.props.toggleFollowingProgressive}
       />
     );
   }
@@ -55,6 +66,7 @@ const mapStateToProps = state => {
     currentPage: state.users.currentPage,
     totalUsersCount: state.users.totalUsersCount,
     isFetching: state.users.ifFetching,
+    isFollowing: state.users.isFollowing,
   };
 };
 // const mapDispatchToProps = dispatch => {
@@ -93,5 +105,6 @@ let UsersContainer = connect(mapStateToProps, {
   setCurrentPage,
   setTotalCount,
   setFetching,
+  toggleFollowingProgressive,
 })(UsersComponent);
 export default UsersContainer;
