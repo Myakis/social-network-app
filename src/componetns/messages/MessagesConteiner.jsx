@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { addMessage, onChangeMessage } from '../../redux/dialog-reducer';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import Messages from './Messages';
@@ -22,10 +23,18 @@ const mapStateToProps = state => {
 //   };
 // };
 
-let widthRedirectComponent = withAuthRedirect(Messages);
+// let widthRedirectComponent = withAuthRedirect(Messages);
 
-let MessagesConteiner = connect(mapStateToProps, {
-  addMessage,
-  onChangeMessage,
-})(widthRedirectComponent);
-export default MessagesConteiner;
+// let MessagesConteiner = connect(mapStateToProps, {
+//   addMessage,
+//   onChangeMessage,
+// })(widthRedirectComponent);
+// export default MessagesConteiner;
+
+export default compose(
+  connect(mapStateToProps, {
+    addMessage,
+    onChangeMessage,
+  }),
+  withAuthRedirect
+)(Messages);
