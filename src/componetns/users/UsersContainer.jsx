@@ -3,31 +3,26 @@ import * as axios from 'axios';
 import React from 'react';
 import { follow, unfollow, setCurrentPage, setFetching, setTotalCount, setUsers } from '../../redux/user-reducer';
 import Users from './Users';
+import { userAPI } from '../../api';
 
 class UsersComponent extends React.Component {
   componentDidMount() {
     this.props.setFetching(true);
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersCount}`, {
-        withCredentials: true,
-      })
-      .then(response => {
-        this.props.setFetching(false);
-        this.props.setUsers(response.data.items);
-        this.props.setTotalCount(response.data.totalCount);
-      });
+
+    userAPI.getUser(this.props.currentPage, this.props.usersCount).then(response => {
+      this.props.setFetching(false);
+      this.props.setUsers(response.data.items);
+      this.props.setTotalCount(response.data.totalCount);
+    });
   }
   changePage = p => {
     this.props.setCurrentPage(p);
     this.props.setFetching(true);
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersCount}`, {
-        withCredentials: true,
-      })
-      .then(response => {
-        this.props.setFetching(false);
-        this.props.setUsers(response.data.items);
-      });
+
+    userAPI.getUser(p, this.props.usersCount).then(response => {
+      this.props.setFetching(false);
+      this.props.setUsers(response.data.items);
+    });
   };
   render() {
     let countPage = Math.ceil(this.props.totalUsersCount / this.props.usersCount);

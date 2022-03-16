@@ -4,6 +4,7 @@ import React from 'react';
 import Preloader from '../common/preloader/Preloader';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { userAPI } from '../../api';
 
 const Users = props => {
   return (
@@ -18,40 +19,40 @@ const Users = props => {
             {u.followed ? (
               <button
                 onClick={() => {
-                  axios
-                    .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                      withCredentials: true,
-                      headers: {
-                        'API-KEY': 'ed0127cc-e53e-4779-b436-6cd965e8ebe0',
-                      },
-                    })
-                    .then(response => {
-                      if (response.data.resultCode === 0) {
-                        props.toUnFollow(u.id);
-                      }
-                    });
+                  // axios
+                  //   .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                  //     withCredentials: true,
+                  //     headers: {
+                  //       'API-KEY': 'ed0127cc-e53e-4779-b436-6cd965e8ebe0',
+                  //     },
+                  //   })
+                  userAPI.unFollow(u.id).then(response => {
+                    if (response.data.resultCode === 0) {
+                      props.toUnFollow(u.id);
+                    }
+                  });
                 }}>
                 Подписан
               </button>
             ) : (
               <button
                 onClick={() => {
-                  axios
-                    .post(
-                      `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                      {},
-                      {
-                        withCredentials: true,
-                        headers: {
-                          'API-KEY': 'ed0127cc-e53e-4779-b436-6cd965e8ebe0',
-                        },
-                      }
-                    )
-                    .then(response => {
-                      if (response.data.resultCode === 0) {
-                        props.toFollow(u.id);
-                      }
-                    });
+                  // axios
+                  //   .post(
+                  //     `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                  //     {},
+                  //     {
+                  //       withCredentials: true,
+                  //       headers: {
+                  //         'API-KEY': 'ed0127cc-e53e-4779-b436-6cd965e8ebe0',
+                  //       },
+                  //     }
+                  //   )
+                  userAPI.follow(u.id).then(response => {
+                    if (response.data.resultCode === 0) {
+                      props.toFollow(u.id);
+                    }
+                  });
                 }}>
                 Подписаться
               </button>
