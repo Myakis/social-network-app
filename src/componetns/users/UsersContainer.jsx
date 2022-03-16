@@ -5,25 +5,11 @@ import Users from './Users';
 
 class UsersComponent extends React.Component {
   componentDidMount() {
-    // this.props.setFetching(true);
-    // userAPI.getUser(this.props.currentPage, this.props.usersCount).then(response => {
-    //   this.props.setFetching(false);
-    //   this.props.setUsers(response.data.items);
-    //   this.props.setTotalCount(response.data.totalCount);
-    // });
     this.props.getsUsers(this.props.currentPage, this.props.usersCount);
   }
 
   changePage = pageNum => {
     this.props.getsUsers(pageNum, this.props.usersCount);
-
-    // this.props.setCurrentPage(pageNum);
-    // this.props.setFetching(true);
-
-    // userAPI.getUser(pageNum, this.props.usersCount).then(response => {
-    //   this.props.setFetching(false);
-    //   this.props.setUsers(response.data.items);
-    // });
   };
 
   render() {
