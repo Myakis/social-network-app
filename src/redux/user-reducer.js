@@ -93,7 +93,7 @@ export const follow = userId => {
 export const unFollow = userId => {
   return dispatch => {
     dispatch(toggleFollowingProgressive(true, userId));
-    userAPI.follow(userId).then(response => {
+    userAPI.unFollow(userId).then(response => {
       if (response.data.resultCode === 0) {
         dispatch(unFollowSucces(userId));
         dispatch(toggleFollowingProgressive(false, userId));

@@ -18,7 +18,7 @@ const Users = props => {
               <button
                 disabled={props.isFollowing.some(id => id === u.id)}
                 onClick={() => {
-                  props.unfollow(u.id);
+                  props.unFollow(u.id);
                 }}>
                 Подписан
               </button>
