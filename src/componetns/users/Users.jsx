@@ -19,14 +19,15 @@ const Users = props => {
               <button
                 disabled={props.isFollowing.some(id => id === u.id)}
                 onClick={() => {
-                  props.toggleFollowingProgressive(true, u.id);
+                  props.unfollow(u.id);
 
-                  userAPI.unFollow(u.id).then(response => {
-                    if (response.data.resultCode === 0) {
-                      props.toUnFollow(u.id);
-                      props.toggleFollowingProgressive(false, u.id);
-                    }
-                  });
+                  // props.toggleFollowingProgressive(true, u.id);
+                  // userAPI.unFollow(u.id).then(response => {
+                  //   if (response.data.resultCode === 0) {
+                  //     props.toUnFollow(u.id);
+                  //     props.toggleFollowingProgressive(false, u.id);
+                  //   }
+                  // });
                 }}>
                 Подписан
               </button>
@@ -34,14 +35,14 @@ const Users = props => {
               <button
                 disabled={props.isFollowing.some(id => id === u.id)}
                 onClick={() => {
-                  props.toggleFollowingProgressive(true, u.id);
-
-                  userAPI.follow(u.id).then(response => {
-                    if (response.data.resultCode === 0) {
-                      props.toFollow(u.id);
-                      props.toggleFollowingProgressive(false, u.id);
-                    }
-                  });
+                  props.follow(u.id);
+                  // props.toggleFollowingProgressive(true, u.id);
+                  // userAPI.follow(u.id).then(response => {
+                  //   if (response.data.resultCode === 0) {
+                  //     props.toFollow(u.id);
+                  //     props.toggleFollowingProgressive(false, u.id);
+                  //   }
+                  // });
                 }}>
                 Подписаться
               </button>
