@@ -3,7 +3,6 @@ import classes from './Header.module.css';
 import avatar from '../../assets/img/avatar.png';
 
 const Header = props => {
-  console.log(props);
   return (
     <header className={classes.header}>
       <img src='https://frontandrew.ru/img/logo.svg' alt='logo' />
@@ -12,7 +11,7 @@ const Header = props => {
         {props.isAuth ? (
           <NavLink to={'/profile'}>
             <div className={classes.profile}>
-              <img src={props.profile.photos.small ? props.profile.photos.small : avatar} alt='avatatr' />
+              <img src={avatar} alt='avatatr' />
               <p>{props.login}</p>
             </div>
           </NavLink>
