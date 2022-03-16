@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import Preloader from '../common/preloader/Preloader';
 import AboutMe from './aboutMe/AboutMe';
 import MyPostConteiner from './myPosts/MyPostsConteiner';

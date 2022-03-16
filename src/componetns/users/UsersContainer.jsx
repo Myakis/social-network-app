@@ -8,29 +8,32 @@ import {
   setTotalCount,
   setUsers,
   toggleFollowingProgressive,
+  getsUsers,
 } from '../../redux/user-reducer';
 import Users from './Users';
 import { userAPI } from '../../api';
 
 class UsersComponent extends React.Component {
   componentDidMount() {
-    this.props.setFetching(true);
-
-    userAPI.getUser(this.props.currentPage, this.props.usersCount).then(response => {
-      this.props.setFetching(false);
-      this.props.setUsers(response.data.items);
-      this.props.setTotalCount(response.data.totalCount);
-    });
+    // this.props.setFetching(true);
+    // userAPI.getUser(this.props.currentPage, this.props.usersCount).then(response => {
+    //   this.props.setFetching(false);
+    //   this.props.setUsers(response.data.items);
+    //   this.props.setTotalCount(response.data.totalCount);
+    // });
+    this.props.getsUsers(this.props.currentPage, this.props.usersCount);
   }
 
-  changePage = p => {
-    this.props.setCurrentPage(p);
-    this.props.setFetching(true);
+  changePage = pageNum => {
+    this.props.getsUsers(pageNum, this.props.usersCount);
 
-    userAPI.getUser(p, this.props.usersCount).then(response => {
-      this.props.setFetching(false);
-      this.props.setUsers(response.data.items);
-    });
+    // this.props.setCurrentPage(pageNum);
+    // this.props.setFetching(true);
+
+    // userAPI.getUser(pageNum, this.props.usersCount).then(response => {
+    //   this.props.setFetching(false);
+    //   this.props.setUsers(response.data.items);
+    // });
   };
 
   render() {
@@ -101,10 +104,8 @@ const mapStateToProps = state => {
 let UsersContainer = connect(mapStateToProps, {
   toFollow: follow,
   toUnFollow: unfollow,
-  setUsers,
   setCurrentPage,
-  setTotalCount,
-  setFetching,
   toggleFollowingProgressive,
+  getsUsers,
 })(UsersComponent);
 export default UsersContainer;

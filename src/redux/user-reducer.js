@@ -1,3 +1,5 @@
+import { userAPI } from '../api.js';
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
@@ -5,6 +7,7 @@ const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
 const SET_FETCHING = 'SET-FETCHING';
 const TOGGLE_FOLLOWING_PROGRESSIVE = 'TOGGLE-FOLLOWING-PROGRESSIVE';
+
 let initialState = {
   users: [],
   usersCount: 6,
@@ -63,5 +66,18 @@ export const setCurrentPage = current => ({ type: SET_CURRENT_PAGE, current });
 export const setTotalCount = total => ({ type: SET_TOTAL_COUNT, total });
 export const setFetching = loader => ({ type: SET_FETCHING, loader });
 export const toggleFollowingProgressive = (isFollowing, userId) => ({ type: TOGGLE_FOLLOWING_PROGRESSIVE, isFollowing, userId });
+
+export const getsUsers = (currentPage, usersCount) => {
+  return dispatch => {
+    dispatch(setFetching(true));
+
+    userAPI.getUser(currentPage, usersCount).then(response => {
+      dispatch(setFetching(false));
+      dispatch(setUsers(response.data.items));
+      dispatch(setTotalCount(response.data.totalCount));
+    });
+  };
+};
+
 export default userReducer;
 //==========================================================================================================

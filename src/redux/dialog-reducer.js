@@ -36,7 +36,6 @@ const dialogsReducer = (state = initialState, action) => {
     case UPDATE_TEXT_MESSAGE:
       //Изменение текста сообщений в bll
       return { ...state, messageText: action.newText };
-
     default:
       return state;
   }

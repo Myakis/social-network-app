@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import ProfilePage from './ProfilPage';
 import { setUserProfile } from '../../redux/profile-reducer';
 import widthRouter from './CustomWitdhRouter';
-import { setUsers } from '../../redux/user-reducer';
 
 const mapStateToProps = state => ({
   profile: state.profile.profile,

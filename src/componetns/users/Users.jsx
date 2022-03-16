@@ -3,7 +3,6 @@ import avatarPhoto from '../../assets/img/avatar.png';
 import React from 'react';
 import Preloader from '../common/preloader/Preloader';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 import { userAPI } from '../../api';
 
 const Users = props => {
@@ -18,9 +17,10 @@ const Users = props => {
             </NavLink>
             {u.followed ? (
               <button
-                disabled={props.isFollowing.some(id => id == u.id)}
+                disabled={props.isFollowing.some(id => id === u.id)}
                 onClick={() => {
                   props.toggleFollowingProgressive(true, u.id);
+
                   userAPI.unFollow(u.id).then(response => {
                     if (response.data.resultCode === 0) {
                       props.toUnFollow(u.id);
@@ -32,9 +32,10 @@ const Users = props => {
               </button>
             ) : (
               <button
-                disabled={props.isFollowing.some(id => id == u.id)}
+                disabled={props.isFollowing.some(id => id === u.id)}
                 onClick={() => {
                   props.toggleFollowingProgressive(true, u.id);
+
                   userAPI.follow(u.id).then(response => {
                     if (response.data.resultCode === 0) {
                       props.toFollow(u.id);
