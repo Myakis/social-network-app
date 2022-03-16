@@ -2,6 +2,7 @@ import Dialog from './dialog/DialogUserItem';
 import Message from './message/Message';
 import classes from './Messages.module.css';
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 
 const Messages = props => {
   const onChangeMessage = e => {
@@ -18,7 +19,7 @@ const Messages = props => {
   let listMessage = props.state.dialog.message.map((item, i) => (
     <Message key={i} message={item.message} id={item.id} user={item.user} />
   ));
-
+  if (props.isAuth) return <Navigate to={'/login'} />;
   return (
     <div className={classes.dialogsWrapper}>
       <div className={classes.dialogs}>{listUser}</div>

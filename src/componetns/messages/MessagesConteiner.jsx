@@ -6,6 +6,7 @@ const mapStateToProps = state => {
   return {
     state: state,
     messageText: state.dialog.messageText,
+    isAuth: state.auth.isAuth,
   };
 };
 // const mapDispatchToProps = dispatch => {
