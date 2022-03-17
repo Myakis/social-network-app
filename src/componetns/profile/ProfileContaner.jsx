@@ -1,5 +1,4 @@
 import React from 'react';
-import * as axios from 'axios';
 import { connect } from 'react-redux';
 import ProfilePage from './ProfilPage';
 import { getStatus, setUserProfile, updateUserStatus } from '../../redux/profile-reducer';

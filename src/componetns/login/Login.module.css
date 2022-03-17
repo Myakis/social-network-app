@@ -1,0 +1,43 @@
+h1 {
+  text-align: center;
+  font-size: 50px;
+  color: rgb(71, 70, 70);
+}
+.form {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 1rem;
+  /* background: rgba(122, 191, 212, 0.041); */
+}
+.inputWrap:not(:last-child) {
+  display: block;
+  margin-bottom: 1rem;
+}
+.inputWrap input:not([type="checkbox"]) {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  outline: 0;
+}
+.inputWrap input:not([type="checkbox"]):focus {
+  background: #eee;
+}
+.inputWrap {
+  font-size: 18px;
+}
+.inputWrap button {
+  outline: none;
+  background: none;
+  font-size: 18px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.inputWrap button:hover {
+  background: #eee;
+  border: 1px solid rgba(101, 225, 230, 0.61);
+}
