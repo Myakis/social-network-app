@@ -5,7 +5,7 @@ class ProfileStatus extends React.Component {
   debugger;
   state = {
     statusField: false,
-    status: '',
+    status: this.props.status || '',
   };
 
   toggleStateField = () => {
