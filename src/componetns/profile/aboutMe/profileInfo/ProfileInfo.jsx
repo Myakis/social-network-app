@@ -9,7 +9,7 @@ const ProfileInfo = props => {
         <div className={classes.item}>
           <span>{props.description}</span>
         </div>
-        <ProfileStatus status='Всем привет, черти поганные' />
+        <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} />
         <div className={classes.item}>
           <span>День рождения:</span> 10.10.2001
         </div>

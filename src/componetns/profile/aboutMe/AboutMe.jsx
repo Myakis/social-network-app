@@ -15,6 +15,8 @@ const AboutMe = props => {
     <div className={classes.body}>
       <Avatar photo={props.profile.photos.large} />
       <ProfileInfo
+        status={props.status}
+        updateUserStatus={props.updateUserStatus}
         description={props.profile.aboutMe}
         fullName={props.profile.fullName}
         twitter={props.profile.contacts.twitter}

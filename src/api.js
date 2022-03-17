@@ -17,10 +17,21 @@ export const userAPI = {
   unFollow(id) {
     return instanceAxios.delete(`follow/${id}`);
   },
+  setAuth() {
+    return instanceAxios.get(`auth/me`);
+  },
+  getProfile(id) {
+    return profileAPI.getProfile(id);
+  },
+};
+export const profileAPI = {
   getProfile(id) {
     return instanceAxios.get(`profile/${id}`);
   },
-  setAuth() {
-    return instanceAxios.get(`auth/me`);
+  getStatus(id) {
+    return instanceAxios.get(`profile/status/${id}`);
+  },
+  updateStatus(status) {
+    return instanceAxios.put(`profile/status`, { status });
   },
 };

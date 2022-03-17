@@ -2,39 +2,45 @@ import React from 'react';
 import classes from './ProfileStatus.module.css';
 
 class ProfileStatus extends React.Component {
+  debugger;
   state = {
     statusField: false,
+    status: '',
   };
 
-  getInput() {
-    this.state.statusField = true;
-  }
-  toggleStateField() {
-    // this.state.statusField = !this.state.statusField;
+  toggleStateField = () => {
     this.setState({
       statusField: !this.state.statusField,
     });
-  }
-  getTextBlock() {
-    this.state.statusField = false;
-  }
-
+  };
+  onEnterToggleStateField = e => {
+    if (e.keyCode === 13) {
+      this.toggleStateField();
+      this.props.updateUserStatus(this.state.status);
+    }
+  };
+  onChangeIputValue = e => {
+    this.setState({
+      status: e.target.value,
+    });
+  };
   render() {
     return (
       <div className={classes.statusWrapper}>
         {!this.state.statusField && (
           <div className={classes.status}>
-            <span onDoubleClick={this.toggleStateField.bind(this)}>{this.props.status}</span>
+            <span onDoubleClick={this.toggleStateField}>{this.props.status || 'Добавь статус'}</span>
           </div>
         )}
         {this.state.statusField && (
           <div className={classes.status}>
             <div className={classes.overlay}></div>
             <input
+              onChange={this.onChangeIputValue}
               autoFocus={true}
-              onBlur={this.toggleStateField.bind(this)}
-              onDoubleClick={this.toggleStateField.bind(this)}
-              value={this.props.status}
+              onBlur={this.toggleStateField}
+              onKeyDown={this.onEnterToggleStateField}
+              value={this.state.status}
             />
           </div>
         )}

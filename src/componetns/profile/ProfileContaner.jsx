@@ -2,14 +2,15 @@ import React from 'react';
 import * as axios from 'axios';
 import { connect } from 'react-redux';
 import ProfilePage from './ProfilPage';
-import { setUserProfile } from '../../redux/profile-reducer';
+import { getStatus, setUserProfile, updateUserStatus } from '../../redux/profile-reducer';
 import widthRouter from './CustomWitdhRouter';
 import { isAuthorization } from '../../redux/auth-reducer';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
-
+import { userAPI } from '../../api';
 const mapStateToProps = state => ({
   profile: state.profile.profile,
+  status: state.profile.status,
 });
 
 class ProfileContainer extends React.Component {
@@ -18,7 +19,9 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = '22851';
     }
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+    this.props.getStatus(userId);
+
+    userAPI.getProfile(userId).then(response => {
       this.props.setUserProfile(response.data);
     });
   }
@@ -28,11 +31,6 @@ class ProfileContainer extends React.Component {
 }
 
 export default compose(
-  connect(mapStateToProps, { setUserProfile, isAuthorization }),
-  widthRouter,
-  withAuthRedirect
+  connect(mapStateToProps, { setUserProfile, isAuthorization, getStatus, updateUserStatus }),
+  widthRouter
 )(ProfileContainer);
-
-// let WidthRouterProfileContainer = widthRouter(ProfileContainer);
-
-// export default connect(mapStateToProps, { setUserProfile, isAuthorization })(WidthRouterProfileContainer);
