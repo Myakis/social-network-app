@@ -3,14 +3,14 @@
 }
 .status {
   font-size: 20px;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   padding: 0.5rem 1rem 0.5rem 0;
 }
 .status input {
   position: relative;
   outline: none;
   font-size: 20px;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   width: 100%;
   border-radius: 10px;
   outline: 1px solid #ddd;

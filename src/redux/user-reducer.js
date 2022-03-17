@@ -73,6 +73,7 @@ export const getsUsers = (currentPage, usersCount) => {
     dispatch(setFetching(true));
 
     userAPI.getUser(currentPage, usersCount).then(response => {
+      dispatch(setCurrentPage(currentPage));
       dispatch(setFetching(false));
       dispatch(setUsers(response.data.items));
       dispatch(setTotalCount(response.data.totalCount));
