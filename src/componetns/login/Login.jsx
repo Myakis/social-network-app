@@ -14,7 +14,7 @@ const Login = props => {
   return (
     <div>
       <h1>Вход</h1>
-      <LoginForm login={props.login} />
+      <LoginForm login={props.login} errorMessage={props.errorMessage} />
     </div>
   );
 };
@@ -57,6 +57,11 @@ const LoginForm = props => {
             <Field name={'rememberMe'} component='input' type='checkbox' />
             Замомнить меня
           </label>
+          {props.errorMessage && (
+            <div className={classes.errorData}>
+              <span>{props.errorMessage} </span>
+            </div>
+          )}
           <div className={classes.inputWrap}>
             <button type='submit'> Войти</button>
           </div>
@@ -67,6 +72,7 @@ const LoginForm = props => {
 };
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuth,
+  errorMessage: state.auth.errorMessage,
 });
 
 export default connect(mapStateToProps, {

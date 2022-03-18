@@ -40,3 +40,9 @@ h1 {
   background: #eee;
   border: 1px solid rgba(101, 225, 230, 0.61);
 }
+
+.errorData {
+  color: red;
+  margin-bottom: 5px;
+  padding-left: 10px;
+}
