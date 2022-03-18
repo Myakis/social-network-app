@@ -2,21 +2,28 @@ import classes from './Login.module.css';
 import { Form, Field } from 'react-final-form';
 import React from 'react';
 import { Input, maxValueCreator, minValueCreator, required } from '../utils/validators/FormControl';
+import { connect } from 'react-redux';
+import { login } from '../../redux/auth-reducer';
+import { Navigate } from 'react-router-dom';
 
-export const Login = props => {
+const Login = props => {
+  if (props.isAuth) {
+    return <Navigate to={'/profile'} />;
+  }
+
   return (
     <div>
       <h1>Вход</h1>
-      <LoginForm />
+      <LoginForm login={props.login} />
     </div>
   );
 };
 
-const LoginForm = () => {
+const LoginForm = props => {
   const onSubmit = data => {
-    console.log(data);
+    props.login(data.email, data.password, data.rememberMe);
   };
-  const maxValue = maxValueCreator(10);
+  const maxValue = maxValueCreator(50);
   const minValue = minValueCreator(10);
   const composeValidators =
     (...validators) =>
@@ -30,10 +37,10 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit} className={classes.form} action=''>
           <div className={classes.inputWrap}>
             <Field
-              name={'login'}
+              name={'email'}
               component={Input}
               type='text'
-              placeholder='Логин'
+              placeholder='Email'
               validate={composeValidators(required, maxValue)}
             />
           </div>
@@ -58,3 +65,10 @@ const LoginForm = () => {
     />
   );
 };
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuth,
+});
+
+export default connect(mapStateToProps, {
+  login,
+})(Login);

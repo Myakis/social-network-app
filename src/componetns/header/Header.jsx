@@ -9,16 +9,19 @@ const Header = props => {
 
       <div className={classes.profileWrapper}>
         {props.isAuth ? (
-          <NavLink to={'/profile'}>
-            <div className={classes.profile}>
-              <img src={avatar} alt='avatatr' />
-              <p>{props.login}</p>
-            </div>
-          </NavLink>
+          <div className={classes.profileBody}>
+            <NavLink to={'/profile'}>
+              <div className={classes.profile}>
+                <img src={avatar} alt='avatatr' />
+                <p>{props.login}</p>
+              </div>
+            </NavLink>
+            <NavLink className={classes.logout} to={'/login'} onClick={props.logout}>
+              Выйти
+            </NavLink>
+          </div>
         ) : (
-          <NavLink onClick={props.setAutnUSerData} to={'/login'}>
-            Войти
-          </NavLink>
+          <NavLink to={'/login'}>Войти</NavLink>
         )}
       </div>
     </header>

@@ -8,7 +8,7 @@ import MessagesConteiner from './componetns/messages/MessagesConteiner';
 import UsersContainer from './componetns/users/UsersContainer';
 import ProfileContainer from './componetns/profile/ProfileContaner';
 import HeaderContainer from './componetns/header/HeaderContainer';
-import { Login } from './componetns/login/Login';
+import Login from './componetns/login/Login';
 
 const App = props => {
   return (
