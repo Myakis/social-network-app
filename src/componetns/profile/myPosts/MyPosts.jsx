@@ -1,16 +1,11 @@
 import React from 'react';
 import classes from './MyPost.module.css';
 import Post from './post/MyPosts';
+import { Form, Field } from 'react-final-form';
 
 const MyPost = props => {
-  const onChangePost = e => {
-    let textPost = e.target.value;
-    props.onChangePost(textPost);
-  };
-
-  const addPost = e => {
-    e.preventDefault();
-    props.addPost();
+  const addPost = text => {
+    props.addPost(text);
   };
 
   let Posts = props.post.map(post => (
@@ -26,14 +21,31 @@ const MyPost = props => {
 
   return (
     <div>
-      <form action='#' className={classes.form}>
-        <textarea onChange={onChangePost} value={props.valueText} className={classes.textarea} name='post' />
-        <button onClick={addPost} type='submit' className={classes.button}>
-          Добавить запись
-        </button>
-      </form>
+      <FieldPostForm addPost={addPost} />
       {Posts}
     </div>
+  );
+};
+
+const FieldPostForm = props => {
+  const onSubmit = (data, e) => {
+    props.addPost(data.post);
+    e.reset();
+  };
+  const validate = data => {};
+  return (
+    <Form
+      onSubmit={onSubmit}
+      validate={validate}
+      render={({ handleSubmit }) => (
+        <form onSubmit={handleSubmit} action='#' className={classes.form}>
+          <Field component='textarea' className={classes.textarea} name='post' />
+          <button type='submit' className={classes.button}>
+            Добавить запись
+          </button>
+        </form>
+      )}
+    />
   );
 };
 
