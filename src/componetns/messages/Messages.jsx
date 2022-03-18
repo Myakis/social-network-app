@@ -2,36 +2,52 @@ import Dialog from './dialog/DialogUserItem';
 import Message from './message/Message';
 import classes from './Messages.module.css';
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Form, Field } from 'react-final-form';
 
 const Messages = props => {
-  const onChangeMessage = e => {
-    let textMessage = e.target.value;
-    props.onChangeMessage(textMessage);
-  };
-  const addMessage = e => {
-    e.preventDefault();
-    props.addMessage();
+  const addMessage = messageText => {
+    props.addMessage(messageText);
   };
   // Отображение списка пользователей, с кем есть переписка
   let listUser = props.state.dialog.users.map(item => <Dialog key={item.id} name={item.name} id={item.id} />);
+
   //Отображение сообщений
   let listMessage = props.state.dialog.message.map((item, i) => (
     <Message key={i} message={item.message} id={item.id} user={item.user} />
   ));
+
   return (
     <div className={classes.dialogsWrapper}>
       <div className={classes.dialogs}>{listUser}</div>
       <div className={classes.list}>
         <div className={classes.item}>{listMessage}</div>
-        <form action='#' className={classes.form}>
-          <input onChange={onChangeMessage} value={props.messageText} className={classes.input} type='text' />
-          <button onClick={addMessage} type='submit' className={classes.button}>
+        <FieldMessageForm addMessage={addMessage} />
+      </div>
+    </div>
+  );
+};
+
+const FieldMessageForm = props => {
+  const onSubmit = (data, e) => {
+    props.addMessage(data.message);
+    e.reset();
+  };
+
+  const validate = data => {};
+
+  return (
+    <Form
+      onSubmit={onSubmit}
+      validate={validate}
+      render={({ handleSubmit }) => (
+        <form onSubmit={handleSubmit} className={classes.form}>
+          <Field component='input' name='message' className={classes.input} type='text' autoComplete='off' />
+          <button type='submit' className={classes.button}>
             Отправить
           </button>
         </form>
-      </div>
-    </div>
+      )}
+    />
   );
 };
 

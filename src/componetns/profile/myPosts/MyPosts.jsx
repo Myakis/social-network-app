@@ -33,13 +33,14 @@ const FieldPostForm = props => {
     e.reset();
   };
   const validate = data => {};
+
   return (
     <Form
       onSubmit={onSubmit}
       validate={validate}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} action='#' className={classes.form}>
-          <Field component='textarea' className={classes.textarea} name='post' />
+          <Field component='textarea' className={classes.textarea} name='post' autoComplete='off' />
           <button type='submit' className={classes.button}>
             Добавить запись
           </button>

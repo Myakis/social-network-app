@@ -1,5 +1,4 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
 let initialState = {
   users: [
     { id: 1, name: 'Алексей' },
@@ -19,28 +18,24 @@ let initialState = {
     },
     { id: 3, message: 'Как дела' },
   ],
-  messageText: '',
 };
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE:
       //Добавление сообщений в bll и рендер страницы
-      if (state.messageText) {
+      if (action.messageText) {
         const newMessage = {
           id: 5,
-          message: state.messageText,
+          message: action.messageText,
           user: 'me',
         };
-        return { ...state, message: [...state.message, newMessage], messageText: '' };
+        return { ...state, message: [...state.message, newMessage] };
       }
-    case UPDATE_TEXT_MESSAGE:
-      //Изменение текста сообщений в bll
-      return { ...state, messageText: action.newText };
+      return state;
     default:
       return state;
   }
 };
-export const addMessage = () => ({ type: ADD_MESSAGE });
-export const onChangeMessage = textMessage => ({ type: UPDATE_TEXT_MESSAGE, newText: textMessage });
+export const addMessage = messageText => ({ type: ADD_MESSAGE, messageText });
 
 export default dialogsReducer;

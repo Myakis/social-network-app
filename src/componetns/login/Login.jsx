@@ -11,10 +11,9 @@ export const Login = props => {
   );
 };
 
-const onSubmit = data => {};
-const validate = data => {};
-
 const LoginForm = () => {
+  const onSubmit = data => {};
+  const validate = data => {};
   return (
     <Form
       onSubmit={onSubmit}
