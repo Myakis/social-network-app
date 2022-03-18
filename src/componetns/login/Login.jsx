@@ -1,6 +1,7 @@
 import classes from './Login.module.css';
 import { Form, Field } from 'react-final-form';
 import React from 'react';
+import { Input, maxValueCreator, minValueCreator, required } from '../utils/validators/FormControl';
 
 export const Login = props => {
   return (
@@ -12,19 +13,38 @@ export const Login = props => {
 };
 
 const LoginForm = () => {
-  const onSubmit = data => {};
-  const validate = data => {};
+  const onSubmit = data => {
+    console.log(data);
+  };
+  const maxValue = maxValueCreator(10);
+  const minValue = minValueCreator(10);
+  const composeValidators =
+    (...validators) =>
+    value =>
+      validators.reduce((error, validator) => error || validator(value), undefined);
+
   return (
     <Form
       onSubmit={onSubmit}
-      validate={validate}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className={classes.form} action=''>
           <div className={classes.inputWrap}>
-            <Field name={'login'} component='input' type='text' placeholder='Логин' />
+            <Field
+              name={'login'}
+              component={Input}
+              type='text'
+              placeholder='Логин'
+              validate={composeValidators(required, maxValue)}
+            />
           </div>
           <div className={classes.inputWrap}>
-            <Field name={'password'} component='input' type='password' placeholder='Пароль' />
+            <Field
+              name={'password'}
+              component={Input}
+              type='password'
+              placeholder='Пароль'
+              validate={composeValidators(required, minValue)}
+            />
           </div>
           <label className={classes.inputWrap}>
             <Field name={'rememberMe'} component='input' type='checkbox' />

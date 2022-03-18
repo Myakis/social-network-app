@@ -1,0 +1,15 @@
+.parent {
+  position: relative;
+}
+
+.parent.error span {
+  position: absolute;
+  bottom: -13px;
+  left: 7px;
+  font-size: 11px;
+  color: red;
+}
+.parent.error input,
+.parent.error textarea {
+  border: 1px solid rgb(146, 18, 18);
+}
