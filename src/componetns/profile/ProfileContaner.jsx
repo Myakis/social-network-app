@@ -10,13 +10,14 @@ import { userAPI } from '../../api';
 const mapStateToProps = state => ({
   profile: state.profile.profile,
   status: state.profile.status,
+  userId: state.auth.userId,
 });
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.params.userId;
     if (!userId) {
-      userId = '22851';
+      userId = this.props.userId;
     }
     this.props.getStatus(userId);
 

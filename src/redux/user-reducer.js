@@ -68,42 +68,36 @@ export const setFetching = loader => ({ type: SET_FETCHING, loader });
 export const toggleFollowingProgressive = (isFollowing, userId) => ({ type: TOGGLE_FOLLOWING_PROGRESSIVE, isFollowing, userId });
 
 //THUNK
-export const getsUsers = (currentPage, usersCount) => {
-  return dispatch => {
-    dispatch(setFetching(true));
+export const getsUsers = (currentPage, usersCount) => dispatch => {
+  dispatch(setFetching(true));
 
-    userAPI.getUser(currentPage, usersCount).then(response => {
-      dispatch(setCurrentPage(currentPage));
-      dispatch(setFetching(false));
-      dispatch(setUsers(response.data.items));
-      dispatch(setTotalCount(response.data.totalCount));
-    });
-  };
+  userAPI.getUser(currentPage, usersCount).then(response => {
+    dispatch(setCurrentPage(currentPage));
+    dispatch(setFetching(false));
+    dispatch(setUsers(response.data.items));
+    dispatch(setTotalCount(response.data.totalCount));
+  });
 };
 
 //THUNK
-export const follow = userId => {
-  return dispatch => {
-    dispatch(toggleFollowingProgressive(true, userId));
-    userAPI.follow(userId).then(response => {
-      if (response.data.resultCode === 0) {
-        dispatch(followSucces(userId));
-        dispatch(toggleFollowingProgressive(false, userId));
-      }
-    });
-  };
+export const follow = userId => dispatch => {
+  dispatch(toggleFollowingProgressive(true, userId));
+  userAPI.follow(userId).then(response => {
+    if (response.data.resultCode === 0) {
+      dispatch(followSucces(userId));
+      dispatch(toggleFollowingProgressive(false, userId));
+    }
+  });
 };
 //THUNK
-export const unFollow = userId => {
-  return dispatch => {
-    dispatch(toggleFollowingProgressive(true, userId));
-    userAPI.unFollow(userId).then(response => {
-      if (response.data.resultCode === 0) {
-        dispatch(unFollowSucces(userId));
-        dispatch(toggleFollowingProgressive(false, userId));
-      }
-    });
-  };
+export const unFollow = userId => dispatch => {
+  dispatch(toggleFollowingProgressive(true, userId));
+  userAPI.unFollow(userId).then(response => {
+    if (response.data.resultCode === 0) {
+      dispatch(unFollowSucces(userId));
+      dispatch(toggleFollowingProgressive(false, userId));
+    }
+  });
 };
 
 export default userReducer;
