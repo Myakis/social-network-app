@@ -1,4 +1,4 @@
-import { authAPI, userAPI } from '../api';
+import { authAPI } from '../api';
 // import { stopSubmit } from 'final-form';
 
 const SET_USER_DATA = 'SET-USER-DATA';
