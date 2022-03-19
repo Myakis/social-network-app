@@ -4,6 +4,14 @@ import { follow, unFollow, setCurrentPage, toggleFollowingProgressive, getsUsers
 import Users from './Users';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
+import {
+  getCurrentPageSelector,
+  getFollowSelector,
+  getTotalUsersCountSelector,
+  getUsersCountSelector,
+  getUsersSelector,
+  getFethSelector,
+} from '../../redux/user-selector';
 
 class UsersComponent extends React.Component {
   componentDidMount() {
@@ -42,12 +50,12 @@ class UsersComponent extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.users.users,
-    usersCount: state.users.usersCount,
-    currentPage: state.users.currentPage,
-    totalUsersCount: state.users.totalUsersCount,
-    isFetching: state.users.ifFetching,
-    isFollowing: state.users.isFollowing,
+    users: getUsersSelector(state),
+    usersCount: getUsersCountSelector(state),
+    currentPage: getCurrentPageSelector(state),
+    totalUsersCount: getTotalUsersCountSelector(state),
+    isFetching: getFethSelector(state),
+    isFollowing: getFollowSelector(state),
   };
 };
 // const mapDispatchToProps = dispatch => {
