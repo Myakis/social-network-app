@@ -26,7 +26,7 @@ const profileReducer = (state = initialState, action) => {
           likeCount: 0,
           shareCount: 0,
         };
-        return { ...state, post: [...state.post, newPost] };
+        return { ...state, post: [newPost, ...state.post] };
       }
       return state;
 

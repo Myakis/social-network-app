@@ -7,6 +7,7 @@ import { isAuthorization } from '../../redux/auth-reducer';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { userAPI } from '../../api';
+
 const mapStateToProps = state => ({
   profile: state.profile.profile,
   status: state.profile.status,
