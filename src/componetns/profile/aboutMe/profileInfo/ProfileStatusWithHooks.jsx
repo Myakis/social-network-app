@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './ProfileStatus.module.css';
 
 const ProfileStatusWithHooks = props => {
+  console.log('отрисовка');
   let [statusField, setStatusField] = useState(false);
   let [status, setstatus] = useState(props.status || '');
 
@@ -14,6 +15,9 @@ const ProfileStatusWithHooks = props => {
       props.updateUserStatus(status);
     }
   };
+  useEffect(() => {
+    setstatus(props.status);
+  }, [props.status]);
   const onChangeIputValue = e => {
     setstatus(e.target.value);
   };
