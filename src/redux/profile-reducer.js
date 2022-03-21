@@ -8,8 +8,20 @@ const SET_STATUS = 'SET-STATUS';
 
 let initialState = {
   post: [
-    { id: 1, message: 'Какое-то сообщение, которое потом будет написано мной для теста ', likeCount: 23, shareCount: 1 },
-    { id: 2, message: 'Какое-то сообщение, которое потом будет написано мной для теста 22', likeCount: 223, shareCount: 21 },
+    {
+      id: 1,
+      message: 'Какое-то сообщение, которое потом будет написано мной для теста ',
+      likeCount: 23,
+      shareCount: 1,
+      date: new Date('12 march 2020'),
+    },
+    {
+      id: 2,
+      message: 'Какое-то сообщение, которое потом будет написано мной для теста 22',
+      likeCount: 223,
+      shareCount: 21,
+      date: new Date('12 march 2020 12:30'),
+    },
   ],
   profile: null,
   status: '',
@@ -25,8 +37,9 @@ const profileReducer = (state = initialState, action) => {
           message: action.text,
           likeCount: 0,
           shareCount: 0,
+          date: new Date(),
         };
-        return { ...state, post: [newPost, ...state.post] };
+        return { ...state, post: [...state.post, newPost] };
       }
       return state;
 

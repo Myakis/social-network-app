@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import classes from './ProfileStatus.module.css';
 
 const ProfileStatusWithHooks = props => {
-  console.log('отрисовка');
-  let [statusField, setStatusField] = useState(false);
-  let [status, setstatus] = useState(props.status || '');
-
+  const [statusField, setStatusField] = useState(false);
+  const [status, setstatus] = useState(props.status || '');
   const toggleStateField = () => {
     setStatusField(!statusField);
   };

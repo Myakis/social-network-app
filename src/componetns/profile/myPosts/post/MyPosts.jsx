@@ -5,7 +5,7 @@ const Post = props => {
     <div className={classes.post}>
       <div className={classes.body}>
         <div className={classes.avatar}>
-          <img src={!props.photo ? avatar : props.photo} alt='' />
+          <img src={!props.photo ? avatar : props.photo} alt='avatar' />
         </div>
         <div className={classes.content}>{props.message}</div>
       </div>
@@ -17,6 +17,9 @@ const Post = props => {
         <span className={classes.comment}>Коммент</span>
         <span className={classes.like}>
           <span className={classes.count}>{props.likeCount}</span> Лайк
+        </span>
+        <span className={classes.like}>
+          <span className={classes.count}>{props.date ? props.date : ''}</span>
         </span>
       </div>
     </div>
