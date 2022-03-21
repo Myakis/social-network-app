@@ -24,6 +24,7 @@ class UsersComponent extends React.Component {
 
   render() {
     let countPage = Math.ceil(this.props.totalUsersCount / this.props.usersCount);
+    // Создание массива страниц
     let numbersPage = [];
     for (let i = 1; i <= countPage; i++) {
       numbersPage.push(i);

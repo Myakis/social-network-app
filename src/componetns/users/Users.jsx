@@ -1,56 +1,23 @@
 import classes from './Users.module.css';
-import avatarPhoto from '../../assets/img/avatar.png';
 import React from 'react';
 import Preloader from '../common/preloader/Preloader';
-import { NavLink } from 'react-router-dom';
+import User from './User';
+import Paginator from '../common/Paginator/Paginator';
 
 const Users = props => {
   return (
     <div className={classes.list}>
+      {/* Загрузка страницы */}
       {props.isFetching ? <Preloader /> : ''}
+      {/* Перебор всех пользователей и отображение по шаблону */}
       {props.users.map((u, i) => (
         <div key={i} className={classes.item}>
-          <div className={classes.profile}>
-            <NavLink to={'/profile/' + u.id}>
-              <img src={u.photos.small ? u.photos.small : avatarPhoto} alt='avatar' />
-            </NavLink>
-            {u.followed ? (
-              <button
-                disabled={props.isFollowing.some(id => id === u.id)}
-                onClick={() => {
-                  props.unFollow(u.id);
-                }}>
-                Подписан
-              </button>
-            ) : (
-              <button
-                disabled={props.isFollowing.some(id => id === u.id)}
-                onClick={() => {
-                  props.follow(u.id);
-                }}>
-                Подписаться
-              </button>
-            )}
-          </div>
-          <div className={classes.info}>
-            <div className={classes.name}>{u.name}</div>
-            <p>{'u.location.country'}</p>
-            <p>{'u.location.cityName'}</p>
-          </div>
+          <User user={u} isFollowing={props.isFollowing} follow={props.follow} unFollow={props.unFollow} />
         </div>
       ))}
-      <div className={classes.paginatonPage}>
-        {props.numbersPage.map((count, i) => {
-          return (
-            <span
-              key={i}
-              onClick={() => props.changePage(count)}
-              className={props.currentPage === count ? classes.activePage : ''}>
-              {count}
-            </span>
-          );
-        })}
-      </div>
+
+      {/* Постраничная пагинация */}
+      <Paginator numbersPage={props.numbersPage} currentPage={props.currentPage} changePage={props.changePage} />
     </div>
   );
 };

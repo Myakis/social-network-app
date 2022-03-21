@@ -28,6 +28,7 @@ const dialogsReducer = (state = initialState, action) => {
           id: 5,
           message: action.messageText,
           user: 'me',
+          date: new Date(),
         };
         return { ...state, message: [...state.message, newMessage] };
       }

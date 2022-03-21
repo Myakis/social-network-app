@@ -9,18 +9,6 @@ let mapStateToProps = state => {
     photo: state.profile.profile.photos.small,
   };
 };
-// let mapDispatchToProps = dispatch => {
-//   return {
-//     addPost: () => {
-//       let action = addPostActionCreator();
-//       dispatch(action);
-//     },
-//     onChangePost: textPost => {
-//       let action = updateTextPostActionCreator(textPost);
-//       dispatch(action);
-//     },
-//   };
-// };
 
 let MyPostConteiner = connect(mapStateToProps, {
   addPost,

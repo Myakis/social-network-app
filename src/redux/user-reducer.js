@@ -58,6 +58,7 @@ const userReducer = (state = initialState, action) => {
       return state;
   }
 };
+//Action Creator
 
 export const followSucces = userId => ({ type: FOLLOW, userId });
 export const unFollowSucces = userId => ({ type: UNFOLLOW, userId });
@@ -80,24 +81,22 @@ export const getsUsers = (currentPage, usersCount) => dispatch => {
 };
 
 //THUNK
-export const follow = userId => dispatch => {
+export const follow = userId => async dispatch => {
   dispatch(toggleFollowingProgressive(true, userId));
-  userAPI.follow(userId).then(response => {
-    if (response.data.resultCode === 0) {
-      dispatch(followSucces(userId));
-      dispatch(toggleFollowingProgressive(false, userId));
-    }
-  });
+  const response = await userAPI.follow(userId);
+  if (response.data.resultCode === 0) {
+    dispatch(followSucces(userId));
+    dispatch(toggleFollowingProgressive(false, userId));
+  }
 };
 //THUNK
-export const unFollow = userId => dispatch => {
+export const unFollow = userId => async dispatch => {
   dispatch(toggleFollowingProgressive(true, userId));
-  userAPI.unFollow(userId).then(response => {
-    if (response.data.resultCode === 0) {
-      dispatch(unFollowSucces(userId));
-      dispatch(toggleFollowingProgressive(false, userId));
-    }
-  });
+  const response = await userAPI.unFollow(userId);
+  if (response.data.resultCode === 0) {
+    dispatch(unFollowSucces(userId));
+    dispatch(toggleFollowingProgressive(false, userId));
+  }
 };
 
 export default userReducer;

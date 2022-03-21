@@ -19,10 +19,9 @@ export const initializedSucces = () => ({
   type: SET_INITIALIZING,
 });
 
-export const initializeApp = () => dispatch => {
-  let promise = dispatch(isAuthorization());
-  promise.then(() => {
-    dispatch(initializedSucces());
-  });
+export const initializeApp = () => async dispatch => {
+  let promise = await dispatch(isAuthorization());
+
+  dispatch(initializedSucces());
 };
 export default initReducer;
