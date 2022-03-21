@@ -1,5 +1,6 @@
 import './App.css';
 import Navbar from './componetns/aside/Navbar';
+
 import { Route, Routes } from 'react-router-dom';
 import Music from './componetns/music/Music';
 import News from './componetns/news/News';

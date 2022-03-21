@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const DELETE_USER_PROFILE = 'DELETE-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
+const DELETE_POST = 'DELETE-POST';
 // const UPDATE_STATUS = 'UPDATE-STATUS';
 
 let initialState = {
@@ -51,6 +52,8 @@ const profileReducer = (state = initialState, action) => {
 
     case SET_STATUS:
       return { ...state, status: action.status };
+    case DELETE_POST:
+      return { ...state, post: [...state.post.filter(post => post.id !== action.postId)] };
 
     default:
       return state;
@@ -60,6 +63,7 @@ export const addPost = text => ({ type: ADD_POST, text });
 export const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile });
 export const deleteUserProfile = () => ({ type: SET_USER_PROFILE });
 export const setStatus = status => ({ type: SET_STATUS, status });
+export const deletePost = postId => ({ type: DELETE_POST, postId });
 // export const updateStatus = status => ({ type: UPDATE_STATUS, status });
 
 export const getProfile = id => {
