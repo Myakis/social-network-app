@@ -23,24 +23,15 @@ class UsersComponent extends React.Component {
   };
 
   render() {
-    let countPage = Math.ceil(this.props.totalUsersCount / this.props.usersCount);
-    // Создание массива страниц
-    let numbersPage = [];
-    for (let i = 1; i <= countPage; i++) {
-      numbersPage.push(i);
-      if (i > 10) {
-        break;
-      }
-    }
-
     return (
       <Users
+        totalItemsCount={this.props.totalUsersCount}
+        usersCount={this.props.usersCount}
         users={this.props.users}
         currentPage={this.props.currentPage}
         changePage={this.changePage}
         follow={this.props.follow}
         unFollow={this.props.unFollow}
-        numbersPage={numbersPage}
         isFetching={this.props.isFetching}
         isFollowing={this.props.isFollowing}
         toggleFollowingProgressive={this.props.toggleFollowingProgressive}

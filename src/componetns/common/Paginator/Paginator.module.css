@@ -1,8 +1,14 @@
+.paginatonWrapper {
+  display: flex;
+  align-items: center;
+}
+
 .activePage {
   font-weight: 700;
   font-size: 18px;
   z-index: 1;
   position: relative;
+  transition: all 0.3s ease 0s;
 }
 .activePage::after {
   content: "";
@@ -17,9 +23,12 @@
   background: orange;
 }
 .paginatonPage {
+  display: flex;
+  justify-content: end;
   margin-top: 1.5rem;
   margin-right: 1rem;
   text-align: right;
+  margin-left: auto;
   transition: all 0.3s ease 0s;
 }
 .paginatonPage span {
@@ -27,4 +36,28 @@
   cursor: pointer;
 }
 .paginatonPage span:hover {
+}
+
+.buttonNext {
+  border-radius: 100%;
+  background: orange;
+  border: none;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
+  margin: 0 1rem;
+}
+
+.buttonPrev {
+  margin: 0 1rem;
+  border-radius: 100%;
+  background: orange;
+  border: none;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  transform: rotate(180deg);
 }

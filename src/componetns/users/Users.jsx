@@ -17,7 +17,13 @@ const Users = props => {
       ))}
 
       {/* Постраничная пагинация */}
-      <Paginator numbersPage={props.numbersPage} currentPage={props.currentPage} changePage={props.changePage} />
+      <Paginator
+        loading={props.isFetching}
+        usersCount={props.usersCount}
+        totalItemsCount={props.totalItemsCount}
+        currentPage={props.currentPage}
+        changePage={props.changePage}
+      />
     </div>
   );
 };
