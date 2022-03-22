@@ -38,7 +38,7 @@
 .paginatonPage span:hover {
 }
 
-.buttonNext {
+.buttonPagination {
   border-radius: 100%;
   background: orange;
   border: none;
@@ -50,14 +50,5 @@
 }
 
 .buttonPrev {
-  margin: 0 1rem;
-  border-radius: 100%;
-  background: orange;
-  border: none;
-  width: 30px;
-  height: 30px;
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
   transform: rotate(180deg);
 }

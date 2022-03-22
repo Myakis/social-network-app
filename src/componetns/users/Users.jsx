@@ -10,9 +10,9 @@ const Users = props => {
       {/* Загрузка страницы */}
       {props.isFetching ? <Preloader /> : ''}
       {/* Перебор всех пользователей и отображение по шаблону */}
-      {props.users.map((u, i) => (
-        <div className={classes.item}>
-          <User key={u.id} user={u} isFollowing={props.isFollowing} follow={props.follow} unFollow={props.unFollow} />
+      {props.users.map(u => (
+        <div key={u.id} className={classes.item}>
+          <User user={u} isFollowing={props.isFollowing} follow={props.follow} unFollow={props.unFollow} />
         </div>
       ))}
 
