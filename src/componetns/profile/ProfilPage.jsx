@@ -13,6 +13,7 @@ const ProfilePage = props => {
         <img src='https://7oom.ru/wp-content/uploads/peizaji-01.jpg' alt='' />
       </div>
       <div className={classes.wrapper}>
+        {!props.loadProfile && <Preloader />}
         <AboutMe profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />
         <MyPostConteiner profile={props.profile} />
       </div>

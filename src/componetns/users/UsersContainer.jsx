@@ -17,7 +17,6 @@ class UsersComponent extends React.Component {
   componentDidMount() {
     this.props.getsUsers(this.props.currentPage, this.props.usersCount);
   }
-
   changePage = pageNum => {
     this.props.getsUsers(pageNum, this.props.usersCount);
   };

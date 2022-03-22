@@ -1,6 +1,8 @@
 import './App.css';
 import Navbar from './componetns/aside/Navbar';
-
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import store from './redux/store-redux';
 import { Route, Routes } from 'react-router-dom';
 import Music from './componetns/music/Music';
 import News from './componetns/news/News';
@@ -32,7 +34,7 @@ class App extends React.Component {
         <main className='content'>
           <Routes>
             <Route path='/profile/' element={<ProfileContainer />} />
-            <Route path='/profile/:userId' element={<ProfileContainer />} />
+            <Route path='/profile/:id' element={<ProfileContainer />} />
             <Route path='/messages/*' element={<MessagesConteiner />} />
             <Route path='/users' element={<UsersContainer />} />
             <Route path='/music' element={<Music />} />

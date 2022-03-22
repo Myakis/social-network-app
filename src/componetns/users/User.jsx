@@ -1,7 +1,6 @@
 import classes from './Users.module.css';
 import avatarPhoto from '../../assets/img/avatar.png';
 import React from 'react';
-import Preloader from '../common/preloader/Preloader';
 import { NavLink } from 'react-router-dom';
 
 const User = ({ user, follow, unFollow, isFollowing }) => {
