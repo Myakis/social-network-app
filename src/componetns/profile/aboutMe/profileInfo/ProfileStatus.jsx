@@ -12,6 +12,7 @@ class ProfileStatus extends React.Component {
     this.setState({
       statusField: !this.state.statusField,
     });
+    this.props.updateUserStatus(this.state.status);
   };
   onEnterToggleStateField = e => {
     if (e.keyCode === 13) {
