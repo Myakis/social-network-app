@@ -2,6 +2,7 @@
   "name": "01_educational-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/Myakis/social-network-app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
@@ -16,7 +17,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -39,6 +42,7 @@
   "devDependencies": {
     "axios": "^0.26.1",
     "final-form": "^4.20.6",
+    "gh-pages": "^3.2.3",
     "react-final-form": "^6.5.8",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
