@@ -31,7 +31,8 @@ const MyPost = props => {
 
   return (
     <div>
-      <FieldPostForm addPost={addPost} />
+      {props.isOwer && <FieldPostForm addPost={addPost} />}
+
       {Posts}
     </div>
   );

@@ -55,6 +55,7 @@ const AboutMe = props => {
       />
       <ProfileInfo
         status={props.status}
+        isOwer={props.isOwer}
         updateUserStatus={props.updateUserStatus}
         description={props.profile.aboutMe}
         fullName={props.profile.fullName}
@@ -63,6 +64,8 @@ const AboutMe = props => {
         instagram={props.profile.contacts.instagram}
         github={props.profile.contacts.github}
         website={props.profile.contacts.website}
+        lookingForAJob={props.profile.lookingForAJob}
+        jobDecription={props.profile.lookingForAJobDescription}
       />
     </div>
   );

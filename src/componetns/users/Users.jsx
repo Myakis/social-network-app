@@ -12,7 +12,7 @@ const Users = props => {
       {/* Перебор всех пользователей и отображение по шаблону */}
       {props.users.map(u => (
         <div key={u.id} className={classes.item}>
-          <User user={u} isFollowing={props.isFollowing} follow={props.follow} unFollow={props.unFollow} />
+          <User user={u} isFollowing={props.isFollowing} follow={props.follow} unFollow={props.unFollow} status={u.status} />
         </div>
       ))}
 

@@ -22,6 +22,7 @@ export const userAPI = {
     return profileAPI.getProfile(id);
   },
 };
+
 export const profileAPI = {
   getProfile(id) {
     return instanceAxios.get(`profile/${id}`);
@@ -38,6 +39,9 @@ export const profileAPI = {
     return instanceAxios.put(`profile/photo`, data, {
       headers: { 'Content-Type': `multipart/form-data` },
     });
+  },
+  getPhoto() {
+    return instanceAxios.put(`profile/photo`);
   },
 };
 

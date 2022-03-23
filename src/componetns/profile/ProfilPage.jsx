@@ -26,7 +26,7 @@ const ProfilePage = props => {
           savePhoto={props.savePhoto}
           isLoadAvatar={props.isLoadAvatar}
         />
-        <MyPostConteiner profile={props.profile} />
+        <MyPostConteiner profile={props.profile} isOwer={props.isOwer} />
       </div>
     </div>
   );

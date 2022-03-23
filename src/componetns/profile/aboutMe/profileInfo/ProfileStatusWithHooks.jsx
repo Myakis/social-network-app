@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import classes from './ProfileStatus.module.css';
 
 const ProfileStatusWithHooks = props => {
-  const [statusField, setStatusField] = useState(false);
+  const [editMode, seteditMode] = useState(false);
   const [status, setstatus] = useState(props.status || '');
   const toggleStateField = () => {
-    setStatusField(!statusField);
+    if (props.isOwer) {
+      seteditMode(!editMode);
+    }
   };
   const onEnterToggleStateField = e => {
     if (e.keyCode === 13) {
@@ -22,12 +24,12 @@ const ProfileStatusWithHooks = props => {
 
   return (
     <div className={classes.statusWrapper}>
-      {!statusField && (
+      {!editMode && (
         <div className={classes.status}>
-          <span onDoubleClick={toggleStateField}>{props.status || 'Добавь статус'}</span>
+          <span onDoubleClick={toggleStateField}>{props.status || (props.isOwer && 'Добавь статус')}</span>
         </div>
       )}
-      {statusField && (
+      {editMode && props.isOwer && (
         <div className={classes.status}>
           <div className={classes.overlay}></div>
           <input

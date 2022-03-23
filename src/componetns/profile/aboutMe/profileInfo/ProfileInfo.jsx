@@ -6,10 +6,15 @@ const ProfileInfo = props => {
     <div className={classes.ProfileInfo}>
       <div className={classes.description}>
         <div className={`${classes.item} ${classes.name}`}>{props.fullName}</div>
-        <div className={classes.item}>
-          <span>{props.description}</span>
-        </div>
-        <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus} />
+
+        {props.description && (
+          <div className={classes.item}>
+            <span> Обо мне:</span> {props.description}
+          </div>
+        )}
+
+        <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus} isOwer={props.isOwer} />
+
         <div className={classes.item}>
           <span>День рождения:</span> 10.10.2001
         </div>
@@ -19,45 +24,37 @@ const ProfileInfo = props => {
         <div className={classes.item}>
           <span>Образование: </span> Незаконченное высшее
         </div>
-        {props.twitter ? (
+
+        <hr />
+        {props.twitter && (
           <div className={classes.item}>
             <span>Twitter:</span>
             <a href={props.twitter}> {props.twitter}</a>
           </div>
-        ) : (
-          ''
         )}
-        {props.vk ? (
+        {props.vk && (
           <div className={classes.item}>
             <span>vk:</span>
             <a href={props.vk}> {props.vk}</a>
           </div>
-        ) : (
-          ''
         )}
-        {props.instagram ? (
+        {props.instagram && (
           <div className={classes.item}>
             <span>instagram:</span>
             <a href={props.instagram}> {props.instagram}</a>
           </div>
-        ) : (
-          ''
         )}
-        {props.github ? (
+        {props.github && (
           <div className={classes.item}>
             <span>github:</span>
             <a href={props.github}> {props.github}</a>
           </div>
-        ) : (
-          ''
         )}
-        {props.website ? (
+        {props.website && (
           <div className={classes.item}>
             <span>website:</span>
             <a href={props.website}> {props.website}</a>
           </div>
-        ) : (
-          ''
         )}
       </div>
     </div>

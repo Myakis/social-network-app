@@ -1,4 +1,5 @@
 import { profileAPI, userAPI } from '../api';
+import { getIconAvatar, isAuthorization } from './auth-reducer';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -108,6 +109,7 @@ export const savePhoto = photo => dispatch => {
   profileAPI.savePhoto(photo).then(response => {
     if (response.data.resultCode === 0) {
       dispatch(savePhotoSuccess(response.data.data.photos));
+      dispatch(getIconAvatar(response.data.data.photos.small));
       dispatch(loadPhotoSuccess(true));
     }
   });
