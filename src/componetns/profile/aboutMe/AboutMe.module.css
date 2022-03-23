@@ -7,3 +7,18 @@
   overflow: hidden;
   height: 150px;
 }
+.profilePhoto {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.avatarChange {
+  padding: 0.3rem;
+  background: none;
+  border: 1px solid #eee;
+  transition: all 0.3s ease 0s;
+}
+
+.avatarChange:hover {
+  background: rgba(223, 217, 217, 0.274);
+}

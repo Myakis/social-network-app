@@ -7,11 +7,15 @@ import Header from './Header';
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuth,
   login: state.auth.login,
-  profile: state.auth.profile,
+  photo: state.profile.profile ? state.profile.profile.photos.small : null,
 });
 class HeaderContainer extends React.Component {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.profile !== prevProps.profile) {
+    }
+  }
   render() {
-    return <Header {...this.props} />;
+    return <Header {...this.props} photo={this.props.photo} />;
   }
 }
 export default connect(mapStateToProps, { setAutnUSerData, logout })(HeaderContainer);

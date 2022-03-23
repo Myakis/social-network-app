@@ -5,6 +5,8 @@ const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const DELETE_USER_PROFILE = 'DELETE-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
 const DELETE_POST = 'DELETE-POST';
+const SAVE_PHOTO_SUCCES = 'SAVE-PHOTO-SUCCES';
+const LOAD_PHOTO_SUCCES = 'LOAD-PHOTO-SUCCES';
 // const UPDATE_STATUS = 'UPDATE-STATUS';
 
 let initialState = {
@@ -26,6 +28,7 @@ let initialState = {
   ],
   profile: null,
   status: '',
+  isLoadAvatar: true,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -54,18 +57,27 @@ const profileReducer = (state = initialState, action) => {
       return { ...state, status: action.status };
     case DELETE_POST:
       return { ...state, post: [...state.post.filter(post => post.id !== action.postId)] };
+    case SAVE_PHOTO_SUCCES:
+      return { ...state, profile: { ...state.profile, photos: action.photo } };
+    case LOAD_PHOTO_SUCCES:
+      return { ...state, isLoadAvatar: action.isLoad };
 
     default:
       return state;
   }
 };
+
+//action creators
 export const addPost = text => ({ type: ADD_POST, text });
 export const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile });
 export const deleteUserProfile = () => ({ type: SET_USER_PROFILE });
 export const setStatus = status => ({ type: SET_STATUS, status });
 export const deletePost = postId => ({ type: DELETE_POST, postId });
+export const savePhotoSuccess = photo => ({ type: SAVE_PHOTO_SUCCES, photo });
+export const loadPhotoSuccess = isLoad => ({ type: LOAD_PHOTO_SUCCES, isLoad });
 // export const updateStatus = status => ({ type: UPDATE_STATUS, status });
 
+//Thunk
 export const getProfile = id => {
   return async dispatch => {
     const response = await userAPI.getProfile(id);
@@ -80,6 +92,7 @@ export const getStatus = id => {
     });
   };
 };
+
 export const updateUserStatus = status => {
   return dispatch => {
     profileAPI.updateStatus(status).then(response => {
@@ -88,6 +101,16 @@ export const updateUserStatus = status => {
       }
     });
   };
+};
+
+export const savePhoto = photo => dispatch => {
+  loadPhotoSuccess(false);
+  profileAPI.savePhoto(photo).then(response => {
+    if (response.data.resultCode === 0) {
+      dispatch(savePhotoSuccess(photo));
+      loadPhotoSuccess(true);
+    }
+  });
 };
 
 export default profileReducer;

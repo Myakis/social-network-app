@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import ProfilePage from './ProfilPage';
-import { getStatus, setUserProfile, updateUserStatus } from '../../redux/profile-reducer';
-import widthRouter from './CustomWitdhRouter';
+import { getStatus, setUserProfile, updateUserStatus, savePhoto } from '../../redux/profile-reducer';
 import { isAuthorization } from '../../redux/auth-reducer';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
@@ -13,26 +12,34 @@ const mapStateToProps = state => ({
   profile: state.profile.profile,
   status: state.profile.status,
   userId: state.auth.userId,
+  isLoadAvatar: state.profile.isLoadAvatar,
 });
 
 const ProfileContainer = props => {
+  //Получаем параметр страницы profile/:id
   const { id } = useParams();
   const [loadProfile, setLoadProfile] = useState(false);
 
   useEffect(() => {
     let userId = id;
     if (!userId) {
+      //Если url равен profile, то userId присвоить значение вошедшего пользователя
       userId = props.userId;
     }
+    //Запрашиваем статус
     props.getStatus(userId);
+
+    //Меням на false,чтобы спиннер показался
     setLoadProfile(false);
+
     userAPI.getProfile(userId).then(response => {
       props.setUserProfile(response.data);
+      //Меняем на true,чтобы спиннер исчез
       setLoadProfile(true);
     });
   }, [id]);
 
-  return <ProfilePage {...props} loadProfile={loadProfile} />;
+  return <ProfilePage {...props} isOwer={!id} loadProfile={loadProfile} savePhoto={props.savePhoto} />;
 };
 
 //!!РЕАЛИЦИЯ ЧЕРЕЗ КЛАССОВУЮ КОМПОНЕНТУ
@@ -66,6 +73,6 @@ const ProfileContainer = props => {
 // }
 
 export default compose(
-  connect(mapStateToProps, { setUserProfile, isAuthorization, getStatus, updateUserStatus }),
+  connect(mapStateToProps, { setUserProfile, isAuthorization, getStatus, updateUserStatus, savePhoto }),
   withAuthRedirect
 )(ProfileContainer);
