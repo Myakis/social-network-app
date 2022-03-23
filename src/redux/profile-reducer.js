@@ -104,11 +104,11 @@ export const updateUserStatus = status => {
 };
 
 export const savePhoto = photo => dispatch => {
-  loadPhotoSuccess(false);
+  dispatch(loadPhotoSuccess(false));
   profileAPI.savePhoto(photo).then(response => {
     if (response.data.resultCode === 0) {
-      dispatch(savePhotoSuccess(photo));
-      loadPhotoSuccess(true);
+      dispatch(savePhotoSuccess(response.data.data.photos));
+      dispatch(loadPhotoSuccess(true));
     }
   });
 };

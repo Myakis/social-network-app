@@ -4,21 +4,23 @@ import avatar from '../../../assets/img/avatar.png';
 import React, { createRef } from 'react';
 import Preloader from '../../common/preloader/Preloader';
 
-const Avatar = ({ isOwer, ...props }) => {
+const Avatar = ({ isOwer, isLoadAvatar, ...props }) => {
   const inputFile = createRef();
   const onChangePhoto = e => {
     if (e.target.files) {
       props.savePhoto(e.target.files[0]);
     }
   };
-  if (props.isLoadAvatar) {
-    return <Preloader />;
-  }
+  // if (!isLoadAvatar) {
+  //   return <Preloader />;
+  // }
   return (
     <div className={classes.profilePhoto}>
       <div className={classes.avatar}>
         <img src={props.photo || avatar} alt='avatar' />
+        {!isLoadAvatar && <Preloader />}
       </div>
+
       {isOwer && (
         <>
           <input
@@ -29,6 +31,7 @@ const Avatar = ({ isOwer, ...props }) => {
             placeholder={'изменить фото'}
           />
           <button
+            disabled={!isLoadAvatar}
             className={classes.avatarChange}
             onClick={() => {
               inputFile.current.click();
@@ -44,7 +47,12 @@ const Avatar = ({ isOwer, ...props }) => {
 const AboutMe = props => {
   return (
     <div className={classes.body}>
-      <Avatar photo={props.profile.photos.large} isOwer={props.isOwer} savePhoto={props.savePhoto} />
+      <Avatar
+        photo={props.profile.photos.large}
+        isOwer={props.isOwer}
+        savePhoto={props.savePhoto}
+        isLoadAvatar={props.isLoadAvatar}
+      />
       <ProfileInfo
         status={props.status}
         updateUserStatus={props.updateUserStatus}

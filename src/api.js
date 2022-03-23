@@ -36,7 +36,7 @@ export const profileAPI = {
     const data = new FormData();
     data.append('image', photo);
     return instanceAxios.put(`profile/photo`, data, {
-      headers: { 'Content-Type': `multipart/form-data;` },
+      headers: { 'Content-Type': `multipart/form-data` },
     });
   },
 };
