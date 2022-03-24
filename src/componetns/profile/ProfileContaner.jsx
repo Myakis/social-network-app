@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import ProfilePage from './ProfilPage';
-import { getStatus, setUserProfile, updateUserStatus, savePhoto } from '../../redux/profile-reducer';
+import { getStatus, setUserProfile, updateUserStatus, savePhoto, saveData } from '../../redux/profile-reducer';
 import { isAuthorization } from '../../redux/auth-reducer';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { userAPI } from '../../api';
 import { useParams } from 'react-router-dom';
-
 const mapStateToProps = state => ({
   profile: state.profile.profile,
   status: state.profile.status,
@@ -39,7 +38,7 @@ const ProfileContainer = props => {
     });
   }, [id]);
 
-  return <ProfilePage {...props} isOwer={!id} loadProfile={loadProfile} savePhoto={props.savePhoto} />;
+  return <ProfilePage {...props} isOwer={!id} loadProfile={loadProfile} savePhoto={props.savePhoto} saveData={props.saveData} />;
 };
 
 //!!РЕАЛИЦИЯ ЧЕРЕЗ КЛАССОВУЮ КОМПОНЕНТУ
@@ -73,6 +72,6 @@ const ProfileContainer = props => {
 // }
 
 export default compose(
-  connect(mapStateToProps, { setUserProfile, isAuthorization, getStatus, updateUserStatus, savePhoto }),
+  connect(mapStateToProps, { setUserProfile, isAuthorization, getStatus, updateUserStatus, savePhoto, saveData }),
   withAuthRedirect
 )(ProfileContainer);

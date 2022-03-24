@@ -7,7 +7,7 @@ const MyPost = props => {
   const addPost = text => {
     props.addPost(text);
   };
-  let Posts = [...props.post].reverse().map(post => {
+  let Posts = [...props.post].reverse().map((post, i) => {
     const date =
       (post.date.getMonth() < 10 ? '0' + post.date.getMonth() : post.date.getMonth()) +
       '        ' +
@@ -18,7 +18,7 @@ const MyPost = props => {
       (post.date.getMinutes() < 10 ? '0' + post.date.getMinutes() : post.date.getMinutes());
     return (
       <Post
-        key={post.id}
+        key={i}
         id={post.id}
         message={post.message}
         likeCount={post.likeCount}
@@ -30,11 +30,10 @@ const MyPost = props => {
   });
 
   return (
-    <div>
+    <>
       {props.isOwer && <FieldPostForm addPost={addPost} />}
-
-      {Posts}
-    </div>
+      <div className={classes.blog}>{Posts}</div>
+    </>
   );
 };
 

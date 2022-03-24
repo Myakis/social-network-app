@@ -1,5 +1,5 @@
 import { profileAPI, userAPI } from '../api';
-import { getIconAvatar, isAuthorization } from './auth-reducer';
+import { getIconAvatar } from './auth-reducer';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -8,6 +8,7 @@ const SET_STATUS = 'SET-STATUS';
 const DELETE_POST = 'DELETE-POST';
 const SAVE_PHOTO_SUCCES = 'SAVE-PHOTO-SUCCES';
 const LOAD_PHOTO_SUCCES = 'LOAD-PHOTO-SUCCES';
+const SAVE_DATA_SUCCES = 'SAVE-DATA-SUCCES';
 // const UPDATE_STATUS = 'UPDATE-STATUS';
 
 let initialState = {
@@ -62,6 +63,15 @@ const profileReducer = (state = initialState, action) => {
       return { ...state, profile: { ...state.profile, photos: action.photo } };
     case LOAD_PHOTO_SUCCES:
       return { ...state, isLoadAvatar: action.isLoad };
+    case SAVE_DATA_SUCCES:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          ...action.profileData,
+          contacts: state.profile.contacts ? { ...state.profile.contacts, ...action.profileData.contacts } : '',
+        },
+      };
 
     default:
       return state;
@@ -76,6 +86,7 @@ export const setStatus = status => ({ type: SET_STATUS, status });
 export const deletePost = postId => ({ type: DELETE_POST, postId });
 export const savePhotoSuccess = photo => ({ type: SAVE_PHOTO_SUCCES, photo });
 export const loadPhotoSuccess = isLoad => ({ type: LOAD_PHOTO_SUCCES, isLoad });
+export const saveDataSuccess = profileData => ({ type: SAVE_DATA_SUCCES, profileData });
 // export const updateStatus = status => ({ type: UPDATE_STATUS, status });
 
 //Thunk
@@ -111,6 +122,15 @@ export const savePhoto = photo => dispatch => {
       dispatch(savePhotoSuccess(response.data.data.photos));
       dispatch(getIconAvatar(response.data.data.photos.small));
       dispatch(loadPhotoSuccess(true));
+    }
+  });
+};
+export const saveData = profileData => async dispatch => {
+  return profileAPI.saveData(profileData).then(response => {
+    if (response.data.resultCode === 0) {
+      dispatch(saveDataSuccess(profileData));
+    } else {
+      return response;
     }
   });
 };

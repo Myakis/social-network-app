@@ -18,6 +18,7 @@
   background: none;
   border: 1px solid #eee;
   transition: all 0.3s ease 0s;
+  cursor: pointer;
 }
 
 .avatarChange:hover {

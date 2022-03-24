@@ -43,6 +43,9 @@ export const profileAPI = {
   getPhoto() {
     return instanceAxios.put(`profile/photo`);
   },
+  saveData(profileData) {
+    return instanceAxios.put(`profile`, profileData);
+  },
 };
 
 export const authAPI = {

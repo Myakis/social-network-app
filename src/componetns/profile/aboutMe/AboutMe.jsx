@@ -6,14 +6,13 @@ import Preloader from '../../common/preloader/Preloader';
 
 const Avatar = ({ isOwer, isLoadAvatar, ...props }) => {
   const inputFile = createRef();
+
   const onChangePhoto = e => {
     if (e.target.files) {
       props.savePhoto(e.target.files[0]);
     }
   };
-  // if (!isLoadAvatar) {
-  //   return <Preloader />;
-  // }
+
   return (
     <div className={classes.profilePhoto}>
       <div className={classes.avatar}>
@@ -54,18 +53,11 @@ const AboutMe = props => {
         isLoadAvatar={props.isLoadAvatar}
       />
       <ProfileInfo
+        saveData={props.saveData}
         status={props.status}
         isOwer={props.isOwer}
         updateUserStatus={props.updateUserStatus}
-        description={props.profile.aboutMe}
-        fullName={props.profile.fullName}
-        twitter={props.profile.contacts.twitter}
-        vk={props.profile.contacts.vk}
-        instagram={props.profile.contacts.instagram}
-        github={props.profile.contacts.github}
-        website={props.profile.contacts.website}
-        lookingForAJob={props.profile.lookingForAJob}
-        jobDecription={props.profile.lookingForAJobDescription}
+        profile={props.profile}
       />
     </div>
   );

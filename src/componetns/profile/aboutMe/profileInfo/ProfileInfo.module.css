@@ -16,3 +16,21 @@
   font-weight: 700;
   margin-bottom: 10px;
 }
+
+.form {
+  position: relative;
+}
+.inputWrap {
+  display: flex;
+  margin-bottom: 20px;
+}
+.inputWrap span {
+  flex: 0 1 250px;
+}
+.inputWrap div {
+  width: 100%;
+}
+.inputWrap input {
+  width: 100%;
+  padding: 1rem;
+}

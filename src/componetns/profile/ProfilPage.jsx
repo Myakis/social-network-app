@@ -25,6 +25,7 @@ const ProfilePage = props => {
           isOwer={props.isOwer}
           savePhoto={props.savePhoto}
           isLoadAvatar={props.isLoadAvatar}
+          saveData={props.saveData}
         />
         <MyPostConteiner profile={props.profile} isOwer={props.isOwer} />
       </div>

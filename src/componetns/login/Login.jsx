@@ -1,6 +1,6 @@
 import classes from './Login.module.css';
-import { Form, Field } from 'react-final-form';
 import React from 'react';
+import { Form, Field } from 'react-final-form';
 import { Input, maxValueCreator, minValueCreator, required } from '../utils/validators/FormControl';
 import { connect } from 'react-redux';
 import { login } from '../../redux/auth-reducer';
