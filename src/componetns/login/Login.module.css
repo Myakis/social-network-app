@@ -43,6 +43,7 @@ h1 {
 
 .errorData {
   color: red;
+  margin-top: 1rem;
   margin-bottom: 5px;
   padding-left: 10px;
 }

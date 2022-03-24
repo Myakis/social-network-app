@@ -23,6 +23,12 @@ export const userAPI = {
   },
 };
 
+export const securityAPI = {
+  getCaptha() {
+    return instanceAxios.get(`security/get-captcha-url`);
+  },
+};
+
 export const profileAPI = {
   getProfile(id) {
     return instanceAxios.get(`profile/${id}`);
@@ -52,8 +58,9 @@ export const authAPI = {
   me() {
     return instanceAxios.get(`auth/me`);
   },
-  login(email, password, rememberMe = false) {
-    return instanceAxios.post(`auth//login`, { email, password, rememberMe });
+  login(email, password, rememberMe = false, captcha = null) {
+    debugger;
+    return instanceAxios.post(`auth//login`, { email, password, rememberMe, captcha });
   },
   logout() {
     return instanceAxios.delete(`auth/login`);

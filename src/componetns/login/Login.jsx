@@ -14,14 +14,14 @@ const Login = props => {
   return (
     <div>
       <h1>Вход</h1>
-      <LoginForm login={props.login} errorMessage={props.errorMessage} />
+      <LoginForm login={props.login} errorMessage={props.errorMessage} captchaUrl={props.captchaUrl} />
     </div>
   );
 };
 
 const LoginForm = props => {
   const onSubmit = data => {
-    props.login(data.email, data.password, data.rememberMe);
+    props.login(data.email, data.password, data.rememberMe, data.captcha);
   };
   const maxValue = maxValueCreator(50);
   const minValue = minValueCreator(10);
@@ -57,6 +57,12 @@ const LoginForm = props => {
             <Field name={'rememberMe'} component='input' type='checkbox' />
             Замомнить меня
           </label>
+          {props.captchaUrl && (
+            <>
+              <img src={props.captchaUrl} alt='captcha' />
+              <Field name={'captcha'} component={Input} type='input' validate={required} />
+            </>
+          )}
           {props.errorMessage && (
             <div className={classes.errorData}>
               <span>{props.errorMessage} </span>
@@ -73,6 +79,7 @@ const LoginForm = props => {
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuth,
   errorMessage: state.auth.errorMessage,
+  captchaUrl: state.auth.captchaUrl,
 });
 
 export default connect(mapStateToProps, {

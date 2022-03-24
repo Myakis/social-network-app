@@ -1,9 +1,9 @@
-import { authAPI, profileAPI } from '../api';
+import { authAPI, profileAPI, securityAPI } from '../api';
 
 const SET_USER_DATA = 'SET-USER-DATA';
-const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_ERROR_AUTH = 'SET-ERROR-AUTH';
 const GET_ICON_AVATAR = 'GET-ICON-AVATAR';
+const SET_CAPTCHA_URL = 'SET-CAPTCHA-URL';
 let initialState = {
   isAuth: false,
   userId: null,
@@ -12,16 +12,15 @@ let initialState = {
   profile: null,
   errorMessage: '',
   iconAvatar: null,
+  captchaUrl: null,
 };
 
 //Action Creator
-
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA:
+    case SET_CAPTCHA_URL:
       return { ...state, ...action.payload };
-    case SET_USER_PROFILE:
-      return { ...state, profile: action.profile };
     case SET_ERROR_AUTH:
       return { ...state, errorMessage: action.errorMessage };
     case GET_ICON_AVATAR:
@@ -32,7 +31,6 @@ const authReducer = (state = initialState, action) => {
 };
 
 //Thunk
-
 export const setAutnUSerData = (userId, login, email, isAuth, errorMessage = '') => ({
   type: SET_USER_DATA,
   payload: { userId, login, email, isAuth, errorMessage },
@@ -45,6 +43,10 @@ export const setErrorAuth = errorMessage => ({
 export const getIconAvatar = iconAvatar => ({
   type: GET_ICON_AVATAR,
   iconAvatar,
+});
+export const setCaptchaUrl = captchaUrl => ({
+  type: SET_CAPTCHA_URL,
+  payload: { captchaUrl },
 });
 
 export const isAuthorization = () => dispatch => {
@@ -59,14 +61,23 @@ export const isAuthorization = () => dispatch => {
   });
 };
 
-export const login = (email, password, rememberMe) => async dispatch => {
-  const response = await authAPI.login(email, password, rememberMe);
-
-  if (response.data.resultCode === 0) {
-    dispatch(isAuthorization());
-  } else {
-    dispatch(setErrorAuth(response.data.messages[0]));
-  }
+export const login =
+  (email, password, rememberMe, captcha = null) =>
+  async dispatch => {
+    const response = await authAPI.login(email, password, rememberMe, captcha);
+    debugger;
+    if (response.data.resultCode === 0) {
+      dispatch(isAuthorization());
+    } else {
+      if (response.data.resultCode === 10) {
+        dispatch(getCaptha());
+      }
+      dispatch(setErrorAuth(response.data.messages[0]));
+    }
+  };
+export const getCaptha = () => async dispatch => {
+  const response = await securityAPI.getCaptha();
+  dispatch(setCaptchaUrl(response.data.url));
 };
 
 export const logout = () => async dispatch => {
