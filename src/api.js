@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const instanceAxios = axios.create({
   withCredentials: true,
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',

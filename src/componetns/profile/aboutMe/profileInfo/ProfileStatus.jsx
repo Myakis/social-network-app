@@ -38,7 +38,9 @@ class ProfileStatus extends React.Component {
       <div className={classes.statusWrapper}>
         {!this.state.statusField && (
           <div className={classes.status}>
-            <span onDoubleClick={this.toggleStateField}>{this.props.status || 'Добавь статус'}</span>
+            <span onDoubleClick={this.toggleStateField}>
+              {this.props.status || 'Добавь статус'}
+            </span>
           </div>
         )}
         {this.state.statusField && (
@@ -57,4 +59,4 @@ class ProfileStatus extends React.Component {
     );
   }
 }
-export default ProfileStatus;
+// export default ProfileStatus;

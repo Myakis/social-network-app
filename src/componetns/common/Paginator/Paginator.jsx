@@ -2,7 +2,14 @@ import classes from './Paginator.module.css';
 import React, { useState } from 'react';
 import arrowLeft from '../../../assets/img/leftArrow.svg';
 
-const Paginator = ({ changePage, currentPage, usersCount, totalItemsCount, portionSize = 10, loading }) => {
+const Paginator = ({
+  changePage,
+  currentPage,
+  usersCount,
+  totalItemsCount,
+  portionSize = 10,
+  loading,
+}) => {
   const countPage = Math.ceil(totalItemsCount / usersCount);
   const allCountPage = [];
   for (let i = 1; i <= countPage; i++) {

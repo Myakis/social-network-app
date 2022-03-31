@@ -1,17 +1,25 @@
 .header {
-  border: 1px solid #eee;
   background-color: rgb(193 193 193 / 50%);
+  background-color: rgb(114, 183, 233);
   grid-area: header;
   border-radius: 0 0 15px 15px;
   overflow: hidden;
   display: flex;
-  /* margin: 10px; */
   justify-content: space-between;
   padding: 0 10px;
   align-items: center;
 }
+
 .header img {
-  height: 50px;
+  height: 40px;
+}
+.logo {
+  display: flex;
+  flex-direction: column;
+}
+.logo span {
+  font-size: 25px;
+  color: rgb(15, 15, 15);
 }
 .profileBody {
   display: flex;
@@ -32,6 +40,10 @@
   border-radius: 100%;
   height: 30px;
   width: 30px;
+  transition: all 0.3s ease 0s;
+}
+.profile:hover > img {
+  transform: rotate(-360deg);
 }
 .profile p {
   margin: 0;
@@ -41,8 +53,27 @@
   color: red;
 }
 .logout {
-  border: 1px solid #eee;
+  background: #3333;
   border-radius: 2px;
-  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
   font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease 0s;
+}
+
+.logout:hover {
+  background: rgba(163, 74, 74, 0.2);
+  box-shadow: 1px 1px 5px #eee;
+  background-color: #0099ffbd;
+}
+.logout:hover svg {
+  transform: translateX(5px);
+}
+.logout svg {
+  width: 17px;
+  height: 17px;
+  transition: all 0.3s ease 0s;
 }

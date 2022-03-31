@@ -69,7 +69,9 @@ const profileReducer = (state = initialState, action) => {
         profile: {
           ...state.profile,
           ...action.profileData,
-          contacts: state.profile.contacts ? { ...state.profile.contacts, ...action.profileData.contacts } : '',
+          contacts: state.profile.contacts
+            ? { ...state.profile.contacts, ...action.profileData.contacts }
+            : '',
         },
       };
 

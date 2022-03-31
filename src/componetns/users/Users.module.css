@@ -1,4 +1,5 @@
 .list {
+  padding-top: 40px;
   padding-bottom: 30px;
   height: 100%;
   position: relative;
@@ -7,7 +8,7 @@
   display: flex;
   gap: 1rem;
   padding: 1rem;
-  background: rgba(122, 191, 212, 0.164);
+  /* background: rgba(122, 191, 212, 0.164); */
   border-radius: 5px;
 }
 .profile {
@@ -16,15 +17,62 @@
 .item p {
   margin: 0;
 }
+
 .profile button {
   display: block;
   width: 100%;
   padding: 0.4rem 1rem;
+  background: none;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  transition: all 0.3s ease 0s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
 }
+.profile button:disabled {
+  background: gray;
+}
+.profile button:disabled .icon {
+  display: none;
+}
+
 .profile img {
   width: 100%;
   object-fit: contain;
   height: 120px;
+}
+.icon {
+  position: absolute;
+}
+.icon svg {
+  transition: all 0.3s ease 0s;
+  width: 12px;
+  height: 12px;
+  transform: translateX(-500px);
+}
+
+.profile .follow {
+}
+.profile .follow:hover {
+  background: #00cc66;
+}
+.profile .follow:hover > .icon svg {
+  transform: translate(-50px);
+}
+
+.profile .unfollow {
+  background: #0099cc;
+}
+.profile .unfollow:hover {
+  background: #cc0033;
+}
+.profile .unfollow:hover > .icon svg {
+  transform: translate(-50px);
 }
 .item:not(:last-child) {
   margin-bottom: 1rem;
@@ -41,7 +89,7 @@
   position: relative;
 }
 .activePage::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;

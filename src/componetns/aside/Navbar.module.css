@@ -1,10 +1,8 @@
 .navigation {
   font-size: 18px;
   grid-area: aside;
-  border: 1px solid #eee;
   background-color: #fff;
   border-radius: 15px 15px 0 0;
-  overflow: hidden;
 }
 .item:last-child {
   margin-top: 50px;
@@ -12,12 +10,29 @@
 
 .item a {
   display: block;
-  padding: 0.2rem 1rem;
+  padding: 0.4rem 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row-reverse;
+  transition: all 0.3s ease 0s;
+}
+.item a svg {
+  width: 1rem;
+  height: 1rem;
+  transition: all 0.3s ease 0s;
 }
 .item a.active {
-  background: rgba(122, 191, 212, 0.164);
-  border-radius: 5px;
+  color: rgb(0, 140, 255);
+  font-weight: 600;
+}
+.item a.active svg {
+  color: rgb(255, 0, 140);
 }
 .item a:hover {
-  text-decoration: underline;
+  border-bottom: 1px solid #ccc;
+}
+.item a:hover svg {
+  transform: translateY(-5px);
 }

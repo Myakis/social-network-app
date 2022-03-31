@@ -1,9 +1,16 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { follow, unFollow, setCurrentPage, toggleFollowingProgressive, getsUsers } from '../../redux/user-reducer';
+import { compose } from 'redux';
+
+import {
+  follow,
+  unFollow,
+  setCurrentPage,
+  toggleFollowingProgressive,
+  getsUsers,
+} from '../../redux/user-reducer';
 import Users from './Users';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
-import { compose } from 'redux';
 import {
   getCurrentPageSelector,
   getFollowSelector,
@@ -97,5 +104,5 @@ export default compose(
     toggleFollowingProgressive,
     getsUsers,
   }),
-  withAuthRedirect
+  withAuthRedirect,
 )(UsersComponent);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import classes from '../ProfileInfo.module.css';
 import { Form, Field } from 'react-final-form';
+
+import classes from '../ProfileInfo.module.css';
 import { Input, required, validateURL } from '../../../../utils/validators/FormControl';
 import Preloader2 from '../../../../common/preloader/Preloader2';
 
@@ -9,17 +10,17 @@ export const ProfileDecription = ({ profile, setEditMode, isOwer }) => {
   return (
     <>
       {profile.aboutMe && (
-        <div className={classes.item}>
+        <div className={classes.itemDescr}>
           <span> Обо мне:</span> {profile.aboutMe}
         </div>
       )}
       {profile.lookingForAJob && (
-        <div className={classes.item}>
+        <div className={classes.itemDescr}>
           <span> В поисках работы</span>
         </div>
       )}
       {profile.lookingForAJob && (
-        <div className={classes.item}>
+        <div className={classes.itemDescr}>
           <span> Профессиональные скиллы:</span> {profile.lookingForAJobDescription}
         </div>
       )}
@@ -27,7 +28,7 @@ export const ProfileDecription = ({ profile, setEditMode, isOwer }) => {
       {Object.entries(profile.contacts)
         .filter(item => item[1])
         .map(item => (
-          <div key={item} className={classes.item}>
+          <div key={item} className={classes.itemDescr}>
             <span>{item[0]}:</span>
             <a href={item[1]} target='_blank'>
               {item[1]}
@@ -35,7 +36,11 @@ export const ProfileDecription = ({ profile, setEditMode, isOwer }) => {
           </div>
         ))}
       {/* Поялвятеся только на своей странице(чужие профиля редактировать нельзя) */}
-      {isOwer && <button onClick={() => setEditMode(true)}>редактировать</button>}
+      {isOwer && (
+        <button className={classes.editDescription} onClick={() => setEditMode(true)}>
+          Редактировать
+        </button>
+      )}
     </>
   );
 };
@@ -51,10 +56,6 @@ export const FormDescription = ({ setEditMode, profile, saveData, ...props }) =>
       setEditMode(false);
     });
   };
-  // const composeValidators =
-  //   (...validators) =>
-  //   value =>
-  //     validators.reduce((error, validator) => error || validator(value), undefined);
 
   return (
     <Form
@@ -65,11 +66,23 @@ export const FormDescription = ({ setEditMode, profile, saveData, ...props }) =>
           {!loadDescr && <Preloader2 />}
           <label className={classes.inputWrap}>
             <span> Имя</span>
-            <Field name={'fullName'} component={Input} type='text' placeholder='Имя' validate={required} />
+            <Field
+              name={'fullName'}
+              component={Input}
+              type='text'
+              placeholder='Имя'
+              validate={required}
+            />
           </label>
           <label className={classes.inputWrap}>
             <span> Обо мне</span>
-            <Field name={'aboutMe'} component={Input} type='text' placeholder='Обо мне' validate={required} />
+            <Field
+              name={'aboutMe'}
+              component={Input}
+              type='text'
+              placeholder='Обо мне'
+              validate={required}
+            />
           </label>
           <label className={classes.inputWrap}>
             <span> Ищу работу</span>
@@ -77,14 +90,25 @@ export const FormDescription = ({ setEditMode, profile, saveData, ...props }) =>
           </label>
           <label className={classes.inputWrap}>
             <span>Мои профессиональные скиллы</span>
-            <Field name={'lookingForAJobDescription'} component={Input} type='text' placeholder='Мои профессиональные скиллы' />
+            <Field
+              name={'lookingForAJobDescription'}
+              component={Input}
+              type='text'
+              placeholder='Мои профессиональные скиллы'
+            />
           </label>
           <hr />
           <h2>Контакты</h2>
           {Object.entries(profile.contacts).map((item, i) => (
             <label key={i} className={classes.inputWrap}>
               <span>{item[0]}</span>
-              <Field name={`contacts.${item[0]}`} component={Input} type='text' placeholder={item[0]} validate={validateURL} />
+              <Field
+                name={`contacts.${item[0]}`}
+                component={Input}
+                type='text'
+                placeholder={item[0]}
+                validate={validateURL}
+              />
             </label>
           ))}
           {props.errorMessage && (
@@ -93,7 +117,9 @@ export const FormDescription = ({ setEditMode, profile, saveData, ...props }) =>
             </div>
           )}
           <div className={classes.inputWrap}>
-            <button type='submit'> сохранить</button>
+            <button className={classes.editDescription} type='submit'>
+              Сохранить
+            </button>
           </div>
         </form>
       )}

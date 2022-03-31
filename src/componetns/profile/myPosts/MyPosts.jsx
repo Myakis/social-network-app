@@ -8,14 +8,6 @@ const MyPost = props => {
     props.addPost(text);
   };
   let Posts = [...props.post].reverse().map((post, i) => {
-    const date =
-      (post.date.getMonth() < 10 ? '0' + post.date.getMonth() : post.date.getMonth()) +
-      '        ' +
-      (post.date.getDay() < 10 ? '0' + post.date.getDay() : post.date.getDay()) +
-      ':' +
-      (post.date.getHours() < 10 ? '0' + post.date.getHours() : post.date.getHours()) +
-      ':' +
-      (post.date.getMinutes() < 10 ? '0' + post.date.getMinutes() : post.date.getMinutes());
     return (
       <Post
         key={i}
@@ -24,7 +16,6 @@ const MyPost = props => {
         likeCount={post.likeCount}
         shareCount={post.shareCount}
         photo={props.photo}
-        date={date}
       />
     );
   });

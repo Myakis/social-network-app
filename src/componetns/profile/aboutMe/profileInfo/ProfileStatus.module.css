@@ -5,8 +5,34 @@
   font-size: 20px;
   letter-spacing: 1px;
   padding: 0.5rem 1rem 0.5rem 0;
+  transition: all 0.3s ease 0s;
+  position: relative;
+  width: max-content;
 }
-.status input {
+
+.status:hover .editStatus {
+  opacity: 1;
+  visibility: visible;
+}
+.editStatus {
+  position: absolute;
+  top: 3px;
+  background: none;
+  border: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease 0s;
+  right: -5px;
+  animation: doublePuls 0.9s infinite ease-out;
+}
+.editStatus svg {
+  width: 20px;
+  height: 20px;
+}
+.status.statusEditInput {
+  width: 100%;
+}
+.status.statusEditInput input {
   position: relative;
   outline: none;
   font-size: 20px;
@@ -28,4 +54,19 @@
   background: rgb(196, 166, 166);
   opacity: 0.1;
   transition: all 0.3s ease 0s;
+}
+
+@keyframes doublePuls {
+  10% {
+    transform: scale(1.2) skew(-20deg, -20deg);
+  }
+  20% {
+    transform: scale(1) skew(0);
+  }
+  30% {
+    transform: scale(1.2) skew(-20deg, -12deg);
+  }
+  40% {
+    transform: scale(1) skew(0);
+  }
 }

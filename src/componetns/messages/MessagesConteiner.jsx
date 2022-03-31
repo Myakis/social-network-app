@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+
 import { addMessage } from '../../redux/dialog-reducer';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import Messages from './Messages';
@@ -35,5 +36,5 @@ export default compose(
   connect(mapStateToProps, {
     addMessage,
   }),
-  withAuthRedirect
+  withAuthRedirect,
 )(Messages);

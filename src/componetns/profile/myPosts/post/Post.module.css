@@ -18,6 +18,7 @@
   flex: 0 0 60px;
 }
 .content {
+  margin-top: 10px;
   font-size: 18px;
 }
 
@@ -27,11 +28,20 @@
 }
 .tools > span {
   cursor: pointer;
-  margin-right: 1rem;
+  margin-left: 2rem;
+  display: inline-flex;
+  align-items: center;
 }
 .count {
   font-size: 14px;
   padding-right: 5px;
   color: rgb(65, 60, 60);
   font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+.count svg {
+  width: 15px;
+  height: 15px;
 }

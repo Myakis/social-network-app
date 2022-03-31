@@ -7,23 +7,50 @@
   overflow: hidden;
   height: 150px;
 }
+
 .profilePhoto {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   position: relative;
 }
+
 .avatarChange {
-  padding: 0.3rem;
+  padding: 0.5rem;
   background: none;
   border: 1px solid #eee;
   transition: all 0.3s ease 0s;
   cursor: pointer;
 }
 
+.avatarEdit {
+  position: absolute;
+  background: none;
+  border: none;
+  right: -5px;
+  cursor: pointer;
+  color: rgb(88, 86, 86);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease 0s;
+}
+
+.avatarEdit svg {
+  width: 25px;
+  height: 25px;
+}
+
+.avatarEdit:hover ~ .avatar {
+  height: 210px;
+}
 .avatarChange:hover {
   background: rgba(223, 217, 217, 0.274);
 }
 .avatarChange:disabled {
   background: rgba(223, 217, 217, 0.274);
+}
+.avatarChange:hover ~ .avatarEdit {
+  display: block;
+  opacity: 1;
+  visibility: visible;
 }

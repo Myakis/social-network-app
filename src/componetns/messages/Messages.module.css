@@ -1,6 +1,14 @@
 .dialogsWrapper {
   display: flex;
-  min-height: calc(100vh - 68px);
+  /* min-height: calc(100vh - 68px); */
+  height: calc(100vh - 109px);
+}
+
+.dialogWindow {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 .dialogs {
   background: rgba(221, 221, 221, 0.562);
@@ -43,12 +51,15 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  height: 80vh;
+  overflow-y: auto;
   flex: 1 1 auto;
 }
 .list .item {
   flex: 1 1 auto;
 }
 .form {
+  margin-top: 30px;
   display: flex;
 }
 .input {

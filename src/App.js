@@ -1,20 +1,15 @@
 import React, { Suspense } from 'react';
-import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import './App.css';
 import Music from './componetns/music/Music';
 import News from './componetns/news/News';
 import Setting from './componetns/setting/Setting';
 import HeaderContainer from './componetns/header/HeaderContainer';
 import Navbar from './componetns/aside/Navbar';
-import { connect } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
 import Preloader from './componetns/common/preloader/Preloader';
-import { compose } from 'redux';
-
-// import MessagesConteiner from './componetns/messages/MessagesConteiner';
-// import UsersContainer from './componetns/users/UsersContainer';
-// import ProfileContainer from './componetns/profile/ProfileContaner';
-// import Login from './componetns/login/Login';
 
 const ProfileContainer = React.lazy(() => import('./componetns/profile/ProfileContaner'));
 const MessagesConteiner = React.lazy(() => import('./componetns/messages/MessagesConteiner'));
@@ -51,6 +46,7 @@ class App extends React.Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     initialized: state.app.initialized,
