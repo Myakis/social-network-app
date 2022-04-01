@@ -5,7 +5,9 @@
 }
 .avatar {
   overflow: hidden;
-  height: 150px;
+  height: 270px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
 }
 
 .profilePhoto {
@@ -13,6 +15,7 @@
   flex-direction: column;
   gap: 1rem;
   position: relative;
+  width: 270px;
 }
 
 .avatarChange {
@@ -29,7 +32,7 @@
   border: none;
   right: -5px;
   cursor: pointer;
-  color: rgb(88, 86, 86);
+  color: rgb(0, 0, 0);
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s ease 0s;
@@ -40,16 +43,16 @@
   height: 25px;
 }
 
-.avatarEdit:hover ~ .avatar {
-  height: 210px;
-}
 .avatarChange:hover {
   background: rgba(223, 217, 217, 0.274);
 }
 .avatarChange:disabled {
   background: rgba(223, 217, 217, 0.274);
 }
-.avatarChange:hover ~ .avatarEdit {
+.avatar:hover {
+  opacity: 0.9;
+}
+.avatar:hover ~ .avatarEdit {
   display: block;
   opacity: 1;
   visibility: visible;

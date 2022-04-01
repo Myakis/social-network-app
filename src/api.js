@@ -8,6 +8,8 @@ const instanceAxios = axios.create({
   },
 });
 
+//Ассинхронные операции
+
 export const userAPI = {
   getUser(currentPage = 1, usersCount = 5) {
     return instanceAxios.get(`users?page=${currentPage}&count=${usersCount}`);

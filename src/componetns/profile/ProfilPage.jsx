@@ -11,9 +11,9 @@ const ProfilePage = props => {
 
   return (
     <div>
-      <div className={classes.header}>
+      {/* <div className={classes.header}>
         <img src='https://7oom.ru/wp-content/uploads/peizaji-01.jpg' alt='' />
-      </div>
+      </div> */}
       <div className={classes.wrapper}>
         {/* Если ответ с данными о конкретной странице еще не пришел с сервера, отобразить спиннер */}
         {!props.loadProfile && <Preloader />}

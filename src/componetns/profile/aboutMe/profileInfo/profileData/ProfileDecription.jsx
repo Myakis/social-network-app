@@ -4,6 +4,8 @@ import { Form, Field } from 'react-final-form';
 import classes from '../ProfileInfo.module.css';
 import { Input, required, validateURL } from '../../../../utils/validators/FormControl';
 import Preloader2 from '../../../../common/preloader/Preloader2';
+import { setLogin } from '../../../../../redux/auth-reducer';
+import { useDispatch } from 'react-redux';
 
 //Блок с информацией на главной странице пользователя
 export const ProfileDecription = ({ profile, setEditMode, isOwer }) => {
@@ -48,12 +50,15 @@ export const ProfileDecription = ({ profile, setEditMode, isOwer }) => {
 //Форма редактирования информации на главной странице
 export const FormDescription = ({ setEditMode, profile, saveData, ...props }) => {
   const [loadDescr, setLoadDescr] = useState(true);
+  const dispatch = useDispatch();
 
   const onSubmit = data => {
     setLoadDescr(false);
+
     saveData(data).then(response => {
       setLoadDescr(true);
       setEditMode(false);
+      dispatch(setLogin(data.fullName));
     });
   };
 

@@ -6,7 +6,7 @@ import Header from './Header';
 
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuth,
-  login: state.profile.profile ? state.profile.profile.fullName : state.auth.login,
+  login: state.auth.userName,
   profile: state.auth.profile,
   photo: state.auth.iconAvatar ? state.auth.iconAvatar : null,
 });

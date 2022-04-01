@@ -16,7 +16,11 @@ const Avatar = ({ isOwer, isLoadAvatar, ...props }) => {
 
   return (
     <div className={classes.profilePhoto}>
-      <div className={classes.avatar}>
+      <div
+        className={classes.avatar}
+        onClick={() => {
+          inputFile.current.click();
+        }}>
         <img src={props.photo || avatar} alt='avatar' />
         {!isLoadAvatar && <Preloader />}
       </div>

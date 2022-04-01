@@ -35,7 +35,6 @@ const Post = props => {
             </svg>
             {props.shareCount}
           </span>
-          Подделиться
         </span>
         <span className={classes.like}>
           <span className={classes.count}>
@@ -61,7 +60,6 @@ const Post = props => {
             </svg>
             {props.likeCount}
           </span>
-          Лайк
         </span>
       </div>
     </div>

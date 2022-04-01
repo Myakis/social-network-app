@@ -1,6 +1,7 @@
 import { authAPI, profileAPI, securityAPI } from '../api';
 
 const SET_USER_DATA = 'SET-USER-DATA';
+const SET_LOGIN = 'SET_LOGIN';
 const SET_ERROR_AUTH = 'SET-ERROR-AUTH';
 const GET_ICON_AVATAR = 'GET-ICON-AVATAR';
 const SET_CAPTCHA_URL = 'SET-CAPTCHA-URL';
@@ -13,9 +14,9 @@ let initialState = {
   errorMessage: '',
   iconAvatar: null,
   captchaUrl: null,
+  userName: null,
 };
 
-//Action Creator
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA:
@@ -25,12 +26,14 @@ const authReducer = (state = initialState, action) => {
       return { ...state, errorMessage: action.errorMessage };
     case GET_ICON_AVATAR:
       return { ...state, iconAvatar: action.iconAvatar };
+    case SET_LOGIN:
+      return { ...state, userName: action.login };
     default:
       return state;
   }
 };
 
-//Thunk
+//Action Creator
 export const setAutnUSerData = (userId, login, email, isAuth, errorMessage = '') => ({
   type: SET_USER_DATA,
   payload: { userId, login, email, isAuth, errorMessage },
@@ -48,7 +51,12 @@ export const setCaptchaUrl = captchaUrl => ({
   type: SET_CAPTCHA_URL,
   payload: { captchaUrl },
 });
+export const setLogin = login => ({
+  type: SET_LOGIN,
+  login,
+});
 
+//Thunk
 export const isAuthorization = () => dispatch => {
   return authAPI.me().then(response => {
     if (response.data.resultCode === 0) {

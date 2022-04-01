@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Field } from 'react-final-form';
 
 import Dialog from './dialog/DialogUserItem';
@@ -9,6 +9,7 @@ const Messages = props => {
   const addMessage = messageText => {
     props.addMessage(messageText);
   };
+
   // Отображение списка пользователей, с кем есть переписка
   let listUser = props.state.dialog.users.map(item => (
     <Dialog key={item.id} name={item.name} id={item.id} />

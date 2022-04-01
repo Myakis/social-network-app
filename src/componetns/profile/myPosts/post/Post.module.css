@@ -38,8 +38,8 @@
   color: rgb(65, 60, 60);
   font-weight: 900;
   display: inline-flex;
-  align-items: center;
-  gap: 1rem;
+  align-items: flex-end;
+  gap: 0.2rem;
 }
 .count svg {
   width: 15px;
