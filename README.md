@@ -1,5 +1,23 @@
 # Попытка сделать свою соц. сеть на реакте
 
+##Социальная сеть созданна c помощью БД от https://social-network.samuraijs.com
+
+### Используемый Stack
+
+- React
+- Redux
+- react-router-dom
+- redux-thunk
+- react-final-form
+- react-content-loader
+- style-module
+- axios
+- react-select
+- react-icons
+
+![Превьюшка](https://github.com/Myakis/chatForStream/raw/master/preview.png)
+![Превьюшка](https://github.com/Myakis/chatForStream/raw/master/preview2.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
