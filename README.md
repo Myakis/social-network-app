@@ -15,8 +15,8 @@
 - react-select
 - react-icons
 
-![Превьюшка](https://github.com/Myakis/chatForStream/raw/master/preview.png)
-![Превьюшка](https://github.com/Myakis/chatForStream/raw/master/preview2.png)
+![Превьюшка](https://github.com/Myakis/social-network-app/raw/master/preview.png)
+![Превьюшка](https://github.com/Myakis/social-network-app/raw/master/preview2.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
