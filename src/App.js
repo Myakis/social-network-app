@@ -8,7 +8,7 @@ import News from './componetns/news/News';
 import Setting from './componetns/setting/Setting';
 import HeaderContainer from './componetns/header/HeaderContainer';
 import Navbar from './componetns/aside/Navbar';
-import { initializeApp } from './redux/app-reducer';
+import { initializeApp } from './redux/reducer/app-reducer.ts';
 import Preloader from './componetns/common/preloader/Preloader';
 import PreloaderStart from './componetns/common/preloader/PreloaderStart';
 

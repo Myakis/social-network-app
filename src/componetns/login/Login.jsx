@@ -1,10 +1,11 @@
-import classes from './Login.module.css';
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { Input, maxValueCreator, minValueCreator, required } from '../utils/validators/FormControl';
 import { connect } from 'react-redux';
-import { login } from '../../redux/auth-reducer';
 import { Navigate } from 'react-router-dom';
+
+import classes from './Login.module.css';
+import { Input, maxValueCreator, minValueCreator, required } from '../utils/validators/FormControl';
+import { login } from '../../redux/reducer/auth-reducer.ts';
 
 const Login = props => {
   if (props.isAuth) {
@@ -14,7 +15,11 @@ const Login = props => {
   return (
     <div>
       <h1>Вход</h1>
-      <LoginForm login={props.login} errorMessage={props.errorMessage} captchaUrl={props.captchaUrl} />
+      <LoginForm
+        login={props.login}
+        errorMessage={props.errorMessage}
+        captchaUrl={props.captchaUrl}
+      />
     </div>
   );
 };

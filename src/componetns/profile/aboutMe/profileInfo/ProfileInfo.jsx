@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setLogin } from '../../../../redux/auth-reducer';
+
+import { setLogin } from '../../../../redux/reducer/auth-reducer.ts';
 import { ProfileDecription, FormDescription } from './profileData/ProfileDecription';
 import classes from './ProfileInfo.module.css';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';

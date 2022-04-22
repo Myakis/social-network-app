@@ -12,14 +12,14 @@ h1 {
   display: block;
   margin-bottom: 1rem;
 }
-.inputWrap input:not([type="checkbox"]) {
+.inputWrap input:not([type='checkbox']) {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 0.5rem 1rem;
   outline: 0;
 }
-.inputWrap input:not([type="checkbox"]):focus {
+.inputWrap input:not([type='checkbox']):focus {
   background: #eee;
 }
 .inputWrap {
@@ -39,6 +39,9 @@ h1 {
 .inputWrap button:hover {
   background: #eee;
   border: 1px solid rgba(101, 225, 230, 0.61);
+}
+.inputWrap button:focus {
+  border: 1px solid rgba(96, 97, 97, 0.61);
 }
 
 .errorData {

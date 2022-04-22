@@ -10,8 +10,8 @@ import {
   updateUserStatus,
   savePhoto,
   saveData,
-} from '../../redux/profile-reducer';
-import { isAuthorization } from '../../redux/auth-reducer';
+} from '../../redux/reducer/profile-reducer.ts';
+import { isAuthorization } from '../../redux/reducer/auth-reducer.ts';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { userAPI } from '../../api';
 

@@ -12,7 +12,6 @@
 - react-content-loader
 - style-module
 - axios
-- react-select
 - react-icons
 
 ![Превьюшка](https://github.com/Myakis/social-network-app/raw/master/preview.png)

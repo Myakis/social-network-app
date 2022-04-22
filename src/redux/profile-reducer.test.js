@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import profileReducer, { addPost, deletePost } from './profile-reducer';
-import React from 'react';
+
+import profileReducer, { addPost, deletePost } from './reducer/profile-reducer';
 let state = {
   post: [
     {

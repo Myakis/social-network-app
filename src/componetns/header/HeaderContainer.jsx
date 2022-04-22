@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setAutnUSerData } from '../../redux/auth-reducer';
-import { logout } from '../../redux/auth-reducer';
+import { setAutnUSerData, logout } from '../../redux/reducer/auth-reducer.ts';
 import Header from './Header';
 
 const mapStateToProps = state => ({

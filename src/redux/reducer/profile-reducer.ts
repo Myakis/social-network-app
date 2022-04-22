@@ -1,5 +1,6 @@
-import { profileAPI, userAPI } from '../api';
-import { getIconAvatar } from './auth-reducer';
+import { profileAPI, userAPI } from '../../api';
+import { ProfileType } from '../../types/reducers-types';
+import { getIconAvatar } from './auth-reducer.ts';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -10,6 +11,15 @@ const SAVE_PHOTO_SUCCES = 'SAVE-PHOTO-SUCCES';
 const LOAD_PHOTO_SUCCES = 'LOAD-PHOTO-SUCCES';
 const SAVE_DATA_SUCCES = 'SAVE-DATA-SUCCES';
 // const UPDATE_STATUS = 'UPDATE-STATUS';
+
+interface PostDataTypes {
+  id: number;
+  message: string;
+  likeCount: number;
+  shareCount: number;
+  date: Date;
+}
+interface UserProfileTypes {}
 
 let initialState = {
   post: [
@@ -28,13 +38,15 @@ let initialState = {
       shareCount: 21,
       date: new Date('12 march 2020 12:30'),
     },
-  ],
-  profile: null,
+  ] as Array<PostDataTypes>,
+  profile: null as ProfileType | null,
   status: '',
   isLoadAvatar: true,
 };
 
-const profileReducer = (state = initialState, action) => {
+export type initialStateTypes = typeof initialState;
+
+const profileReducer = (state = initialState, action: any): initialStateTypes => {
   switch (action.type) {
     case ADD_POST:
       //Добавление постов в bll и рендер страницы
@@ -49,13 +61,10 @@ const profileReducer = (state = initialState, action) => {
         return { ...state, post: [...state.post, newPost] };
       }
       return state;
-
     case SET_USER_PROFILE:
       return { ...state, profile: action.profile };
-
     case DELETE_USER_PROFILE:
       return { ...state, profile: null };
-
     case SET_STATUS:
       return { ...state, status: action.status };
     case DELETE_POST:
@@ -82,14 +91,17 @@ const profileReducer = (state = initialState, action) => {
 };
 
 //action creators
-export const addPost = text => ({ type: ADD_POST, text });
+export const addPost = (text: string) => ({ type: ADD_POST, text });
 export const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile });
 export const deleteUserProfile = () => ({ type: SET_USER_PROFILE });
-export const setStatus = status => ({ type: SET_STATUS, status });
-export const deletePost = postId => ({ type: DELETE_POST, postId });
-export const savePhotoSuccess = photo => ({ type: SAVE_PHOTO_SUCCES, photo });
-export const loadPhotoSuccess = isLoad => ({ type: LOAD_PHOTO_SUCCES, isLoad });
-export const saveDataSuccess = profileData => ({ type: SAVE_DATA_SUCCES, profileData });
+export const setStatus = (status: string) => ({ type: SET_STATUS, status });
+export const deletePost = (postId: number) => ({ type: DELETE_POST, postId });
+export const savePhotoSuccess = (photo: string) => ({ type: SAVE_PHOTO_SUCCES, photo });
+export const loadPhotoSuccess = (isLoad: boolean) => ({ type: LOAD_PHOTO_SUCCES, isLoad });
+export const saveDataSuccess = (profileData: ProfileType) => ({
+  type: SAVE_DATA_SUCCES,
+  profileData,
+});
 // export const updateStatus = status => ({ type: UPDATE_STATUS, status });
 
 //Thunk

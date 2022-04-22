@@ -1,10 +1,22 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
+
+interface UserNameTypes {
+  id: number;
+  name: string;
+}
+
+interface MessageDataTypes {
+  id: number;
+  message: string;
+  user?: string;
+}
+
 let initialState = {
   users: [
     { id: 1, name: 'Алексей' },
     { id: 2, name: 'Кирилл' },
     { id: 3, name: 'Леонид' },
-  ],
+  ] as Array<UserNameTypes>,
   message: [
     {
       id: 1,
@@ -18,9 +30,12 @@ let initialState = {
     },
 
     { id: 3, message: 'Как дела' },
-  ],
+  ] as Array<MessageDataTypes>,
 };
-const dialogsReducer = (state = initialState, action) => {
+
+export type initialStateTypes = typeof initialState;
+
+const dialogsReducer = (state = initialState, action: any): initialStateTypes => {
   switch (action.type) {
     case ADD_MESSAGE:
       //Добавление сообщений в bll и рендер страницы
@@ -38,6 +53,14 @@ const dialogsReducer = (state = initialState, action) => {
       return state;
   }
 };
-export const addMessage = messageText => ({ type: ADD_MESSAGE, messageText });
+interface addMessageActionType {
+  type: typeof ADD_MESSAGE;
+  messageText: string;
+}
+
+export const addMessage = (messageText: string): addMessageActionType => ({
+  type: ADD_MESSAGE,
+  messageText,
+});
 
 export default dialogsReducer;

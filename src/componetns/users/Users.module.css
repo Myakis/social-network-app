@@ -37,6 +37,9 @@
 .profile button:disabled {
   background: gray;
 }
+.profile button:hover:disabled {
+  background: gray;
+}
 .profile button:disabled .icon {
   display: none;
 }

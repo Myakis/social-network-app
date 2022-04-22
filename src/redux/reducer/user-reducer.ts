@@ -1,4 +1,5 @@
-import { userAPI } from '../api.js';
+import { userAPI } from '../../api.js';
+import { UserType } from '../../types/reducers-types.js';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -7,16 +8,19 @@ const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
 const SET_FETCHING = 'SET-FETCHING';
 const TOGGLE_FOLLOWING_PROGRESSIVE = 'TOGGLE-FOLLOWING-PROGRESSIVE';
+
 let initialState = {
-  users: [],
+  users: [] as Array<UserType>,
   usersCount: 6,
   totalUsersCount: 20,
   currentPage: 1,
   ifFetching: true,
-  isFollowing: [],
+  isFollowing: [] as Array<number>, //массив с users id на которых мы подписались
 };
 
-const userReducer = (state = initialState, action) => {
+export type initialStateType = typeof initialState;
+
+const userReducer = (state = initialState, action: any): initialStateType => {
   switch (action.type) {
     case FOLLOW:
       return {
@@ -60,16 +64,20 @@ const userReducer = (state = initialState, action) => {
 
 //Action Creator
 
-export const followSucces = userId => ({ type: FOLLOW, userId });
-export const unFollowSucces = userId => ({ type: UNFOLLOW, userId });
-export const setUsers = users => ({ type: SET_USERS, users });
-export const setCurrentPage = current => ({ type: SET_CURRENT_PAGE, current });
-export const setTotalCount = total => ({ type: SET_TOTAL_COUNT, total });
-export const setFetching = loader => ({ type: SET_FETCHING, loader });
-export const toggleFollowingProgressive = (isFollowing, userId) => ({ type: TOGGLE_FOLLOWING_PROGRESSIVE, isFollowing, userId });
+export const followSucces = (userId: number) => ({ type: FOLLOW, userId });
+export const unFollowSucces = (userId: number) => ({ type: UNFOLLOW, userId });
+export const setUsers = (users: UserType) => ({ type: SET_USERS, users });
+export const setCurrentPage = (current: number) => ({ type: SET_CURRENT_PAGE, current });
+export const setTotalCount = (total: number) => ({ type: SET_TOTAL_COUNT, total });
+export const setFetching = (loader: boolean) => ({ type: SET_FETCHING, loader });
+export const toggleFollowingProgressive = (ifFetching: boolean, userId: number) => ({
+  type: TOGGLE_FOLLOWING_PROGRESSIVE,
+  ifFetching,
+  userId,
+});
 
 //THUNK
-export const getsUsers = (currentPage, usersCount) => dispatch => {
+export const getsUsers = (currentPage: number, usersCount: number) => (dispatch: any) => {
   dispatch(setFetching(true));
 
   userAPI.getUser(currentPage, usersCount).then(response => {
@@ -81,7 +89,7 @@ export const getsUsers = (currentPage, usersCount) => dispatch => {
 };
 
 //THUNK
-export const follow = userId => async dispatch => {
+export const follow = (userId: any) => async (dispatch: any) => {
   dispatch(toggleFollowingProgressive(true, userId));
   const response = await userAPI.follow(userId);
   if (response.data.resultCode === 0) {
@@ -90,7 +98,7 @@ export const follow = userId => async dispatch => {
   }
 };
 //THUNK
-export const unFollow = userId => async dispatch => {
+export const unFollow = (userId: any) => async (dispatch: any) => {
   dispatch(toggleFollowingProgressive(true, userId));
   const response = await userAPI.unFollow(userId);
   if (response.data.resultCode === 0) {

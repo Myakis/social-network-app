@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Form, Field } from 'react-final-form';
+import { useDispatch } from 'react-redux';
 
 import classes from '../ProfileInfo.module.css';
 import { Input, required, validateURL } from '../../../../utils/validators/FormControl';
 import Preloader2 from '../../../../common/preloader/Preloader2';
-import { setLogin } from '../../../../../redux/auth-reducer';
-import { useDispatch } from 'react-redux';
+import { setLogin } from '../../../../../redux/reducer/auth-reducer.ts';
 
 //Блок с информацией на главной странице пользователя
 export const ProfileDecription = ({ profile, setEditMode, isOwer }) => {
