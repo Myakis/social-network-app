@@ -19,7 +19,7 @@ export interface ProfileType {
   lookingForAJob: boolean;
   lookingForAJobDescription: string;
   fullName: string;
-  contacts: ContactsType;
+  contacts: ContactsType | null;
   photos: PhotosType;
   aboutMe?: string | null;
 }

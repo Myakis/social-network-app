@@ -1,6 +1,9 @@
+import { AnyAction } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 import { userAPI } from '../../api.js';
 import { UserType } from '../../types/reducers-types.js';
-
+import { AppRootReducerType } from '../store-redux.js';
+//ПОФИКСИТЬ ПОТОМ ЭТОТ REDUCER
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
@@ -19,8 +22,16 @@ let initialState = {
 };
 
 export type initialStateType = typeof initialState;
+type ActionTypes =
+  | FollowSuccesActionType
+  | UnFollowSuccesActionType
+  | SetUsersActionType
+  | SetCurrentPageActionType
+  | SetTotalCountActionType
+  | ToggleFollowingProgressiveActionType
+  | SetFetchingActionType;
 
-const userReducer = (state = initialState, action: any): initialStateType => {
+const userReducer = (state = initialState, action: ActionTypes): initialStateType => {
   switch (action.type) {
     case FOLLOW:
       return {
@@ -63,48 +74,107 @@ const userReducer = (state = initialState, action: any): initialStateType => {
 };
 
 //Action Creator
-export const followSucces = (userId: number) => ({ type: FOLLOW, userId });
-export const unFollowSucces = (userId: number) => ({ type: UNFOLLOW, userId });
-export const setUsers = (users: UserType) => ({ type: SET_USERS, users });
-export const setCurrentPage = (current: number) => ({ type: SET_CURRENT_PAGE, current });
-export const setTotalCount = (total: number) => ({ type: SET_TOTAL_COUNT, total });
-export const setFetching = (loader: boolean) => ({ type: SET_FETCHING, loader });
-export const toggleFollowingProgressive = (ifFetching: boolean, userId: number) => ({
-  type: TOGGLE_FOLLOWING_PROGRESSIVE,
-  ifFetching,
+interface FollowSuccesActionType {
+  type: typeof FOLLOW;
+  userId: number;
+}
+export const followSucces = (userId: number): FollowSuccesActionType => ({ type: FOLLOW, userId });
+
+interface UnFollowSuccesActionType {
+  type: typeof UNFOLLOW;
+  userId: number;
+}
+export const unFollowSucces = (userId: number): UnFollowSuccesActionType => ({
+  type: UNFOLLOW,
   userId,
 });
 
-//THUNK
-export const getsUsers = (currentPage: number, usersCount: number) => (dispatch: any) => {
-  dispatch(setFetching(true));
+interface SetUsersActionType {
+  type: typeof SET_USERS;
+  users: Array<UserType>;
+}
+export const setUsers = (users: Array<UserType>): SetUsersActionType => ({
+  type: SET_USERS,
+  users,
+});
 
-  userAPI.getUser(currentPage, usersCount).then(response => {
-    dispatch(setCurrentPage(currentPage));
-    dispatch(setFetching(false));
-    dispatch(setUsers(response.data.items));
-    dispatch(setTotalCount(response.data.totalCount));
-  });
-};
+interface SetCurrentPageActionType {
+  type: typeof SET_CURRENT_PAGE;
+  current: number;
+}
+export const setCurrentPage = (current: number): SetCurrentPageActionType => ({
+  type: SET_CURRENT_PAGE,
+  current,
+});
+
+interface SetTotalCountActionType {
+  type: typeof SET_TOTAL_COUNT;
+  total: number;
+}
+export const setTotalCount = (total: number): SetTotalCountActionType => ({
+  type: SET_TOTAL_COUNT,
+  total,
+});
+
+interface SetFetchingActionType {
+  type: typeof SET_FETCHING;
+  loader: boolean;
+}
+export const setFetching = (loader: boolean): SetFetchingActionType => ({
+  type: SET_FETCHING,
+  loader,
+});
+
+interface ToggleFollowingProgressiveActionType {
+  type: typeof TOGGLE_FOLLOWING_PROGRESSIVE;
+  isFollowing: boolean | number[];
+  userId: number;
+}
+export const toggleFollowingProgressive = (
+  isFollowing: boolean | number[],
+  userId: number,
+): ToggleFollowingProgressiveActionType => ({
+  type: TOGGLE_FOLLOWING_PROGRESSIVE,
+  isFollowing,
+  userId,
+});
+
+type ThunkType = ThunkAction<void, AppRootReducerType, unknown, AnyAction>;
+//THUNK
+export const getsUsers =
+  (currentPage: number, usersCount: number): ThunkType =>
+  dispatch => {
+    dispatch(setFetching(true));
+    userAPI.getUser(currentPage, usersCount).then(response => {
+      dispatch(setCurrentPage(currentPage));
+      dispatch(setFetching(false));
+      dispatch(setUsers(response.data.items));
+      dispatch(setTotalCount(response.data.totalCount));
+    });
+  };
 
 //THUNK
-export const follow = (userId: any) => async (dispatch: any) => {
-  dispatch(toggleFollowingProgressive(true, userId));
-  const response = await userAPI.follow(userId);
-  if (response.data.resultCode === 0) {
-    dispatch(followSucces(userId));
-    dispatch(toggleFollowingProgressive(false, userId));
-  }
-};
+export const follow =
+  (userId: number): ThunkType =>
+  async dispatch => {
+    dispatch(toggleFollowingProgressive(true, userId));
+    const response = await userAPI.follow(userId);
+    if (response.data.resultCode === 0) {
+      dispatch(followSucces(userId));
+      dispatch(toggleFollowingProgressive(false, userId));
+    }
+  };
 //THUNK
-export const unFollow = (userId: any) => async (dispatch: any) => {
-  dispatch(toggleFollowingProgressive(true, userId));
-  const response = await userAPI.unFollow(userId);
-  if (response.data.resultCode === 0) {
-    dispatch(unFollowSucces(userId));
-    dispatch(toggleFollowingProgressive(false, userId));
-  }
-};
+export const unFollow =
+  (userId: number): ThunkType =>
+  async dispatch => {
+    dispatch(toggleFollowingProgressive(true, userId));
+    const response = await userAPI.unFollow(userId);
+    if (response.data.resultCode === 0) {
+      dispatch(unFollowSucces(userId));
+      dispatch(toggleFollowingProgressive(false, userId));
+    }
+  };
 
 export default userReducer;
 //==========================================================================================================

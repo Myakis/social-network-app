@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import classes from './MyPost.module.css';
-import Post from './post/MyPosts';
+import Post from './post/PostItem';
 import { Form, Field } from 'react-final-form';
 import { PostType } from './MyPostsConteiner';
+import { PhotosType } from '../../../types/reducers-types';
 
 interface PropsType {
   addPost: (text: string) => void;
@@ -15,7 +16,6 @@ const MyPost: FC<PropsType> = props => {
   const addPost = (text: string) => {
     props.addPost(text);
   };
-
   let Posts = [...props.post].reverse().map((post, i) => {
     return (
       <Post

@@ -34,8 +34,9 @@ let initialState = {
 };
 
 export type initialStateTypes = typeof initialState;
+type ActionState = addMessageActionType;
 
-const dialogsReducer = (state = initialState, action: any): initialStateTypes => {
+const dialogsReducer = (state = initialState, action: ActionState): initialStateTypes => {
   switch (action.type) {
     case ADD_MESSAGE:
       //Добавление сообщений в bll и рендер страницы

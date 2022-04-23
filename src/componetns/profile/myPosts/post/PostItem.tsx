@@ -1,6 +1,7 @@
 import classes from './Post.module.css';
 import avatar from '../../../../assets/img/avatar.png';
 import { FC } from 'react';
+import { PhotosType } from '../../../../types/reducers-types';
 interface PropsType {
   photo: string;
   message: string;

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { connect } from 'react-redux';
 import { addPost } from '../../../redux/reducer/profile-reducer';
 import { AppRootReducerType } from '../../../redux/store-redux';
-import { UserType } from '../../../types/reducers-types';
+import { PhotosType, UserType } from '../../../types/reducers-types';
 import MyPost from './MyPosts';
 
 export interface PostType {
@@ -10,7 +10,7 @@ export interface PostType {
   message: string;
   likeCount: number;
   shareCount: number;
-  photo: string;
+  photo: PhotosType;
 }
 
 interface ProfileType {

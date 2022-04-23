@@ -18,6 +18,7 @@ interface PropsType {
 
 const ProfilePage: FC<PropsType> = props => {
   //Если страница профиля еще не загружена, отобразить спиннер
+
   if (!props.profile) {
     return <Preloader />;
   }
@@ -37,7 +38,7 @@ const ProfilePage: FC<PropsType> = props => {
           isLoadAvatar={props.isLoadAvatar}
           saveData={props.saveData}
         />
-        <MyPostConteiner />
+        <MyPostConteiner isOwer={props.isOwer} />
       </div>
     </div>
   );
