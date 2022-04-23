@@ -1,4 +1,4 @@
-import { isAuthorization } from './auth-reducer.ts';
+import { isAuthorization } from './auth-reducer';
 
 const SET_INITIALIZING = 'SET-INITIALIZING';
 

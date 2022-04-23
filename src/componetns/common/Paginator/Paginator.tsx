@@ -1,8 +1,18 @@
+import React, { FC, useState } from 'react';
+
 import classes from './Paginator.module.css';
-import React, { useState } from 'react';
 import arrowLeft from '../../../assets/img/leftArrow.svg';
 
-const Paginator = ({
+interface PaginatorType {
+  changePage: (num: number) => void;
+  currentPage: number;
+  usersCount: number;
+  totalItemsCount: number;
+  portionSize?: number;
+  loading: boolean;
+}
+
+const Paginator: FC<PaginatorType> = ({
   changePage,
   currentPage,
   usersCount,
@@ -10,15 +20,19 @@ const Paginator = ({
   portionSize = 10,
   loading,
 }) => {
+  const [portionNum, setPortionNum] = useState(1);
+
   const countPage = Math.ceil(totalItemsCount / usersCount);
   const allCountPage = [];
+
   for (let i = 1; i <= countPage; i++) {
     allCountPage.push(i);
   }
+
   const portionCount = Math.ceil(countPage / portionSize);
-  const [portionNum, setPortionNum] = useState(1);
   const leftPortionPageNum = (portionNum - 1) * portionSize + 1;
   const rightPortionPageNum = portionNum * portionSize;
+
   const prevPage = () => {
     setPortionNum(portionNum - 1);
     changePage(leftPortionPageNum - 1);

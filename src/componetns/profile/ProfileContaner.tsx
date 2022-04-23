@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { useParams } from 'react-router-dom';
@@ -10,25 +10,42 @@ import {
   updateUserStatus,
   savePhoto,
   saveData,
-} from '../../redux/reducer/profile-reducer.ts';
-import { isAuthorization } from '../../redux/reducer/auth-reducer.ts';
+} from '../../redux/reducer/profile-reducer';
+import { isAuthorization } from '../../redux/reducer/auth-reducer';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { userAPI } from '../../api';
+import { AppRootReducerType } from '../../redux/store-redux';
+import { UserType } from '../../types/reducers-types';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: AppRootReducerType) => ({
   profile: state.profile.profile,
   status: state.profile.status,
   userId: state.auth.userId,
   isLoadAvatar: state.profile.isLoadAvatar,
 });
 
-const ProfileContainer = props => {
+interface PropsType {
+  userId: number;
+  isOwer: boolean;
+  profile: UserType;
+  loadProfile: boolean;
+  status: string;
+  isLoadAvatar: boolean;
+  updateUserStatus: string;
+
+  getStatus: (id: number) => void;
+  setUserProfile: (data: any) => void;
+  saveData: (data: object) => void;
+  savePhoto: (data: object) => void;
+}
+
+const ProfileContainer: FC<PropsType> = props => {
   //Получаем параметр страницы profile/:id
   const { id } = useParams();
-  const [loadProfile, setLoadProfile] = useState(false);
 
+  const [loadProfile, setLoadProfile] = useState(false);
   useEffect(() => {
-    let userId = id;
+    let userId: number | undefined = id ? +id : undefined;
     if (!userId) {
       //Если url равен profile, то userId присвоить значение вошедшего пользователя
       userId = props.userId;
@@ -87,7 +104,7 @@ const ProfileContainer = props => {
 //   }
 // }
 
-export default compose(
+export default compose<any>(
   connect(mapStateToProps, {
     setUserProfile,
     isAuthorization,

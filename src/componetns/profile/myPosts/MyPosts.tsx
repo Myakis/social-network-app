@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 import classes from './MyPost.module.css';
 import Post from './post/MyPosts';
 import { Form, Field } from 'react-final-form';
+import { PostType } from './MyPostsConteiner';
 
-const MyPost = props => {
-  const addPost = text => {
+interface PropsType {
+  addPost: (text: string) => void;
+  post: Array<PostType>;
+  photo: string;
+  isOwer: boolean;
+}
+
+const MyPost: FC<PropsType> = props => {
+  const addPost = (text: string) => {
     props.addPost(text);
   };
+
   let Posts = [...props.post].reverse().map((post, i) => {
     return (
       <Post
@@ -28,12 +37,12 @@ const MyPost = props => {
   );
 };
 
-const FieldPostForm = props => {
-  const onSubmit = (data, e) => {
+const FieldPostForm = (props: any) => {
+  const onSubmit = (data: any, e: any) => {
     props.addPost(data.post);
     e.reset();
   };
-  const validate = data => {};
+  const validate = (values: any): any => {};
 
   return (
     <Form

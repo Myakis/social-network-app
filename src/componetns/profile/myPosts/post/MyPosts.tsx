@@ -1,6 +1,15 @@
 import classes from './Post.module.css';
 import avatar from '../../../../assets/img/avatar.png';
-const Post = props => {
+import { FC } from 'react';
+interface PropsType {
+  photo: string;
+  message: string;
+  shareCount: number;
+  likeCount: number;
+  id: number;
+}
+
+const Post: FC<PropsType> = props => {
   return (
     <div className={classes.post}>
       <div className={classes.body}>
@@ -16,7 +25,6 @@ const Post = props => {
               xmlns='http://www.w3.org/2000/svg'
               version='1.1'
               xmlnsXlink='http://www.w3.org/1999/xlink'
-              xmlnssvgjs='http://svgjs.com/svgjs'
               width='512'
               height='512'
               x='0'
@@ -42,7 +50,6 @@ const Post = props => {
               xmlns='http://www.w3.org/2000/svg'
               version='1.1'
               xmlnsXlink='http://www.w3.org/1999/xlink'
-              xmlnssvgjs='http://svgjs.com/svgjs'
               width='512'
               height='512'
               x='0'

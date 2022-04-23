@@ -37,9 +37,9 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
   }
 };
 interface SetAuthUSerPayloadActionTypes {
-  userId: number;
-  login: string;
-  email: string;
+  userId: number | null;
+  login: string | null;
+  email: string | null;
   isAuth: boolean;
   errorMessage: string;
 }
@@ -50,9 +50,9 @@ interface SetAuthUSerDataActionTypes {
 }
 //Action Creator
 export const setAutnUSerData = (
-  userId: number,
-  login: string,
-  email: string,
+  userId: number | null,
+  login: string | null,
+  email: string | null,
   isAuth: boolean,
   errorMessage: string = '',
 ): SetAuthUSerDataActionTypes => ({
@@ -112,7 +112,7 @@ export const isAuthorization = () => (dispatch: any) => {
 };
 
 export const login =
-  (email: string, password: string, rememberMe: boolean, captcha: string = null) =>
+  (email: string, password: string, rememberMe: boolean, captcha: any = null) =>
   async (dispatch: any) => {
     const response = await authAPI.login(email, password, rememberMe, captcha);
     if (response.data.resultCode === 0) {

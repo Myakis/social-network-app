@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import React from 'react';
 import { compose } from 'redux';
 
@@ -8,7 +8,7 @@ import {
   setCurrentPage,
   toggleFollowingProgressive,
   getsUsers,
-} from '../../redux/user-reducer';
+} from '../../redux/reducer/user-reducer';
 import Users from './Users';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import {
@@ -19,12 +19,50 @@ import {
   getUsersSelector,
   getFethSelector,
 } from '../../redux/user-selector';
+import { AppRootReducerType } from '../../redux/store-redux';
+import { UserType } from '../../types/reducers-types';
 
-class UsersComponent extends React.Component {
+const mapStateToProps = (state: AppRootReducerType): MapStateToPropsState => {
+  return {
+    users: getUsersSelector(state),
+    usersCount: getUsersCountSelector(state),
+    currentPage: getCurrentPageSelector(state),
+    totalUsersCount: getTotalUsersCountSelector(state),
+    isFetching: getFethSelector(state),
+    isFollowing: getFollowSelector(state),
+  };
+};
+
+const connector = connect(mapStateToProps, {
+  follow,
+  unFollow,
+  setCurrentPage,
+  toggleFollowingProgressive,
+  getsUsers,
+});
+
+interface MapStateToPropsState {
+  currentPage: number;
+  usersCount: number;
+  totalUsersCount: number;
+  isFetching: boolean;
+  isFollowing: Array<number>;
+  users: UserType[];
+}
+
+// interface MapDispatchToPropsState {
+//   follow: (id: number) => void;
+//   unFollow: (id: number) => void;
+//   getsUsers: (pageNumber: number, userCount: number) => void;
+// }
+
+interface PropsType extends PropsFromRedux {}
+
+class UsersComponent extends React.Component<PropsType> {
   componentDidMount() {
     this.props.getsUsers(this.props.currentPage, this.props.usersCount);
   }
-  changePage = pageNum => {
+  changePage = (pageNum: number) => {
     this.props.getsUsers(pageNum, this.props.usersCount);
   };
 
@@ -40,22 +78,16 @@ class UsersComponent extends React.Component {
         unFollow={this.props.unFollow}
         isFetching={this.props.isFetching}
         isFollowing={this.props.isFollowing}
-        toggleFollowingProgressive={this.props.toggleFollowingProgressive}
+        // toggleFollowingProgressive={this.props.toggleFollowingProgressive}
       />
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    users: getUsersSelector(state),
-    usersCount: getUsersCountSelector(state),
-    currentPage: getCurrentPageSelector(state),
-    totalUsersCount: getTotalUsersCountSelector(state),
-    isFetching: getFethSelector(state),
-    isFollowing: getFollowSelector(state),
-  };
-};
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+export default compose<any>(connector, withAuthRedirect)(UsersComponent);
+
 // const mapDispatchToProps = dispatch => {
 //   return {
 //     toFollow: userId => {
@@ -95,14 +127,3 @@ const mapStateToProps = state => {
 //   getsUsers,
 // })(widthRedirectComponent);
 // export default UsersContainer;
-
-export default compose(
-  connect(mapStateToProps, {
-    follow,
-    unFollow,
-    setCurrentPage,
-    toggleFollowingProgressive,
-    getsUsers,
-  }),
-  withAuthRedirect,
-)(UsersComponent);

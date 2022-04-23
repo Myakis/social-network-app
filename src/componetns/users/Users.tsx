@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import classes from './Users.module.css';
 import User from './User';
 import Paginator from '../common/Paginator/Paginator';
 import LoaderUser from '../utils/LoaderUser/LoaderUser';
+import { UserType } from '../../types/reducers-types';
 
-const Users = props => {
+interface PropsType {
+  isFetching: boolean;
+  isFollowing: Array<number>;
+  usersCount: number;
+  totalItemsCount: number;
+  currentPage: number;
+  changePage: (pageNumber: number) => void;
+  users: Array<UserType>;
+  follow: (id: number) => void;
+  unFollow: (id: number) => void;
+}
+
+const Users: FC<PropsType> = props => {
   return (
     <div className={classes.list}>
       {/* Загрузка страницы */}

@@ -1,6 +1,6 @@
 # Попытка сделать свою соц. сеть на реакте
 
-##Социальная сеть созданна c помощью БД от https://social-network.samuraijs.com
+## Социальная сеть созданна c помощью БД от https://social-network.samuraijs.com
 
 ### Используемый Stack
 

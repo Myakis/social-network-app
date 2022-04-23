@@ -12,7 +12,7 @@ import { initializeApp } from './redux/reducer/app-reducer.ts';
 import Preloader from './componetns/common/preloader/Preloader';
 import PreloaderStart from './componetns/common/preloader/PreloaderStart';
 
-const ProfileContainer = React.lazy(() => import('./componetns/profile/ProfileContaner'));
+const ProfileContainer = React.lazy(() => import('./componetns/profile/ProfileContaner.tsx'));
 const MessagesConteiner = React.lazy(() => import('./componetns/messages/MessagesConteiner'));
 const UsersContainer = React.lazy(() => import('./componetns/users/UsersContainer'));
 const Login = React.lazy(() => import('./componetns/login/Login'));

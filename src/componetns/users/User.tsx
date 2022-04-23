@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import classes from './Users.module.css';
 import avatarPhoto from '../../assets/img/avatar.png';
+import { UserType } from '../../types/reducers-types';
 
-const User = ({ user, follow, unFollow, isFollowing, status }) => {
+interface UserPropsType {
+  user: UserType;
+  follow: (id: number) => void;
+  unFollow: (id: number) => void;
+  isFollowing: Array<number>;
+  status: string;
+}
+
+const User: FC<UserPropsType> = ({ user, follow, unFollow, isFollowing, status }) => {
   return (
     <>
       <div className={classes.profile}>
@@ -23,7 +32,7 @@ const User = ({ user, follow, unFollow, isFollowing, status }) => {
                 xmlns='http://www.w3.org/2000/svg'
                 version='1.1'
                 xmlnsXlink='http://www.w3.org/1999/xlink'
-                xmlnssvgjs='http://svgjs.com/svgjs'
+                // xmlnssvgjs='http://svgjs.com/svgjs'
                 width='512'
                 height='512'
                 x='0'
@@ -99,7 +108,7 @@ const User = ({ user, follow, unFollow, isFollowing, status }) => {
                 xmlns='http://www.w3.org/2000/svg'
                 version='1.1'
                 xmlnsXlink='http://www.w3.org/1999/xlink'
-                xmlnsvgjs='http://svgjs.com/svgjs'
+                // xmlnsvgjs='http://svgjs.com/svgjs'
                 width='12'
                 height='12'
                 x='0'

@@ -63,7 +63,6 @@ const userReducer = (state = initialState, action: any): initialStateType => {
 };
 
 //Action Creator
-
 export const followSucces = (userId: number) => ({ type: FOLLOW, userId });
 export const unFollowSucces = (userId: number) => ({ type: UNFOLLOW, userId });
 export const setUsers = (users: UserType) => ({ type: SET_USERS, users });

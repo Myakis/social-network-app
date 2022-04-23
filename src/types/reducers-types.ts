@@ -1,17 +1,17 @@
 export interface PhotosType {
-  small: string;
-  large: string;
+  small: string | null;
+  large: string | null;
 }
 
 export interface ContactsType {
-  github: string;
-  vk: string;
-  facebook: string;
-  instagram: string;
-  twitter: string;
-  website: string;
-  youtube: string;
-  mainLink: string;
+  github: string | null;
+  vk: string | null;
+  facebook: string | null;
+  instagram: string | null;
+  twitter: string | null;
+  website: string | null;
+  youtube: string | null;
+  mainLink: string | null;
 }
 
 export interface ProfileType {
@@ -19,13 +19,15 @@ export interface ProfileType {
   lookingForAJob: boolean;
   lookingForAJobDescription: string;
   fullName: string;
-  contacts: Array<ContactsType>;
-  aboutMe?: string;
+  contacts: ContactsType;
   photos: PhotosType;
+  aboutMe?: string | null;
 }
+
 export interface UserType {
   id: number;
-  name:string
-  status:string
-  photos:PhotosType
+  name: string;
+  status: string;
+  photos: PhotosType;
+  followed?: boolean;
 }

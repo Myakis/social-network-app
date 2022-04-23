@@ -1,9 +1,22 @@
+import { FC } from 'react';
+import { UserType } from '../../types/reducers-types';
 import Preloader from '../common/preloader/Preloader';
 import AboutMe from './aboutMe/AboutMe';
 import MyPostConteiner from './myPosts/MyPostsConteiner';
 import classes from './Profile.module.css';
 
-const ProfilePage = props => {
+interface PropsType {
+  isOwer?: boolean | undefined;
+  profile: UserType;
+  loadProfile: boolean;
+  status: string;
+  isLoadAvatar: boolean;
+  updateUserStatus: string;
+  savePhoto: (data: object) => void;
+  saveData: (data: object) => void;
+}
+
+const ProfilePage: FC<PropsType> = props => {
   //Если страница профиля еще не загружена, отобразить спиннер
   if (!props.profile) {
     return <Preloader />;
@@ -11,9 +24,6 @@ const ProfilePage = props => {
 
   return (
     <div>
-      {/* <div className={classes.header}>
-        <img src='https://7oom.ru/wp-content/uploads/peizaji-01.jpg' alt='' />
-      </div> */}
       <div className={classes.wrapper}>
         {/* Если ответ с данными о конкретной странице еще не пришел с сервера, отобразить спиннер */}
         {!props.loadProfile && <Preloader />}
@@ -27,7 +37,7 @@ const ProfilePage = props => {
           isLoadAvatar={props.isLoadAvatar}
           saveData={props.saveData}
         />
-        <MyPostConteiner profile={props.profile} isOwer={props.isOwer} />
+        <MyPostConteiner />
       </div>
     </div>
   );
