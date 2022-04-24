@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import ProfilePage from './ProfilPage';
 import {
   getStatus,
-  setUserProfile,
+  ProfileActions,
   updateUserStatus,
   savePhoto,
   saveData,
@@ -17,6 +17,7 @@ import { userAPI } from '../../api';
 import { AppRootReducerType } from '../../redux/store-redux';
 import { UserType } from '../../types/reducers-types';
 
+const { setUserProfile } = ProfileActions;
 const mapStateToProps = (state: AppRootReducerType) => ({
   profile: state.profile.profile,
   status: state.profile.status,

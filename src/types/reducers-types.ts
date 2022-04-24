@@ -1,3 +1,18 @@
+import { AnyAction } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import { AppRootReducerType } from '../redux/store-redux';
+//Типизирование Action
+
+type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
+
+export type ActionsTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<
+  InferValueTypes<T>
+>;
+
+//Типизирование Thnuk
+export type ThunkType = ThunkAction<void, AppRootReducerType, unknown, AnyAction>;
+
+//Переиспользуемные интерфейсы/Типы
 export interface PhotosType {
   small: string | null;
   large: string | null;

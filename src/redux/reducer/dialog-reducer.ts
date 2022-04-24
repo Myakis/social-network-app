@@ -1,3 +1,5 @@
+import { ActionsTypes } from '../../types/reducers-types';
+
 const ADD_MESSAGE = 'ADD-MESSAGE';
 
 interface UserNameTypes {
@@ -34,9 +36,11 @@ let initialState = {
 };
 
 export type initialStateTypes = typeof initialState;
-type ActionState = addMessageActionType;
 
-const dialogsReducer = (state = initialState, action: ActionState): initialStateTypes => {
+const dialogsReducer = (
+  state = initialState,
+  action: ActionsTypes<typeof DialogActions>,
+): initialStateTypes => {
   switch (action.type) {
     case ADD_MESSAGE:
       //Добавление сообщений в bll и рендер страницы
@@ -54,14 +58,13 @@ const dialogsReducer = (state = initialState, action: ActionState): initialState
       return state;
   }
 };
-interface addMessageActionType {
-  type: typeof ADD_MESSAGE;
-  messageText: string;
-}
 
-export const addMessage = (messageText: string): addMessageActionType => ({
-  type: ADD_MESSAGE,
-  messageText,
-});
+export const DialogActions = {
+  addMessage: (messageText: string) =>
+    ({
+      type: ADD_MESSAGE,
+      messageText,
+    } as const),
+};
 
 export default dialogsReducer;

@@ -2,13 +2,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import React from 'react';
 import { compose } from 'redux';
 
-import {
-  follow,
-  unFollow,
-  setCurrentPage,
-  toggleFollowingProgressive,
-  getsUsers,
-} from '../../redux/reducer/user-reducer';
+import { follow, unFollow, UserActions, getsUsers } from '../../redux/reducer/user-reducer';
 import Users from './Users';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import {
@@ -21,6 +15,7 @@ import {
 } from '../../redux/user-selector';
 import { AppRootReducerType } from '../../redux/store-redux';
 import { UserType } from '../../types/reducers-types';
+const { setCurrentPage, toggleFollowingProgressive } = UserActions;
 
 const mapStateToProps = (state: AppRootReducerType): MapStateToPropsState => {
   return {

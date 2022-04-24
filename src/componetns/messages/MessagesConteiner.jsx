@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { addMessage } from '../../redux/reducer/dialog-reducer.ts';
+import { DialogActions } from '../../redux/reducer/dialog-reducer.ts';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import Messages from './Messages';
 
+const { addMessage } = DialogActions;
 const mapStateToProps = state => {
   return {
     state: state,

@@ -1,10 +1,9 @@
-import { FC } from 'react';
 import { connect } from 'react-redux';
-import { addPost } from '../../../redux/reducer/profile-reducer';
-import { AppRootReducerType } from '../../../redux/store-redux';
+import { ProfileActions } from '../../../redux/reducer/profile-reducer';
 import { PhotosType, UserType } from '../../../types/reducers-types';
 import MyPost from './MyPosts';
 
+const { addPost } = ProfileActions;
 export interface PostType {
   id: number;
   message: string;

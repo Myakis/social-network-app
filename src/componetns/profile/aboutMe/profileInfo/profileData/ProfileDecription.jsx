@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import classes from '../ProfileInfo.module.css';
 import { Input, required, validateURL } from '../../../../utils/validators/FormControl';
 import Preloader2 from '../../../../common/preloader/Preloader2';
-import { setLogin } from '../../../../../redux/reducer/auth-reducer.ts';
+import { actions } from '../../../../../redux/reducer/auth-reducer.ts';
 
 //Блок с информацией на главной странице пользователя
 export const ProfileDecription = ({ profile, setEditMode, isOwer }) => {
@@ -58,7 +58,7 @@ export const FormDescription = ({ setEditMode, profile, saveData, ...props }) =>
     saveData(data).then(response => {
       setLoadDescr(true);
       setEditMode(false);
-      dispatch(setLogin(data.fullName));
+      dispatch(actions.setLogin(data.fullName));
     });
   };
 

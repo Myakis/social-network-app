@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setLogin } from '../../../../redux/reducer/auth-reducer.ts';
+import { actions } from '../../../../redux/reducer/auth-reducer.ts';
 import { ProfileDecription, FormDescription } from './profileData/ProfileDecription';
 import classes from './ProfileInfo.module.css';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
@@ -28,7 +28,7 @@ const ProfileData = props => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (props.isOwer) {
-      dispatch(setLogin(props.profile.fullName));
+      dispatch(actions.setLogin(props.profile.fullName));
     }
   }, []);
 

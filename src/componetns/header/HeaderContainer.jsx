@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setAutnUSerData, logout } from '../../redux/reducer/auth-reducer.ts';
+import { actions, logout } from '../../redux/reducer/auth-reducer.ts';
 import Header from './Header';
+
+const { setAutnUSerData } = actions;
 
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuth,
