@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+import { GetUsersListType, MeResponseType, ICaptcha } from '../types/api-types';
+import { ProfileType } from '../types/reducers-types';
+
 const instanceAxios = axios.create({
   withCredentials: true,
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -12,37 +15,37 @@ const instanceAxios = axios.create({
 
 export const userAPI = {
   getUser(currentPage = 1, usersCount = 5) {
-    return instanceAxios.get(`users?page=${currentPage}&count=${usersCount}`);
+    return instanceAxios.get<GetUsersListType>(`users?page=${currentPage}&count=${usersCount}`);
   },
-  follow(id) {
+  follow(id: number) {
     return instanceAxios.post(`follow/${id}`, {});
   },
-  unFollow(id) {
+  unFollow(id: number) {
     return instanceAxios.delete(`follow/${id}`);
   },
 
-  getProfile(id) {
+  getProfile(id: number) {
     return profileAPI.getProfile(id);
   },
 };
 
 export const securityAPI = {
   getCaptha() {
-    return instanceAxios.get(`security/get-captcha-url`);
+    return instanceAxios.get<ICaptcha>(`security/get-captcha-url`);
   },
 };
 
 export const profileAPI = {
-  getProfile(id) {
-    return instanceAxios.get(`profile/${id}`);
+  getProfile(id: number) {
+    return instanceAxios.get<ProfileType>(`profile/${id}`);
   },
-  getStatus(id) {
-    return instanceAxios.get(`profile/status/${id}`);
+  getStatus(id: number) {
+    return instanceAxios.get<string | null>(`profile/status/${id}`);
   },
-  updateStatus(status) {
+  updateStatus(status: string) {
     return instanceAxios.put(`profile/status`, { status });
   },
-  savePhoto(photo) {
+  savePhoto(photo: any) {
     const data = new FormData();
     data.append('image', photo);
     return instanceAxios.put(`profile/photo`, data, {
@@ -52,16 +55,16 @@ export const profileAPI = {
   getPhoto() {
     return instanceAxios.put(`profile/photo`);
   },
-  saveData(profileData) {
+  saveData(profileData: ProfileType) {
     return instanceAxios.put(`profile`, profileData);
   },
 };
 
 export const authAPI = {
   me() {
-    return instanceAxios.get(`auth/me`);
+    return instanceAxios.get<MeResponseType>(`auth/me`);
   },
-  login(email, password, rememberMe = false, captcha = null) {
+  login(email: string, password: string, rememberMe = false, captcha: null | string = null) {
     debugger;
     return instanceAxios.post(`auth//login`, { email, password, rememberMe, captcha });
   },
@@ -69,3 +72,6 @@ export const authAPI = {
     return instanceAxios.delete(`auth/login`);
   },
 };
+securityAPI.getCaptha().then(res => {
+  console.log(res.data);
+});

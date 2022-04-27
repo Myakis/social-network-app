@@ -1,5 +1,5 @@
-import { userAPI } from '../../api.js';
-import { ActionsTypes, ThunkType, UserType } from '../../types/reducers-types.js';
+import { userAPI } from '../../api/api';
+import { ActionsTypes, ThunkType, UserType } from '../../types/reducers-types';
 
 //ПОФИКСИТЬ ПОТОМ ЭТОТ REDUCER
 const FOLLOW = 'FOLLOW';

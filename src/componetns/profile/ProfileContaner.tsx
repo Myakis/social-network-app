@@ -13,7 +13,7 @@ import {
 } from '../../redux/reducer/profile-reducer';
 import { isAuthorization } from '../../redux/reducer/auth-reducer';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
-import { userAPI } from '../../api';
+import { userAPI } from '../../api/api';
 import { AppRootReducerType } from '../../redux/store-redux';
 import { UserType } from '../../types/reducers-types';
 

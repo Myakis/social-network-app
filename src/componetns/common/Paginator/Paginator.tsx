@@ -20,8 +20,8 @@ const Paginator: FC<PaginatorType> = ({
   portionSize = 10,
   loading,
 }) => {
-  const [portionNum, setPortionNum] = useState(1);
-
+  const portionNumDefault = Math.ceil(currentPage / portionSize);
+  const [portionNum, setPortionNum] = useState(portionNumDefault);
   const countPage = Math.ceil(totalItemsCount / usersCount);
   const allCountPage = [];
 

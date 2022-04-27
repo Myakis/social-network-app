@@ -1,7 +1,8 @@
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
-import { authAPI, profileAPI, securityAPI } from '../../api';
+import { authAPI, profileAPI, securityAPI } from '../../api/api';
+import { ResultCodeEnum } from '../../types/api-types';
 import { ActionsTypes, ProfileType } from '../../types/reducers-types';
 import { AppRootReducerType } from '../store-redux';
 
@@ -46,7 +47,7 @@ const authReducer = (
 
 //Action Creator
 export const actions = {
-  setAutnUSerData: (
+  setAuthUSerData: (
     userId: number | null,
     login: string | null,
     email: string | null,
@@ -62,7 +63,7 @@ export const actions = {
       type: SET_ERROR_AUTH,
       errorMessage,
     } as const),
-  getIconAvatar: (iconAvatar: string) =>
+  getIconAvatar: (iconAvatar: string | null) =>
     ({
       type: GET_ICON_AVATAR,
       iconAvatar,
@@ -81,18 +82,18 @@ export const actions = {
 };
 
 type ThunkState = ThunkAction<void, AppRootReducerType, unknown, AnyAction>;
+
 //Thunk
-export const isAuthorization = (): ThunkState => dispatch => {
-  return authAPI.me().then(response => {
-    if (response.data.resultCode === 0) {
+export const isAuthorization = (): ThunkState => dispatch =>
+  authAPI.me().then(response => {
+    if (response.data.resultCode === ResultCodeEnum.success) {
       let { id, login, email } = response.data.data;
-      dispatch(actions.setAutnUSerData(id, login, email, true));
+      dispatch(actions.setAuthUSerData(id, login, email, true));
       profileAPI.getProfile(id).then(response => {
         dispatch(actions.getIconAvatar(response.data.photos.small));
       });
     }
   });
-};
 
 export const login =
   (email: string, password: string, rememberMe: boolean, captcha: any = null): ThunkState =>
@@ -101,7 +102,7 @@ export const login =
     if (response.data.resultCode === 0) {
       dispatch(isAuthorization());
     } else {
-      if (response.data.resultCode === 10) {
+      if (response.data.resultCode === ResultCodeEnum.captcha) {
         dispatch(getCaptha());
       }
       dispatch(actions.setErrorAuth(response.data.messages[0]));
@@ -116,7 +117,7 @@ export const getCaptha = (): ThunkState => async dispatch => {
 export const logout = (): ThunkState => async dispatch => {
   const response = await authAPI.logout();
   if (response.data.resultCode === 0) {
-    dispatch(actions.setAutnUSerData(null, null, null, false));
+    dispatch(actions.setAuthUSerData(null, null, null, false));
   }
 };
 export default authReducer;

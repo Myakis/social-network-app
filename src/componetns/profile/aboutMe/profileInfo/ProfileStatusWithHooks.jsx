@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import classes from './ProfileStatus.module.css';
 
 const ProfileStatusWithHooks = props => {
-  const [editMode, seteditMode] = useState(false);
-  const [status, setstatus] = useState(props.status || '');
+  const [editMode, setEditMode] = useState(false);
+
+  const [status, setStatus] = useState(props.status || '');
 
   const toggleStateField = () => {
     if (props.isOwer) {
-      seteditMode(!editMode);
+      setEditMode(!editMode);
+      setStatus(props.status);
     }
   };
 
@@ -19,11 +21,11 @@ const ProfileStatusWithHooks = props => {
   };
 
   useEffect(() => {
-    setstatus(props.status);
+    setStatus(props.status);
   }, [props.status]);
 
-  const onChangeIputValue = e => {
-    setstatus(e.target.value);
+  const onChangeInputValue = e => {
+    setStatus(e.target.value);
   };
 
   return (
@@ -135,7 +137,7 @@ const ProfileStatusWithHooks = props => {
         <div className={`${classes.status} ${classes.statusEditInput} `}>
           <div className={classes.overlay}></div>
           <input
-            onChange={onChangeIputValue}
+            onChange={onChangeInputValue}
             autoFocus={true}
             onBlur={toggleStateField}
             onKeyDown={onEnterToggleStateField}

@@ -1,4 +1,4 @@
-import { profileAPI, userAPI } from '../../api';
+import { profileAPI, userAPI } from '../../api/api';
 import { ActionsTypes, PhotosType, ProfileType, ThunkType } from '../../types/reducers-types';
 import { actions } from './auth-reducer';
 // const { getIconAvatar } = actions;
@@ -39,7 +39,7 @@ let initialState = {
     },
   ] as Array<PostDataTypes>,
   profile: null as ProfileType | null,
-  status: '',
+  status: null as string | null,
   isLoadAvatar: true,
 };
 
@@ -102,7 +102,7 @@ export const ProfileActions = {
       profile,
     } as const),
   deleteUserProfile: () => ({ type: DELETE_USER_PROFILE } as const),
-  setStatus: (status: string) => ({ type: SET_STATUS, status } as const),
+  setStatus: (status: string | null) => ({ type: SET_STATUS, status } as const),
   deletePost: (postId: number) => ({ type: DELETE_POST, postId } as const),
   savePhotoSuccess: (photo: PhotosType) =>
     ({
