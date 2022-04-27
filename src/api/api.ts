@@ -65,13 +65,9 @@ export const authAPI = {
     return instanceAxios.get<MeResponseType>(`auth/me`);
   },
   login(email: string, password: string, rememberMe = false, captcha: null | string = null) {
-    debugger;
     return instanceAxios.post(`auth//login`, { email, password, rememberMe, captcha });
   },
   logout() {
     return instanceAxios.delete(`auth/login`);
   },
 };
-securityAPI.getCaptha().then(res => {
-  console.log(res.data);
-});
