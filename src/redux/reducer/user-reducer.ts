@@ -1,4 +1,5 @@
 import { userAPI } from '../../api/api';
+import { ResultCodeEnum } from '../../types/api-types';
 import { ActionsTypes, ThunkType, UserType } from '../../types/reducers-types';
 
 //ПОФИКСИТЬ ПОТОМ ЭТОТ REDUCER
@@ -122,21 +123,23 @@ export const follow =
   async dispatch => {
     dispatch(UserActions.toggleFollowingProgressive(true, userId));
     const response = await userAPI.follow(userId);
-    if (response.data.resultCode === 0) {
+
+    if (response.resultCode === ResultCodeEnum.success) {
       dispatch(UserActions.followSucces(userId));
-      dispatch(UserActions.toggleFollowingProgressive(false, userId));
     }
+    dispatch(UserActions.toggleFollowingProgressive(false, userId));
   };
+
 //THUNK
 export const unFollow =
   (userId: number): ThunkType =>
   async dispatch => {
     dispatch(UserActions.toggleFollowingProgressive(true, userId));
     const response = await userAPI.unFollow(userId);
-    if (response.data.resultCode === 0) {
+    if (response.resultCode === ResultCodeEnum.success) {
       dispatch(UserActions.unFollowSucces(userId));
-      dispatch(UserActions.toggleFollowingProgressive(false, userId));
     }
+    dispatch(UserActions.toggleFollowingProgressive(false, userId));
   };
 
 export default userReducer;

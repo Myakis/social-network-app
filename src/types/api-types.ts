@@ -8,7 +8,7 @@ export enum ResultCodeEnum {
 export interface IResponse<T = {}> {
   data: T;
   resultCode: ResultCodeEnum;
-  messages: string;
+  messages: string[];
 }
 
 export interface MeResponseType {

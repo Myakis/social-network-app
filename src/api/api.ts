@@ -18,10 +18,10 @@ export const userAPI = {
     return instanceAxios.get<GetUsersListType>(`users?page=${currentPage}&count=${usersCount}`);
   },
   follow(id: number) {
-    return instanceAxios.post(`follow/${id}`, {});
+    return instanceAxios.post<IResponse>(`follow/${id}`, {}).then(res => res.data);
   },
   unFollow(id: number) {
-    return instanceAxios.delete(`follow/${id}`);
+    return instanceAxios.delete<IResponse>(`follow/${id}`).then(res => res.data);
   },
 
   getProfile(id: number) {

@@ -8,17 +8,13 @@ const mapStateToProps = state => {
     isAuth: state.auth.isAuth,
   };
 };
-// interface IProps {
-//   isAuth: boolean;
-// }
 
-export function withAuthRedirect(Component) {
+export const withAuthRedirect = Component => {
   function RedirectComponent(props) {
-    if (!props.isAuth) return <Navigate to={'/login'} />;
-    return <Component {...props} />;
+    return props.isAuth ? <Component {...props} /> : <Navigate to={'/login'} />;
   }
 
   let ConnectedAuthRedirectComponent = connect(mapStateToProps)(RedirectComponent);
 
   return ConnectedAuthRedirectComponent;
-}
+};

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import profileReducer, { addPost, deletePost } from './reducer/profile-reducer';
+import profileReducer, { ProfileActions } from './reducer/profile-reducer';
 let state = {
   post: [
     {
@@ -15,8 +15,8 @@ let state = {
     },
   ],
 };
-test('letgth of posts should be increment', () => {
-  let action = addPost('test anything');
+test('length of posts should be increment', () => {
+  let action = ProfileActions.addPost('test anything');
 
   let newState = profileReducer(state, action);
 
@@ -24,14 +24,14 @@ test('letgth of posts should be increment', () => {
 });
 
 test('message posts should be equals param func addPost', () => {
-  let action = addPost('test anything');
+  let action = ProfileActions.addPost('test anything');
 
   let newState = profileReducer(state, action);
 
   expect(newState.post[2].message).toBe('test anything');
 });
 test('delete post', () => {
-  let action = deletePost(1);
+  let action = ProfileActions.deletePost(1);
 
   let newState = profileReducer(state, action);
 

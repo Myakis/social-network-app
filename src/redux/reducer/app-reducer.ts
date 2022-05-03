@@ -29,7 +29,7 @@ export const AppActions = {
 
 //thunk
 export const initializeApp = (): ThunkType => async dispatch => {
-  let promise = await dispatch(isAuthorization());
+  await dispatch(isAuthorization());
   dispatch(AppActions.initializedSuccess());
 };
 export default initReducer;
