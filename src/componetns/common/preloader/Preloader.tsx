@@ -1,7 +1,7 @@
-// import preloader from '../../../assets/img/Spinner-2.gif';
+import { FC } from 'react';
 import preloader from '../../../assets/img/loader.svg';
 
-const Preloader = props => {
+const Preloader: FC = () => {
   return (
     <div className='preloader'>
       <img src={preloader} alt='' />

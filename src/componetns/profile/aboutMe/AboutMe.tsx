@@ -1,14 +1,21 @@
-import React, { createRef } from 'react';
+import React, { createRef, FC } from 'react';
 
 import classes from './AboutMe.module.css';
 import ProfileInfo from './profileInfo/ProfileInfo';
 import avatar from '../../../assets/img/avatar.png';
 import Preloader from '../../common/preloader/Preloader';
+import { ProfileType } from '../../../types/reducers-types';
 
-const Avatar = ({ isOwer, isLoadAvatar, ...props }) => {
-  const inputFile = createRef();
+interface IProps {
+  isOwner: boolean | undefined;
+  isLoadAvatar: boolean;
+  photo: string | null;
+  savePhoto: (file: any) => void;
+}
+const Avatar: FC<IProps> = ({ isOwner, isLoadAvatar, ...props }) => {
+  const inputFile = createRef<any>();
 
-  const onChangePhoto = e => {
+  const onChangePhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       props.savePhoto(e.target.files[0]);
     }
@@ -25,7 +32,7 @@ const Avatar = ({ isOwer, isLoadAvatar, ...props }) => {
         {!isLoadAvatar && <Preloader />}
       </div>
 
-      {isOwer && (
+      {isOwner && (
         <>
           <input
             className='visibility-hidden'
@@ -52,7 +59,6 @@ const Avatar = ({ isOwer, isLoadAvatar, ...props }) => {
               xmlns='http://www.w3.org/2000/svg'
               version='1.1'
               xmlnsXlink='http://www.w3.org/1999/xlink'
-              xmlnssvgjs='http://svgjs.com/svgjs'
               width='30'
               height='30'
               x='0'
@@ -111,12 +117,23 @@ const Avatar = ({ isOwer, isLoadAvatar, ...props }) => {
   );
 };
 
-const AboutMe = props => {
+interface IAboutMeProps {
+  profile: ProfileType;
+  isOwer: boolean | undefined;
+  isLoadAvatar: boolean;
+  status: string;
+
+  savePhoto: (data: any) => void;
+  saveData: (data: any) => Promise<any>;
+  updateUserStatus: (status: string) => void;
+}
+
+const AboutMe: FC<IAboutMeProps> = props => {
   return (
     <div className={classes.body}>
       <Avatar
-        photo={props.profile.photos.large}
-        isOwer={props.isOwer}
+        photo={props.profile!.photos.large}
+        isOwner={props.isOwer}
         savePhoto={props.savePhoto}
         isLoadAvatar={props.isLoadAvatar}
       />

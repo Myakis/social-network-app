@@ -1,19 +1,16 @@
-import { ActionsTypes } from './../../types/reducers-types';
+import { ActionsTypes, ThunkType } from './../../types/reducers-types';
 import { isAuthorization } from './auth-reducer';
 
-const SET_INITIALIZING = 'SET-INITIALIZING';
+const SET_INITIALIZING = 'SET_INITIALIZING';
 
-export interface InitialStateType {
-  initialized: boolean;
-}
-
-let initialState: InitialStateType = {
+let initialState = {
   initialized: false,
 };
+type InitialStateType = typeof initialState;
 
 const initReducer = (
   state = initialState,
-  action: ActionsTypes<typeof AuthActions>,
+  action: ActionsTypes<typeof AppActions>,
 ): InitialStateType => {
   switch (action.type) {
     case SET_INITIALIZING:
@@ -23,7 +20,7 @@ const initReducer = (
   }
 };
 
-export const AuthActions = {
+export const AppActions = {
   initializedSuccess: () =>
     ({
       type: SET_INITIALIZING,
@@ -31,9 +28,8 @@ export const AuthActions = {
 };
 
 //thunk
-export const initializeApp = () => async (dispatch: any) => {
+export const initializeApp = (): ThunkType => async dispatch => {
   let promise = await dispatch(isAuthorization());
-
-  dispatch(AuthActions.initializedSuccess());
+  dispatch(AppActions.initializedSuccess());
 };
 export default initReducer;

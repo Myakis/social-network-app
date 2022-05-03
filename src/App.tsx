@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { FC, Suspense, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
@@ -8,17 +8,19 @@ import News from './componetns/news/News';
 import Setting from './componetns/setting/Setting';
 import HeaderContainer from './componetns/header/HeaderContainer';
 import Navbar from './componetns/aside/Navbar';
-import { initializeApp } from './redux/reducer/app-reducer.ts';
+import { initializeApp } from './redux/reducer/app-reducer';
 import Preloader from './componetns/common/preloader/Preloader';
 import PreloaderStart from './componetns/common/preloader/PreloaderStart';
+import { RootStateType } from './redux/store-redux';
 
-const ProfileContainer = React.lazy(() => import('./componetns/profile/ProfileContaner.tsx'));
+const ProfileContainer = React.lazy(() => import('./componetns/profile/ProfileContaner'));
 const MessagesConteiner = React.lazy(() => import('./componetns/messages/MessagesConteiner'));
 const UsersContainer = React.lazy(() => import('./componetns/users/UsersContainer'));
 const Login = React.lazy(() => import('./componetns/login/Login'));
 
-const App = props => {
-  const initialized = useSelector(state => state.app.initialized);
+interface IAppProps {}
+const App: FC<IAppProps> = props => {
+  const initialized = useSelector((state: RootStateType) => state.app.initialized);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,7 +54,7 @@ const App = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: RootStateType) => {
   return {
     initialized: state.app.initialized,
   };

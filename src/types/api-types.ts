@@ -5,6 +5,11 @@ export enum ResultCodeEnum {
   error = 1,
   captcha = 10,
 }
+export interface IResponse<T = {}> {
+  data: T;
+  resultCode: ResultCodeEnum;
+  messages: string;
+}
 
 export interface MeResponseType {
   data: {
@@ -15,6 +20,7 @@ export interface MeResponseType {
   resultCode: ResultCodeEnum;
   messages: string;
 }
+
 export interface GetUsersListType {
   error: null | string;
   items: Array<UserType>;

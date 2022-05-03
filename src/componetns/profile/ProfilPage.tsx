@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { UserType } from '../../types/reducers-types';
+import { ProfileType } from '../../types/reducers-types';
 import Preloader from '../common/preloader/Preloader';
 import AboutMe from './aboutMe/AboutMe';
 import MyPostConteiner from './myPosts/MyPostsConteiner';
@@ -7,13 +7,14 @@ import classes from './Profile.module.css';
 
 interface PropsType {
   isOwer?: boolean | undefined;
-  profile: UserType;
+  profile: ProfileType;
   loadProfile: boolean;
-  status: string;
+  status: string | null;
   isLoadAvatar: boolean;
-  updateUserStatus: string;
-  savePhoto: (data: object) => void;
-  saveData: (data: object) => void;
+
+  updateUserStatus: (status: string) => void;
+  savePhoto: (data: any) => void;
+  saveData: (data: any) => Promise<any>;
 }
 
 const ProfilePage: FC<PropsType> = props => {
@@ -31,7 +32,7 @@ const ProfilePage: FC<PropsType> = props => {
 
         <AboutMe
           profile={props.profile}
-          status={props.status}
+          status={props.status ? props.status : ''}
           updateUserStatus={props.updateUserStatus}
           isOwer={props.isOwer}
           savePhoto={props.savePhoto}

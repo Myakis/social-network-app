@@ -14,11 +14,12 @@ import {
 import { isAuthorization } from '../../redux/reducer/auth-reducer';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { userAPI } from '../../api/api';
-import { AppRootReducerType } from '../../redux/store-redux';
-import { UserType } from '../../types/reducers-types';
+import { RootStateType } from '../../redux/store-redux';
+import { ProfileType } from '../../types/reducers-types';
 
 const { setUserProfile } = ProfileActions;
-const mapStateToProps = (state: AppRootReducerType) => ({
+
+const mapStateToProps = (state: RootStateType) => ({
   profile: state.profile.profile,
   status: state.profile.status,
   userId: state.auth.userId,
@@ -28,16 +29,16 @@ const mapStateToProps = (state: AppRootReducerType) => ({
 interface PropsType {
   userId: number;
   isOwer: boolean;
-  profile: UserType;
+  profile: ProfileType;
   loadProfile: boolean;
-  status: string;
+  status: string | null;
   isLoadAvatar: boolean;
-  updateUserStatus: string;
 
+  updateUserStatus: (status: string) => void;
   getStatus: (id: number) => void;
   setUserProfile: (data: any) => void;
-  saveData: (data: object) => void;
-  savePhoto: (data: object) => void;
+  saveData: (data: any) => Promise<any>;
+  savePhoto: (data: any) => void;
 }
 
 const ProfileContainer: FC<PropsType> = props => {

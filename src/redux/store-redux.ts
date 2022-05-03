@@ -16,7 +16,7 @@ let rootReducer = combineReducers({
 });
 
 type AppRootReducer = typeof rootReducer;
-export type AppRootReducerType = ReturnType<AppRootReducer>;
+export type RootStateType = ReturnType<AppRootReducer>;
 
 //Для работоспособности расширения redux devtools
 //@ts-ignore

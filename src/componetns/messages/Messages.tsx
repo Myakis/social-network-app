@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import { FormApi } from 'final-form';
+import React, { FC, useState } from 'react';
 import { Form, Field } from 'react-final-form';
+import { RootStateType } from '../../redux/store-redux';
 
 import Dialog from './dialog/DialogUserItem';
 import Message from './message/Message';
 import classes from './Messages.module.css';
 
-const Messages = props => {
-  const addMessage = messageText => {
+interface IProps {
+  state: RootStateType;
+  addMessage: (text: string) => void;
+}
+const Messages: FC<IProps> = props => {
+  const addMessage = (messageText: string) => {
     props.addMessage(messageText);
   };
 
@@ -33,8 +39,15 @@ const Messages = props => {
   );
 };
 
-const FieldMessageForm = props => {
-  const onSubmit = (data, e) => {
+interface IForm {
+  message: string;
+}
+
+interface IFieldMessageForm {
+  addMessage: (message: string) => void;
+}
+const FieldMessageForm: FC<IFieldMessageForm> = props => {
+  const onSubmit = (data: IForm, e: any) => {
     props.addMessage(data.message);
     e.reset();
   };

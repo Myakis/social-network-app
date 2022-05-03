@@ -1,8 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import classes from './Header.module.css';
 import avatar from '../../assets/img/avatar.png';
+import { FC } from 'react';
 
-const Header = ({ photo, ...props }) => {
+interface IProps {
+  photo: string | null;
+  isAuth: boolean | null;
+  login: string | null;
+  logout: () => void;
+}
+const Header: FC<IProps> = ({ photo, ...props }) => {
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
@@ -25,7 +32,6 @@ const Header = ({ photo, ...props }) => {
                 xmlns='http://www.w3.org/2000/svg'
                 version='1.1'
                 xmlnsXlink='http://www.w3.org/1999/xlink'
-                xmlnssvgjs='http://svgjs.com/svgjs'
                 width='512'
                 height='512'
                 x='0'

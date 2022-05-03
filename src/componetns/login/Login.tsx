@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 import classes from './Login.module.css';
 import { Input, maxValueCreator, minValueCreator, required } from '../utils/validators/FormControl';
 import { login } from '../../redux/reducer/auth-reducer';
-import { AppRootReducerType } from '../../redux/store-redux';
+import { RootStateType } from '../../redux/store-redux';
 
 interface ILogin extends PropsFromRedux {
   isAuth: boolean;
@@ -96,7 +96,7 @@ interface ImapStateToProps {
   errorMessage: string;
   captchaUrl: string | null;
 }
-const mapStateToProps = (state: AppRootReducerType): ImapStateToProps => ({
+const mapStateToProps = (state: RootStateType): ImapStateToProps => ({
   isAuth: state.auth.isAuth,
   errorMessage: state.auth.errorMessage,
   captchaUrl: state.auth.captchaUrl,

@@ -4,7 +4,7 @@ import { ThunkAction } from 'redux-thunk';
 import { authAPI, profileAPI, securityAPI } from '../../api/api';
 import { ResultCodeEnum } from '../../types/api-types';
 import { ActionsTypes, ProfileType } from '../../types/reducers-types';
-import { AppRootReducerType } from '../store-redux';
+import { RootStateType } from '../store-redux';
 
 const SET_USER_DATA = 'SET-USER-DATA';
 const SET_LOGIN = 'SET_LOGIN';
@@ -81,7 +81,7 @@ export const actions = {
     } as const),
 };
 
-type ThunkState = ThunkAction<void, AppRootReducerType, unknown, AnyAction>;
+type ThunkState = ThunkAction<void, RootStateType, unknown, AnyAction>;
 
 //Thunk
 export const isAuthorization = (): ThunkState => dispatch =>

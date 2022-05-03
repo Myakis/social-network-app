@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { useDispatch } from 'react-redux';
 
 import classes from '../ProfileInfo.module.css';
 import { Input, required, validateURL } from '../../../../utils/validators/FormControl';
 import Preloader2 from '../../../../common/preloader/Preloader2';
-import { actions } from '../../../../../redux/reducer/auth-reducer.ts';
+import { actions } from '../../../../../redux/reducer/auth-reducer';
+import { ProfileType } from '../../../../../types/reducers-types';
 
 //Блок с информацией на главной странице пользователя
-export const ProfileDecription = ({ profile, setEditMode, isOwer }) => {
+interface IProfileProps {
+  profile: ProfileType;
+  isOwer: boolean | undefined;
+  setEditMode: any;
+}
+
+export const ProfileDecription: FC<IProfileProps> = ({ profile, setEditMode, isOwer }) => {
   return (
     <>
       {profile.aboutMe && (
@@ -27,16 +34,17 @@ export const ProfileDecription = ({ profile, setEditMode, isOwer }) => {
         </div>
       )}
       {/* Перебераем весь массив contacts и на его основе создаем разметку */}
-      {Object.entries(profile.contacts)
-        .filter(item => item[1])
-        .map(item => (
-          <div key={item} className={classes.itemDescr}>
-            <span>{item[0]}:</span>
-            <a href={item[1]} target='_blank'>
-              {item[1]}
-            </a>
-          </div>
-        ))}
+      {profile.contacts &&
+        Object.entries(profile.contacts)
+          .filter(item => item[1])
+          .map(item => (
+            <div key={item[0]} className={classes.itemDescr}>
+              <span>{item[0]}:</span>
+              <a href={item[1]} target='_blank'>
+                {item[1]}
+              </a>
+            </div>
+          ))}
       {/* Поялвятеся только на своей странице(чужие профиля редактировать нельзя) */}
       {isOwer && (
         <button className={classes.editDescription} onClick={() => setEditMode(true)}>
@@ -47,15 +55,21 @@ export const ProfileDecription = ({ profile, setEditMode, isOwer }) => {
   );
 };
 
+interface IFormProps {
+  profile: ProfileType;
+  setEditMode: any;
+  saveData: (data: any) => Promise<any>;
+  errorMessage: string;
+}
 //Форма редактирования информации на главной странице
-export const FormDescription = ({ setEditMode, profile, saveData, ...props }) => {
+export const FormDescription: FC<any> = ({ setEditMode, profile, saveData, ...props }) => {
   const [loadDescr, setLoadDescr] = useState(true);
   const dispatch = useDispatch();
 
-  const onSubmit = data => {
+  const onSubmit = (data: any) => {
     setLoadDescr(false);
 
-    saveData(data).then(response => {
+    saveData(data).then(() => {
       setLoadDescr(true);
       setEditMode(false);
       dispatch(actions.setLogin(data.fullName));
@@ -104,18 +118,19 @@ export const FormDescription = ({ setEditMode, profile, saveData, ...props }) =>
           </label>
           <hr />
           <h2>Контакты</h2>
-          {Object.entries(profile.contacts).map((item, i) => (
-            <label key={i} className={classes.inputWrap}>
-              <span>{item[0]}</span>
-              <Field
-                name={`contacts.${item[0]}`}
-                component={Input}
-                type='text'
-                placeholder={item[0]}
-                validate={validateURL}
-              />
-            </label>
-          ))}
+          {profile.contacts &&
+            Object.entries(profile.contacts).map((item, i) => (
+              <label key={i} className={classes.inputWrap}>
+                <span>{item[0]}</span>
+                <Field
+                  name={`contacts.${item[0]}`}
+                  component={Input}
+                  type='text'
+                  placeholder={item[0]}
+                  validate={validateURL}
+                />
+              </label>
+            ))}
           {props.errorMessage && (
             <div className={classes.errorData}>
               <span>{props.errorMessage} </span>

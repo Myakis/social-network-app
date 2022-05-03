@@ -13,11 +13,11 @@ import {
   getUsersSelector,
   getFethSelector,
 } from '../../redux/user-selector';
-import { AppRootReducerType } from '../../redux/store-redux';
+import { RootStateType } from '../../redux/store-redux';
 import { UserType } from '../../types/reducers-types';
 const { setCurrentPage, toggleFollowingProgressive } = UserActions;
 
-const mapStateToProps = (state: AppRootReducerType): MapStateToPropsState => {
+const mapStateToProps = (state: RootStateType): MapStateToPropsState => {
   return {
     users: getUsersSelector(state),
     usersCount: getUsersCountSelector(state),

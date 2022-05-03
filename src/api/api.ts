@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GetUsersListType, MeResponseType, ICaptcha } from '../types/api-types';
+import { GetUsersListType, MeResponseType, ICaptcha, IResponse } from '../types/api-types';
 import { ProfileType } from '../types/reducers-types';
 
 const instanceAxios = axios.create({
@@ -43,7 +43,7 @@ export const profileAPI = {
     return instanceAxios.get<string | null>(`profile/status/${id}`);
   },
   updateStatus(status: string) {
-    return instanceAxios.put(`profile/status`, { status });
+    return instanceAxios.put<IResponse>(`profile/status`, { status });
   },
   savePhoto(photo: any) {
     const data = new FormData();

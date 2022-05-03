@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { ProfileType } from '../../../../types/reducers-types';
 import classes from './ProfileStatus.module.css';
 
-const ProfileStatusWithHooks = props => {
-  const [editMode, setEditMode] = useState(false);
+interface IProps {
+  status: string;
+  isOwer: boolean | undefined;
+  updateUserStatus: (status: string) => void;
+}
 
-  const [status, setStatus] = useState(props.status || '');
+const ProfileStatus: FC<IProps> = props => {
+  const [editMode, setEditMode] = useState(false);
+  const [status, setStatus] = useState(props.status || ';');
 
   const toggleStateField = () => {
     if (props.isOwer) {
@@ -13,7 +19,7 @@ const ProfileStatusWithHooks = props => {
     }
   };
 
-  const onEnterToggleStateField = e => {
+  const onEnterToggleStateField = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
       toggleStateField();
       props.updateUserStatus(status);
@@ -24,7 +30,7 @@ const ProfileStatusWithHooks = props => {
     setStatus(props.status);
   }, [props.status]);
 
-  const onChangeInputValue = e => {
+  const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStatus(e.target.value);
   };
 
@@ -41,7 +47,6 @@ const ProfileStatusWithHooks = props => {
                 xmlns='http://www.w3.org/2000/svg'
                 version='1.1'
                 xmlnsXlink='http://www.w3.org/1999/xlink'
-                xmlnssvgjs='http://svgjs.com/svgjs'
                 width='512'
                 height='512'
                 x='0'
@@ -148,4 +153,4 @@ const ProfileStatusWithHooks = props => {
     </div>
   );
 };
-export default ProfileStatusWithHooks;
+export default ProfileStatus;

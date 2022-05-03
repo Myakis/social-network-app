@@ -1,18 +1,28 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { actions } from '../../../../redux/reducer/auth-reducer.ts';
+import { actions } from '../../../../redux/reducer/auth-reducer';
+import { ProfileType } from '../../../../types/reducers-types';
 import { ProfileDecription, FormDescription } from './profileData/ProfileDecription';
 import classes from './ProfileInfo.module.css';
-import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import ProfileStatus from './ProfileStatus';
 
-const ProfileInfo = props => {
+interface IProps {
+  status: string;
+  profile: ProfileType;
+
+  isOwer: boolean | undefined;
+  saveData: (data: any) => Promise<any>;
+  updateUserStatus: (status: string) => void;
+}
+
+const ProfileInfo: FC<IProps> = props => {
   return (
     <div className={classes.ProfileInfo}>
       <div className={classes.description}>
         <div className={`${classes.item} ${classes.name}`}>{props.profile.fullName}</div>
 
-        <ProfileStatusWithHooks
+        <ProfileStatus
           status={props.status}
           updateUserStatus={props.updateUserStatus}
           isOwer={props.isOwer}
@@ -22,10 +32,15 @@ const ProfileInfo = props => {
     </div>
   );
 };
-
-const ProfileData = props => {
+interface IProfileDataProps {
+  profile: ProfileType;
+  isOwer: boolean | undefined;
+  saveData: (data: any) => Promise<any>;
+}
+const ProfileData: FC<IProfileDataProps> = props => {
   const [editMode, setEditMode] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (props.isOwer) {
       dispatch(actions.setLogin(props.profile.fullName));

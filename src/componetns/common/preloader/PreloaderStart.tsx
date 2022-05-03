@@ -17,7 +17,6 @@ function PreloaderStart() {
           <animate
             attributeName='cy'
             values='34;66;34'
-            times='0;0.5;1'
             dur='1s'
             calcMode='spline'
             keySplines='0.5 0 0.5 1;0.5 0 0.5 1'
@@ -29,7 +28,6 @@ function PreloaderStart() {
           <animate
             attributeName='cy'
             values='34;66;34'
-            times='0;0.5;1'
             dur='1s'
             calcMode='spline'
             keySplines='0.5 0 0.5 1;0.5 0 0.5 1'
@@ -41,7 +39,6 @@ function PreloaderStart() {
           <animate
             attributeName='cy'
             values='34;66;34'
-            times='0;0.5;1'
             dur='1s'
             calcMode='spline'
             keySplines='0.5 0 0.5 1;0.5 0 0.5 1'
@@ -53,7 +50,6 @@ function PreloaderStart() {
           <animate
             attributeName='cy'
             values='34;66;34'
-            times='0;0.5;1'
             dur='1s'
             calcMode='spline'
             keySplines='0.5 0 0.5 1;0.5 0 0.5 1'
@@ -65,7 +61,6 @@ function PreloaderStart() {
           <animate
             attributeName='cy'
             values='34;66;34'
-            times='0;0.5;1'
             dur='1s'
             calcMode='spline'
             keySplines='0.5 0 0.5 1;0.5 0 0.5 1'
@@ -77,7 +72,6 @@ function PreloaderStart() {
           <animate
             attributeName='cy'
             values='34;66;34'
-            times='0;0.5;1'
             dur='1s'
             calcMode='spline'
             keySplines='0.5 0 0.5 1;0.5 0 0.5 1'
@@ -89,7 +83,6 @@ function PreloaderStart() {
           <animate
             attributeName='cy'
             values='34;66;34'
-            times='0;0.5;1'
             dur='1s'
             calcMode='spline'
             keySplines='0.5 0 0.5 1;0.5 0 0.5 1'
@@ -101,7 +94,6 @@ function PreloaderStart() {
           <animate
             attributeName='cy'
             values='34;66;34'
-            times='0;0.5;1'
             dur='1s'
             calcMode='spline'
             keySplines='0.5 0 0.5 1;0.5 0 0.5 1'
