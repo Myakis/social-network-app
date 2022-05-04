@@ -115,3 +115,57 @@
 }
 .paginatonPage span:hover {
 }
+
+.searchInput {
+  outline: 0;
+  width: 100%;
+  resize: none;
+  background: inherit;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  transition: all 0.1s ease 0s;
+  font-size: 17px;
+  flex: 0 0 250px;
+}
+
+.formSearch {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 1rem;
+}
+.formSearch > div {
+  flex: 1 1 100%;
+}
+.formSearch button {
+  background: inherit;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  padding: 0.5rem 1rem;
+  display: block;
+  margin-left: auto;
+  cursor: pointer;
+  transition: background 0.3s ease 0s, transform 0.2s ease-in-out;
+}
+
+.formSearch button:hover {
+  background: rgba(223, 222, 222, 0.137);
+}
+.formSearch button:active {
+  transform: translate(1px, 1px);
+}
+
+.formSearch select {
+  flex: 0 0 250px;
+  justify-self: flex-end;
+  background: inherit;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.formSearch select option {
+  padding: 0.5rem 1rem;
+}

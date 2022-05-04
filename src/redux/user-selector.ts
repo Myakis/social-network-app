@@ -8,5 +8,6 @@ export const getUsersSelector = createSelector(getUsers, users => {
 export const getUsersCountSelector = (state: RootStateType) => state.users.usersCount;
 export const getCurrentPageSelector = (state: RootStateType) => state.users.currentPage;
 export const getTotalUsersCountSelector = (state: RootStateType) => state.users.totalUsersCount;
-export const getFethSelector = (state: RootStateType) => state.users.ifFetching;
+export const getFetchSelector = (state: RootStateType) => state.users.ifFetching;
 export const getFollowSelector = (state: RootStateType) => state.users.isFollowing;
+export const getUsersFilter = (state: RootStateType) => state.users.filter;

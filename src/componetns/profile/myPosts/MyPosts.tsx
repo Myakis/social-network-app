@@ -3,7 +3,6 @@ import classes from './MyPost.module.css';
 import Post from './post/PostItem';
 import { Form, Field } from 'react-final-form';
 import { PostType } from './MyPostsConteiner';
-import { PhotosType } from '../../../types/reducers-types';
 
 interface PropsType {
   addPost: (text: string) => void;

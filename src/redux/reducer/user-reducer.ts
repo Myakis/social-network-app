@@ -9,6 +9,7 @@ const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
 const SET_FETCHING = 'SET-FETCHING';
+const SET_FILTER = 'SET_FILTER';
 const TOGGLE_FOLLOWING_PROGRESSIVE = 'TOGGLE-FOLLOWING-PROGRESSIVE';
 
 let initialState = {
@@ -18,10 +19,14 @@ let initialState = {
   currentPage: 1,
   ifFetching: true,
   isFollowing: [] as Array<number>, //массив с users id на которых мы подписались
+  filter: {
+    term: '',
+    friend: null as null | boolean,
+  },
 };
 
 export type initialStateType = typeof initialState;
-
+export type filterType = typeof initialState.filter;
 const userReducer = (
   state = initialState,
   action: ActionsTypes<typeof UserActions>,
@@ -55,6 +60,8 @@ const userReducer = (
       return { ...state, totalUsersCount: action.total };
     case SET_FETCHING:
       return { ...state, ifFetching: action.loader };
+    case SET_FILTER:
+      return { ...state, filter: action.payload };
 
     case TOGGLE_FOLLOWING_PROGRESSIVE:
       return {
@@ -96,6 +103,11 @@ export const UserActions = {
       type: SET_FETCHING,
       loader,
     } as const),
+  setFilter: (filter: filterType) =>
+    ({
+      type: SET_FILTER,
+      payload: filter,
+    } as const),
   toggleFollowingProgressive: (isFollowing: boolean | number[], userId: number) =>
     ({
       type: TOGGLE_FOLLOWING_PROGRESSIVE,
@@ -106,15 +118,15 @@ export const UserActions = {
 
 //THUNK
 export const getsUsers =
-  (currentPage: number, usersCount: number): ThunkType =>
-  dispatch => {
+  (currentPage: number, usersCount: number, filter: filterType): ThunkType =>
+  async dispatch => {
     dispatch(UserActions.setFetching(true));
-    userAPI.getUser(currentPage, usersCount).then(response => {
-      dispatch(UserActions.setCurrentPage(currentPage));
-      dispatch(UserActions.setFetching(false));
-      dispatch(UserActions.setUsers(response.data.items));
-      dispatch(UserActions.setTotalCount(response.data.totalCount));
-    });
+    dispatch(UserActions.setFilter(filter));
+    const response = await userAPI.getUser(currentPage, usersCount, filter.term, filter.friend);
+    dispatch(UserActions.setCurrentPage(currentPage));
+    dispatch(UserActions.setFetching(false));
+    dispatch(UserActions.setUsers(response.data.items));
+    dispatch(UserActions.setTotalCount(response.data.totalCount));
   };
 
 //THUNK

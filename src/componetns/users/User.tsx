@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import classes from './Users.module.css';
 import avatarPhoto from '../../assets/img/avatar.png';
 import { UserType } from '../../types/reducers-types';
+import { RootStateType } from '../../redux/store-redux';
 
 interface UserPropsType {
   user: UserType;
@@ -14,13 +16,18 @@ interface UserPropsType {
 }
 
 const User: FC<UserPropsType> = ({ user, follow, unFollow, isFollowing, status }) => {
+  const myId = useSelector((state: RootStateType) => state.auth.userId);
   return (
     <>
       <div className={classes.profile}>
         <NavLink to={'/profile/' + user.id}>
           <img src={user.photos.small ? user.photos.small : avatarPhoto} alt='avatar' />
         </NavLink>
-        {user.followed ? (
+        {myId! == user.id ? (
+          <NavLink to={'/profile/' + user.id}>
+            <button disabled={isFollowing.some(id => id === user.id)}>Мой профиль</button>
+          </NavLink>
+        ) : user.followed ? (
           <button
             className={classes.unfollow}
             disabled={isFollowing.some(id => id === user.id)}

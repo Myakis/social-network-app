@@ -12,10 +12,19 @@ const instanceAxios = axios.create({
 });
 
 //Ассинхронные операции
+export interface IFormSearch {
+  currentPage: string;
+  usersCount: string;
+  term: string;
+  friend: boolean | null;
+}
 
 export const userAPI = {
-  getUser(currentPage = 1, usersCount = 5) {
-    return instanceAxios.get<GetUsersListType>(`users?page=${currentPage}&count=${usersCount}`);
+  getUser(currentPage = 1, usersCount = 5, term = '', friend: null | boolean = null) {
+    return instanceAxios.get<GetUsersListType>(
+      `users?page=${currentPage}&count=${usersCount}&term=${term}` +
+        (friend ? `&friend=${friend}` : ''),
+    );
   },
   follow(id: number) {
     return instanceAxios.post<IResponse>(`follow/${id}`, {}).then(res => res.data);

@@ -1,5 +1,5 @@
 import userReducer, { initialStateType } from './user-reducer';
-import { UserActions, unFollow } from './user-reducer';
+import { UserActions } from './user-reducer';
 
 const state: initialStateType = {
   users: [
@@ -30,6 +30,10 @@ const state: initialStateType = {
   isFollowing: [],
   totalUsersCount: 0,
   usersCount: 10,
+  filter: {
+    term: '',
+    friend: null,
+  },
 };
 
 test('follow success', () => {
