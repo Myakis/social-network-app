@@ -1,5 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import queryString, { ParsedQuery } from 'query-string';
 
 import classes from './Users.module.css';
 import User from './User';
@@ -17,8 +19,16 @@ import {
   getUsersSelector,
 } from '../../redux/user-selector';
 
+type IQuery = {
+  term?: string;
+  page?: string;
+  friend?: string;
+};
+
 const Users: FC = React.memo(() => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
   const users = useSelector(getUsersSelector);
   const isFetching = useSelector(getFetchSelector);
   const usersCount = useSelector(getUsersCountSelector);
@@ -28,8 +38,27 @@ const Users: FC = React.memo(() => {
   const isFollowing = useSelector(getFollowSelector);
 
   useEffect(() => {
-    dispatch(getsUsers(currentPage, usersCount, filter));
+    const value = queryString.parse(location.search) as IQuery;
+    let actualPage = currentPage;
+    let actualFilter = filter;
+    if (!!value.page) actualPage = +value.page;
+    if (!!value.term) actualFilter = { ...actualFilter, term: value.term };
+    if (!!value.friend)
+      actualFilter = {
+        ...actualFilter,
+        friend: value.friend === 'null' ? null : value.friend === 'true' ? true : false,
+      };
+
+    dispatch(getsUsers(actualPage, usersCount, actualFilter));
   }, []);
+
+  useEffect(() => {
+    const query: IQuery = {};
+    if (!!filter.term) query.term = filter.term;
+    if (filter.friend !== null) query.friend = String(filter.friend);
+    if (currentPage !== 1) query.page = String(currentPage);
+    navigate('?' + queryString.stringify(query));
+  }, [usersCount, currentPage, filter]);
 
   const changePage = (pageNum: number) => {
     dispatch(getsUsers(pageNum, usersCount, filter));

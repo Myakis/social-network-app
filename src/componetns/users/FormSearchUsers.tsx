@@ -1,17 +1,24 @@
 import React, { FC } from 'react';
 import { Field, Form, Formik } from 'formik';
+import { useSelector } from 'react-redux';
+
 import { filterType } from '../../redux/reducer/user-reducer';
 import classes from './Users.module.css';
+import { getUsersFilter } from '../../redux/user-selector';
 
 interface IPropsType {
   onFilter: (filter: filterType) => void;
 }
+
+type FormFriendType = 'null' | 'true' | 'false';
 interface IFormValues {
   term: string;
-  friend: 'null' | 'true' | 'false';
+  friend: FormFriendType;
 }
 
 const FormSearchUsers: FC<IPropsType> = ({ onFilter }) => {
+  const filter = useSelector(getUsersFilter);
+
   const submitHandler = (
     values: IFormValues,
     { setSubmitting }: { setSubmitting: (setSubmitting: boolean) => void },
@@ -25,10 +32,18 @@ const FormSearchUsers: FC<IPropsType> = ({ onFilter }) => {
   };
   return (
     <div>
-      <Formik initialValues={{ term: '', friend: 'null' }} onSubmit={submitHandler}>
+      <Formik
+        enableReinitialize
+        initialValues={{ term: filter.term, friend: String(filter.friend) as FormFriendType }}
+        onSubmit={submitHandler}>
         {({ isSubmitting }) => (
           <Form className={classes.formSearch}>
-            <Field className={classes.searchInput} type='text' name='term' />
+            <Field
+              className={classes.searchInput}
+              type='text'
+              name='term'
+              placeholder='Поиск по имени'
+            />
             <Field as='select' name='friend'>
               <option value='null'>Все</option>
               <option value='true'>Мои подписки</option>

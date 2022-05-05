@@ -12,6 +12,7 @@ import { initializeApp } from './redux/reducer/app-reducer';
 import Preloader from './componetns/common/preloader/Preloader';
 import PreloaderStart from './componetns/common/preloader/PreloaderStart';
 import { RootStateType } from './redux/store-redux';
+import Footer from './componetns/Footer/Footer';
 
 const ProfileContainer = React.lazy(() => import('./componetns/profile/ProfileContaner'));
 const MessagesConteiner = React.lazy(() => import('./componetns/messages/MessagesConteiner'));
@@ -19,7 +20,7 @@ const UsersContainer = React.lazy(() => import('./componetns/users/UsersContaine
 const Login = React.lazy(() => import('./componetns/login/Login'));
 
 interface IAppProps {}
-const App: FC<IAppProps> = props => {
+const App: FC<IAppProps> = () => {
   const initialized = useSelector((state: RootStateType) => state.app.initialized);
   const dispatch = useDispatch();
 
@@ -42,7 +43,7 @@ const App: FC<IAppProps> = props => {
             <Route path='/profile' element={<ProfileContainer />} />
             <Route path='/profile/:id' element={<ProfileContainer />} />
             <Route path='/messages/*' element={<MessagesConteiner />} />
-            <Route path='/users' element={<UsersContainer />} />
+            <Route path='/users*' element={<UsersContainer />} />
             <Route path='/music' element={<Music />} />
             <Route path='/news' element={<News />} />
             <Route path='/setting' element={<Setting />} />
@@ -50,6 +51,7 @@ const App: FC<IAppProps> = props => {
           </Routes>
         </Suspense>
       </main>
+      <Footer />
     </div>
   );
 };
