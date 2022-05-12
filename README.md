@@ -2,17 +2,22 @@
 
 ## Социальная сеть созданна c помощью БД от https://social-network.samuraijs.com
 
+## Присутствует страница авторизации с валидацией формы. Есть функционал редактирования своей страницы, просмотр страниц остальных пользователй, подписка/отписка от юзера, поиск по имени, сортировка по подпискам. Реализован общий чат.
+
 ### Используемый Stack
 
 - React
 - Redux
+- TypeScript
 - react-router-dom
 - redux-thunk
 - react-final-form
+- formik
 - react-content-loader
 - style-module
 - axios
-- react-icons
+- class & function components
+- used Rest APi & WebSocket
 
 ![Превьюшка](https://github.com/Myakis/social-network-app/raw/master/preview.png)
 ![Превьюшка](https://github.com/Myakis/social-network-app/raw/master/preview2.png)

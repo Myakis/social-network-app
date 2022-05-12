@@ -13,6 +13,7 @@ import Preloader from './componetns/common/preloader/Preloader';
 import PreloaderStart from './componetns/common/preloader/PreloaderStart';
 import { RootStateType } from './redux/store-redux';
 import Footer from './componetns/Footer/Footer';
+import Chat from './componetns/chat/Chat';
 
 const ProfileContainer = React.lazy(() => import('./componetns/profile/ProfileContaner'));
 const MessagesConteiner = React.lazy(() => import('./componetns/messages/MessagesConteiner'));
@@ -43,6 +44,7 @@ const App: FC<IAppProps> = () => {
             <Route path='/profile' element={<ProfileContainer />} />
             <Route path='/profile/:id' element={<ProfileContainer />} />
             <Route path='/messages/*' element={<MessagesConteiner />} />
+            <Route path='/chat/*' element={<Chat />} />
             <Route path='/users*' element={<UsersContainer />} />
             <Route path='/music' element={<Music />} />
             <Route path='/news' element={<News />} />

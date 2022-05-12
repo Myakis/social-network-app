@@ -10,6 +10,7 @@
   height: 270px;
   cursor: pointer;
   transition: all 0.3s ease 0s;
+  width: 270px;
 }
 
 .profilePhoto {

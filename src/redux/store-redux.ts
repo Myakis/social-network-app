@@ -6,6 +6,7 @@ import dialogsReducer from './reducer/dialog-reducer';
 import profileReducer from './reducer/profile-reducer';
 import userReducer from './reducer/user-reducer';
 import initReducer from './reducer/app-reducer';
+import chatReducer from './reducer/chat-reducer';
 
 let rootReducer = combineReducers({
   profile: profileReducer,
@@ -13,6 +14,7 @@ let rootReducer = combineReducers({
   users: userReducer,
   auth: authReducer,
   app: initReducer,
+  chat: chatReducer,
 });
 
 type AppRootReducer = typeof rootReducer;

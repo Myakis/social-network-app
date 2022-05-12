@@ -6,6 +6,7 @@ import { RootStateType } from '../../redux/store-redux';
 import Dialog from './dialog/DialogUserItem';
 import Message from './message/Message';
 import classes from './Messages.module.css';
+import styles from './Messages.module.css';
 
 interface IProps {
   state: RootStateType;
@@ -39,16 +40,20 @@ const Messages: FC<IProps> = props => {
   );
 };
 
+const UserLIst: FC = () => {
+  return <div className={classes.dialogs}></div>;
+};
+
 interface IForm {
   message: string;
 }
 
 interface IFieldMessageForm {
-  addMessage: (message: string) => void;
+  addMessage?: (message: string) => void;
 }
-const FieldMessageForm: FC<IFieldMessageForm> = props => {
+export const FieldMessageForm: FC<IFieldMessageForm> = props => {
   const onSubmit = (data: IForm, e: any) => {
-    props.addMessage(data.message);
+    props.addMessage!(data.message);
     e.reset();
   };
 
@@ -58,7 +63,7 @@ const FieldMessageForm: FC<IFieldMessageForm> = props => {
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className={classes.form}>
           <Field
-            component='input'
+            component='textarea'
             name='message'
             className={classes.input}
             type='text'
