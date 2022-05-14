@@ -1,0 +1,66 @@
+.ProfileInfo {
+  flex: 1 1 auto;
+}
+.description {
+}
+
+.itemDescr {
+  padding-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+.itemDescr span {
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+.name {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.editDescription {
+  background: inherit;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  padding: 0.5rem 3rem;
+  display: block;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s, transform 0.2s ease-in-out;
+}
+
+.editDescription:hover {
+  background: rgba(223, 222, 222, 0.2);
+  transform: skew(-10deg);
+  box-shadow: 1px 1px #0033ff, 2px 2px #0033ff, 3px 3px #0033ff, 4px 4px #0033ff, 5px 5px #0033ff,
+    6px 6px #0033ff, 7px 7px #0033ff;
+}
+
+.form {
+  position: relative;
+}
+.inputWrap {
+  display: flex;
+  margin-bottom: 10px;
+}
+.inputWrap span {
+  flex: 0 0 220px;
+}
+.inputWrap div {
+  width: 100%;
+}
+.inputWrap input {
+  width: 90%;
+  padding: 0.3rem 1rem;
+  outline: 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  transition: all 0.1s ease 0s;
+}
+
+.inputWrap input[type='checkbox'] {
+  width: auto;
+}
+
+.inputWrap input:focus {
+  border: 1px solid rgb(172, 171, 171);
+}

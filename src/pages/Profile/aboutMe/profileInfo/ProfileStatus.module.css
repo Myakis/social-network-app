@@ -1,0 +1,92 @@
+.statusWrapper {
+  margin-bottom: 15px;
+}
+.status {
+  font-size: 18px;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem 0.5rem 0;
+  transition: all 0.3s ease 0s;
+  position: relative;
+  width: max-content;
+}
+
+.status:hover .editStatus {
+  opacity: 1;
+  visibility: visible;
+}
+
+.status.me:hover {
+  border-radius: 5px;
+  animation: field-puls 0.9s infinite ease-out;
+}
+
+.editStatus {
+  position: absolute;
+  top: 3px;
+  background: none;
+  border: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease 0s;
+  right: -5px;
+  animation: doublePuls 0.9s infinite ease-out;
+}
+.editStatus svg {
+  width: 20px;
+  height: 20px;
+}
+.status.statusEditInput {
+  width: 100%;
+}
+.status.statusEditInput input {
+  position: relative;
+  outline: none;
+  font-size: 18px;
+  letter-spacing: 1px;
+  width: 100%;
+  border-radius: 10px;
+  outline: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border: none;
+  box-shadow: 1px 1px 10px #333;
+  z-index: 2;
+}
+.overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgb(196, 166, 166);
+  opacity: 0.1;
+  transition: all 0.3s ease 0s;
+}
+
+@keyframes doublePuls {
+  10% {
+    transform: scale(1.2) skew(-20deg, -20deg);
+  }
+  20% {
+    transform: scale(1) skew(0);
+  }
+  30% {
+    transform: scale(1.2) skew(-20deg, -12deg);
+  }
+  40% {
+    transform: scale(1) skew(0);
+  }
+}
+@keyframes field-puls {
+  10% {
+    box-shadow: 1px 1px 10px #eee;
+  }
+  20% {
+    box-shadow: 0;
+  }
+  30% {
+    box-shadow: 1px 1px 10px #eee;
+  }
+  40% {
+    box-shadow: 0;
+  }
+}

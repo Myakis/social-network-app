@@ -1,5 +1,7 @@
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+
 import { RootStateType } from '../redux/store-redux';
 
 //Типизирование Action
@@ -11,6 +13,9 @@ export type ActionsTypes<T extends { [key: string]: (...args: any[]) => any }> =
 
 //Типизирование Thnuk
 export type ThunkType = ThunkAction<void, RootStateType, unknown, AnyAction>;
+
+//Типизация useSelector
+export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector;
 
 //Переиспользуемные интерфейсы/Типы
 export interface PhotosType {

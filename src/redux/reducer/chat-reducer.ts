@@ -55,9 +55,9 @@ const newMessageHandlerCreator = (dispatch: Dispatch) => {
   if (_newMessageHandlerCreator === null) {
     _newMessageHandlerCreator = messages => {
       dispatch(actions.messagesReceived(messages));
+      dispatch(actions.statusChanged('ready'));
     };
   }
-
   return _newMessageHandlerCreator;
 };
 
@@ -66,6 +66,7 @@ export const startMessagesListening = (): ThunkType => async dispatch => {
   chatAPI.start();
   chatAPI.subscribe(newMessageHandlerCreator(dispatch));
 };
+
 export const stoptMessagesListening = (): ThunkType => async dispatch => {
   chatAPI.unsubscribe(newMessageHandlerCreator(dispatch));
   chatAPI.stop();

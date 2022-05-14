@@ -103,13 +103,13 @@ export const login =
       dispatch(isAuthorization());
     } else {
       if (response.data.resultCode === ResultCodeEnum.captcha) {
-        dispatch(getCaptha());
+        dispatch(getCaptcha());
       }
       dispatch(actions.setErrorAuth(response.data.messages[0]));
     }
   };
 
-export const getCaptha = (): ThunkState => async dispatch => {
+export const getCaptcha = (): ThunkState => async dispatch => {
   const response = await securityAPI.getCaptha();
   dispatch(actions.setCaptchaUrl(response.data.url));
 };
