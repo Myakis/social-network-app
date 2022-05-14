@@ -78,7 +78,7 @@ const userReducer = (
 //Action Creator
 export const UserActions = {
   followSucces: (userId: number) => ({ type: FOLLOW, userId } as const),
-  unFollowSucces: (userId: number) =>
+  unFollowSuccess: (userId: number) =>
     ({
       type: UNFOLLOW,
       userId,
@@ -149,7 +149,7 @@ export const unFollow =
     dispatch(UserActions.toggleFollowingProgressive(true, userId));
     const response = await userAPI.unFollow(userId);
     if (response.resultCode === ResultCodeEnum.success) {
-      dispatch(UserActions.unFollowSucces(userId));
+      dispatch(UserActions.unFollowSuccess(userId));
     }
     dispatch(UserActions.toggleFollowingProgressive(false, userId));
   };

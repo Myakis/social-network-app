@@ -27,7 +27,6 @@ const FormSearchUsers: FC<IPropsType> = ({ onFilter }) => {
       term: values.term,
       friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false,
     };
-    debugger;
     onFilter(filter);
     setSubmitting(false);
   };

@@ -5,6 +5,8 @@ import Preloader from '../../components/common/preloader/Preloader';
 import AboutMe from './aboutMe/AboutMe';
 import MyPostContainer from './myPosts/MyPostsContainer';
 import classes from './Profile.module.css';
+import { useState } from 'react';
+import MessageModal from './MessageModal/MessageModal';
 
 interface PropsType {
   isOwer?: boolean | undefined;
@@ -19,18 +21,21 @@ interface PropsType {
 }
 
 const ProfilePage: FC<PropsType> = React.memo(props => {
+  const [isOpen, setOpen] = useState(false);
   //Если страница профиля еще не загружена, отобразить спиннер
 
   if (!props.profile) {
     return <Preloader />;
   }
+  const changeOpenModal = () => {
+    setOpen(prev => !prev);
+  };
 
   return (
     <div>
       <div className={classes.wrapper}>
         {/* Если ответ с данными о конкретной странице еще не пришел с сервера, отобразить спиннер */}
         {!props.loadProfile && <Preloader />}
-
         <AboutMe
           profile={props.profile}
           status={props.status ? props.status : ''}
@@ -39,8 +44,18 @@ const ProfilePage: FC<PropsType> = React.memo(props => {
           savePhoto={props.savePhoto}
           isLoadAvatar={props.isLoadAvatar}
           saveData={props.saveData}
+          isOpen={isOpen}
+          setOpen={setOpen}
+          changeOpenModal={changeOpenModal}
         />
-        <MyPostContainer isOwer={props.isOwer} />
+        <MyPostContainer isOwer={props.isOwer} />{' '}
+        {isOpen && (
+          <MessageModal
+            userName={props.profile.fullName}
+            id={props.profile.userId}
+            clickHandler={changeOpenModal}
+          />
+        )}
       </div>
     </div>
   );

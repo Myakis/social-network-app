@@ -51,3 +51,30 @@ export interface UserType {
   photos: PhotosType;
   followed?: boolean;
 }
+
+export interface IUserNameTypes {
+  id: number;
+  hasNewMessages: boolean;
+  newMessagesCount: number;
+  photos: PhotosType;
+  lastDialogActivityDate: string;
+  lastUserActivityDate: string;
+  userName: string;
+}
+
+export interface MessageDataTypes {
+  id: string;
+  body: string;
+  addedAt: string;
+  senderName: string;
+  viewed: boolean;
+  senderId: number;
+  recipientId: number;
+  translatedBody: null | string;
+}
+
+export interface IMessageData {
+  error: string | null;
+  items: MessageDataTypes[];
+  totalCount: number;
+}

@@ -42,7 +42,7 @@ test('follow success', () => {
   expect(newState.users[1].followed).toBeFalsy();
 });
 test('unfollow success', () => {
-  const newState = userReducer(state, UserActions.unFollowSucces(2));
+  const newState = userReducer(state, UserActions.unFollowSuccess(2));
   expect(newState.users[2].followed).toBeFalsy();
   expect(newState.users[1].followed).toBeFalsy();
 });

@@ -36,11 +36,16 @@ const ProfileStatus: FC<IProps> = props => {
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStatus(e.target.value);
   };
-
+  const classStatus = cn(
+    {
+      [classes.me]: props.isOwer,
+    },
+    classes.status,
+  );
   return (
     <div className={classes.statusWrapper}>
       {!editMode && (
-        <div className={`${classes.status} ${props.isOwer && classes.me}`}>
+        <div className={classStatus}>
           <span onDoubleClick={toggleStateField}>
             {props.status || (props.isOwer && 'Добавить статус')}
           </span>

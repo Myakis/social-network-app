@@ -1,9 +1,14 @@
 import { FormApi } from 'final-form';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { Form, Field } from 'react-final-form';
-import { RootStateType } from '../../redux/store-redux';
+import { useInView } from 'react-intersection-observer';
+import { useDispatch } from 'react-redux';
+import Preloader from '../../components/common/preloader/Preloader';
 
-import Dialog from './dialog/DialogUserItem';
+import { dialogActions, getDialogs, sendMessageDialog } from '../../redux/reducer/dialog-reducer';
+import { RootStateType } from '../../redux/store-redux';
+import { useAppSelector } from '../../types/reducers-types';
+import Dialog from './dialog/UserDialog';
 import Message from './message/Message';
 import classes from './Messages.module.css';
 import styles from './Messages.module.css';
@@ -12,37 +17,81 @@ interface IProps {
   state: RootStateType;
   addMessage: (text: string) => void;
 }
-const Messages: FC<IProps> = props => {
-  const addMessage = (messageText: string) => {
-    props.addMessage(messageText);
-  };
 
-  // Отображение списка пользователей, с кем есть переписка
-  let listUser = props.state.dialog.users.map(item => (
-    <Dialog key={item.id} name={item.name} id={item.id} />
-  ));
+const Messages: FC<IProps> = React.memo(props => {
+  const isPending = useAppSelector(state => state.dialog.pendingUsers);
+  const isPendingMessage = useAppSelector(state => state.dialog.pendingMessage);
+  const listMessage = useAppSelector(state => state.dialog.messages);
+  const lastDialogsID = useAppSelector(state => state.dialog.firstUser);
+  const listUser = useAppSelector(state => state.dialog.users);
+  const [firstVisible, setFirstVisible] = useState(true);
+  const [selectedUser, setSelectedUser] = useState<number | null>(null);
+  const { ref, inView } = useInView({ rootMargin: '10px', threshold: 0 });
+  const dispatch = useDispatch();
+  const messagesAnchorRef = useRef<HTMLDivElement>(null);
 
-  //Отображение сообщений
-  let listMessage = props.state.dialog.message.map((item, i) => (
-    <Message key={i} message={item.message} id={item.id} user={item.user} />
-  ));
+  useEffect(() => {
+    dispatch(getDialogs());
+    if (lastDialogsID) {
+      setSelectedUser(lastDialogsID);
+    }
+  }, []);
+  useEffect(() => {
+    if (inView) {
+      if (firstVisible) {
+        messagesAnchorRef.current?.scrollIntoView();
+        setSelectedUser(lastDialogsID);
+        setFirstVisible(false);
+      } else {
+        messagesAnchorRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [listMessage]);
 
+  const addMessage = (messageText: string) => {};
+
+  if (isPending) return <Preloader />;
   return (
     <div className={classes.dialogsWrapper}>
-      <div className={classes.dialogs}>{listUser}</div>
+      <div className={classes.dialogs}>
+        {/* Отображение списка пользователей, с кем есть переписка */}
+        {listUser.map(item => (
+          <Dialog
+            key={item.id}
+            selected={selectedUser}
+            setSelected={setSelectedUser}
+            name={item.userName}
+            id={item.id}
+            photo={item.photos.small}
+            newMessage={item.newMessagesCount}
+          />
+        ))}
+      </div>
+      {isPendingMessage && <Preloader />}
       <div className={classes.dialogWindow}>
-        <div className={classes.list}>
-          <div className={classes.item}>{listMessage}</div>
+        <div className={classes.dialogWindow}>
+          <div className={classes.list}>
+            {/* Отображение сообщений */}
+            {listMessage.length === 0 && (
+              <div className={classes.chatEmpty}>
+                <div>Выберите чат</div>
+              </div>
+            )}
+            <div>
+              {listMessage.map(m => (
+                <Message key={m.id} id={m.senderId} message={m.body} />
+              ))}
+              <div ref={messagesAnchorRef}>
+                <div ref={ref}></div>
+              </div>
+            </div>
+          </div>
+          {selectedUser && <FieldMessageForm addMessage={addMessage} id={selectedUser} />}
         </div>
-        <FieldMessageForm addMessage={addMessage} />
       </div>
     </div>
   );
-};
-
-const UserLIst: FC = () => {
-  return <div className={classes.dialogs}></div>;
-};
+});
 
 interface IForm {
   message: string;
@@ -50,10 +99,12 @@ interface IForm {
 
 interface IFieldMessageForm {
   addMessage?: (message: string) => void;
+  id: number;
 }
-export const FieldMessageForm: FC<IFieldMessageForm> = props => {
+export const FieldMessageForm: FC<IFieldMessageForm> = ({ id }) => {
+  const dispatch = useDispatch();
   const onSubmit = (data: IForm, e: any) => {
-    props.addMessage!(data.message);
+    dispatch(sendMessageDialog(id, data.message));
     e.reset();
   };
 
@@ -63,7 +114,7 @@ export const FieldMessageForm: FC<IFieldMessageForm> = props => {
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className={classes.form}>
           <Field
-            component='textarea'
+            component='input'
             name='message'
             className={classes.input}
             type='text'

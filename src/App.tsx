@@ -17,13 +17,22 @@ const MessagesContainer = React.lazy(() => import('./pages/Dialogs/MessagesConta
 const UsersContainer = React.lazy(() => import('./pages/Users/UsersContainer'));
 const Login = React.lazy(() => import('./pages/Login/Login'));
 const ChatPage = React.lazy(() => import('./pages/Chat/Chat'));
+
 interface IAppProps {}
 const App: FC<IAppProps> = () => {
   const initialized = useSelector((state: RootStateType) => state.app.initialized);
   const dispatch = useDispatch();
 
+  const errorHandler = (e: PromiseRejectionEvent) => {
+    alert(`Произошла ошибка \nНазвание: ${e.reason}`);
+  };
+
   useEffect(() => {
     dispatch(initializeApp());
+    window.addEventListener('unhandledrejection', errorHandler);
+    return () => {
+      window.removeEventListener('unhandledrejection', errorHandler);
+    };
   }, []);
 
   if (!initialized) {

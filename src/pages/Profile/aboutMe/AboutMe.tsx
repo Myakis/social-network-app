@@ -1,38 +1,53 @@
-import React, { createRef, FC } from 'react';
+import React, { createRef, FC, useEffect, useState } from 'react';
 
 import classes from './AboutMe.module.css';
 import ProfileInfo from './profileInfo/ProfileInfo';
 import avatar from '../../../assets/img/avatar.png';
 import Preloader from '../../../components/common/preloader/Preloader';
 import { ProfileType } from '../../../types/reducers-types';
+import MessageModal from '../MessageModal/MessageModal';
 
 interface IProps {
   isOwner: boolean | undefined;
   isLoadAvatar: boolean;
   photo: string | null;
   savePhoto: (file: any) => void;
+  id: number;
+  isOpen: boolean;
+  setOpen: (open: boolean) => void;
+  changeOpenModal: () => void;
 }
-const Avatar: FC<IProps> = ({ isOwner, isLoadAvatar, ...props }) => {
-  const inputFile = createRef<any>();
+const Avatar: FC<IProps> = ({
+  isOwner,
+  isLoadAvatar,
+  isOpen,
+  setOpen,
+  changeOpenModal,
+  ...props
+}) => {
+  const inputFile = createRef<HTMLInputElement>();
 
   const onChangePhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       props.savePhoto(e.target.files[0]);
     }
   };
+  useEffect(() => {
+    setOpen(false);
+  }, [props.id]);
 
   return (
     <div className={classes.profilePhoto}>
       <div
         className={classes.avatar}
         onClick={() => {
-          inputFile.current.click();
+          inputFile.current?.click();
         }}>
         <img src={props.photo || avatar} alt='avatar' />
         {!isLoadAvatar && <Preloader />}
       </div>
 
-      {isOwner && (
+      {isOwner ? (
         <>
           <input
             className='visibility-hidden'
@@ -45,7 +60,7 @@ const Avatar: FC<IProps> = ({ isOwner, isLoadAvatar, ...props }) => {
             disabled={!isLoadAvatar}
             className={classes.avatarChange}
             onClick={() => {
-              inputFile.current.click();
+              inputFile.current?.click();
             }}>
             Изменить фото
           </button>
@@ -53,9 +68,13 @@ const Avatar: FC<IProps> = ({ isOwner, isLoadAvatar, ...props }) => {
             disabled={!isLoadAvatar}
             className={classes.avatarEdit}
             onClick={() => {
-              inputFile.current.click();
+              inputFile.current?.click();
             }}></button>
         </>
+      ) : (
+        <button className={classes.newMessage} onClick={changeOpenModal}>
+          Написать сообщение
+        </button>
       )}
     </div>
   );
@@ -66,16 +85,23 @@ interface IAboutMeProps {
   isOwer: boolean | undefined;
   isLoadAvatar: boolean;
   status: string;
+  isOpen: boolean;
 
   savePhoto: (data: any) => void;
   saveData: (data: any) => Promise<any>;
   updateUserStatus: (status: string) => void;
+  setOpen: (open: boolean) => void;
+  changeOpenModal: () => void;
 }
 
 const AboutMe: FC<IAboutMeProps> = props => {
   return (
     <div className={classes.body}>
       <Avatar
+        changeOpenModal={props.changeOpenModal}
+        isOpen={props.isOpen}
+        setOpen={props.setOpen}
+        id={props.profile.userId}
         photo={props.profile!.photos.large}
         isOwner={props.isOwer}
         savePhoto={props.savePhoto}

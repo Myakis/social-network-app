@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { DialogActions } from '../../redux/reducer/dialog-reducer';
+import { dialogActions } from '../../redux/reducer/dialog-reducer';
 import { RootStateType } from '../../redux/store-redux';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import Messages from './Messages';
 
-const { addMessage } = DialogActions;
+const { addMessage } = dialogActions;
 const mapStateToProps = (state: RootStateType) => {
   return {
     state: state,

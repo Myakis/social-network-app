@@ -157,12 +157,44 @@ export const SvgNews = () => {
   );
 };
 export const SvgDialogs = () => {
-  return <div>SvgComponents</div>;
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      xmlnsXlink='http://www.w3.org/1999/xlink'
+      // xmlnssvgjs='http://svgjs.com/svgjs'
+      version='1.1'
+      width='512'
+      height='512'
+      x='0'
+      y='0'
+      viewBox='0 0 90 90'
+      // style='enable-background:new 0 0 512 512'
+      xmlSpace='preserve'>
+      <g>
+        <g xmlns='http://www.w3.org/2000/svg'>
+          <path
+            d='m19.454 17.085h51.1c2.35 0 4.184 1.814 4.184 4.152v33.578c0 2.338-1.834 4.156-4.184 4.156h-46.616c-.554 0-1.083.24-1.442.662l-7.221 8.443v-46.84c-.001-2.337 1.833-4.151 4.179-4.151zm0-3.773c-4.377 0-7.973 3.566-7.973 7.926v51.965c0 1.756 2.195 2.559 3.34 1.223l9.988-11.684h45.744c4.383 0 7.972-3.564 7.972-7.926v-33.579c0-4.359-3.589-7.926-7.972-7.926h-51.099z'
+            fill='currentColor'
+            data-original='#000000'
+          />
+          <path
+            d='m23.724 31.204c-1.061-.014-1.923.832-1.923 1.883 0 1.055.863 1.902 1.923 1.887h42.566c1.055.016 1.923-.832 1.923-1.887 0-1.051-.868-1.896-1.923-1.883z'
+            fill='currentColor'
+            data-original='#000000'
+          />
+          <path
+            d='m23.724 43.321c-1.061-.018-1.923.83-1.923 1.885 0 1.051.863 1.902 1.923 1.887h19.055c1.055.016 1.922-.836 1.922-1.887 0-1.055-.867-1.902-1.922-1.885z'
+            fill='currentColor'
+            data-original='#000000'
+          />
+        </g>
+      </g>
+    </svg>
+  );
 };
 export const SvgChat = () => {
   return (
     <div>
-      {' '}
       <svg
         xmlns='http://www.w3.org/2000/svg'
         version='1.1'
@@ -588,6 +620,182 @@ export const SvgDoubleClick = () => {
         <g xmlns='http://www.w3.org/2000/svg'></g>
         <g xmlns='http://www.w3.org/2000/svg'></g>
         <g xmlns='http://www.w3.org/2000/svg'></g>
+      </g>
+    </svg>
+  );
+};
+export const SvgClose = () => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      xmlnsXlink='http://www.w3.org/1999/xlink'
+      version='1.1'
+      width='512'
+      height='512'
+      x='0'
+      y='0'
+      viewBox='0 0 512 512'
+      xmlSpace='preserve'>
+      <g>
+        <g xmlns='http://www.w3.org/2000/svg' id='_02_User' data-name='02 User'>
+          <path
+            d='m25 512a25 25 0 0 1 -17.68-42.68l462-462a25 25 0 0 1 35.36 35.36l-462 462a24.93 24.93 0 0 1 -17.68 7.32z'
+            fill='currentColor'
+            data-original='#000000'
+          />
+          <path
+            d='m487 512a24.93 24.93 0 0 1 -17.68-7.32l-462-462a25 25 0 0 1 35.36-35.36l462 462a25 25 0 0 1 -17.68 42.68z'
+            fill='currentColor'
+            data-original='#000000'
+          />
+        </g>
+      </g>
+    </svg>
+  );
+};
+export const SvgSend = () => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      xmlnsXlink='http://www.w3.org/1999/xlink'
+      version='1.1'
+      width='512'
+      height='512'
+      x='0'
+      y='0'
+      viewBox='0 0 64 64'
+      xmlSpace='preserve'>
+      <g>
+        <g xmlns='http://www.w3.org/2000/svg' id='Layer_3'>
+          <g>
+            <g id='LINE_1182_'>
+              <g>
+                <path
+                  d='m12.667 23c-.552 0-1-.448-1-1v-1c0-.552.448-1 1-1s1 .448 1 1v1c0 .552-.448 1-1 1z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='LINE_972_'>
+              <g>
+                <path
+                  d='m52.197 44.159c-.251 0-.501-.093-.695-.281l-11.531-11.159c-.397-.384-.407-1.017-.023-1.414.385-.397 1.018-.407 1.414-.023l11.531 11.158c.397.384.407 1.017.023 1.414-.196.203-.457.305-.719.305z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='ARC_580_'>
+              <g>
+                <path
+                  d='m34.333 35.191c-2.092 0-4.184-.595-6.009-1.786-.462-.301-.593-.921-.291-1.384.301-.462.921-.593 1.384-.291 2.986 1.948 6.846 1.948 9.833 0 .46-.303 1.08-.172 1.384.292.302.463.171 1.083-.292 1.384-1.825 1.19-3.917 1.785-6.009 1.785z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='LINE_971_'>
+              <g>
+                <path
+                  d='m39.797 33.568c-.327 0-.646-.16-.839-.454-.302-.463-.171-1.083.292-1.384l16.204-10.568c.461-.303 1.081-.172 1.384.291.302.463.171 1.083-.292 1.384l-16.204 10.568c-.168.111-.358.163-.545.163z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='LINE_970_'>
+              <g>
+                <path
+                  d='m28.87 33.568c-.188 0-.376-.052-.545-.163l-16.205-10.568c-.462-.301-.593-.921-.291-1.384.301-.463.921-.594 1.384-.291l16.204 10.568c.462.301.593.921.291 1.384-.191.294-.512.454-.838.454z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='LINE_969_'>
+              <g>
+                <path
+                  d='m16.078 30h-8.078c-.552 0-1-.448-1-1s.448-1 1-1h8.078c.552 0 1 .448 1 1s-.448 1-1 1z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='LINE_968_'>
+              <g>
+                <path
+                  d='m25.277 36h-13.277c-.552 0-1-.448-1-1s.448-1 1-1h13.277c.552 0 1 .448 1 1s-.447 1-1 1z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='LINE_967_'>
+              <g>
+                <path
+                  d='m34.478 42h-18.478c-.552 0-1-.448-1-1s.448-1 1-1h18.478c.553 0 1 .448 1 1s-.448 1-1 1z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='LINE_966_'>
+              <g>
+                <path
+                  d='m52 48h-32c-.552 0-1-.448-1-1s.448-1 1-1h32c.553 0 1 .448 1 1s-.447 1-1 1z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='LINE_965_'>
+              <g>
+                <path
+                  d='m56 44c-.553 0-1-.448-1-1v-22c0-.552.447-1 1-1s1 .448 1 1v22c0 .552-.447 1-1 1z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='LINE_964_'>
+              <g>
+                <path
+                  d='m52 18h-35.333c-.552 0-1-.448-1-1s.448-1 1-1h35.333c.553 0 1 .448 1 1s-.447 1-1 1z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='ARC_464_'>
+              <g>
+                <path
+                  d='m52 48c-.553 0-1-.448-1-1s.447-1 1-1c1.654 0 3-1.346 3-3 0-.552.447-1 1-1s1 .448 1 1c0 2.757-2.243 5-5 5z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='ARC_463_'>
+              <g>
+                <path
+                  d='m56 22c-.553 0-1-.448-1-1 0-1.654-1.346-3-3-3-.553 0-1-.448-1-1s.447-1 1-1c2.757 0 5 2.243 5 5 0 .552-.447 1-1 1z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+            <g id='ARC_462_'>
+              <g>
+                <path
+                  d='m12.667 22c-.552 0-1-.448-1-1 0-2.757 2.243-5 5-5 .552 0 1 .448 1 1s-.448 1-1 1c-1.654 0-3 1.346-3 3 0 .552-.448 1-1 1z'
+                  fill='currentColor'
+                  data-original='#000000'
+                />
+              </g>
+            </g>
+          </g>
+        </g>
       </g>
     </svg>
   );

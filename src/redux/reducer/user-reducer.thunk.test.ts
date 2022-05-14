@@ -33,6 +33,6 @@ test('thunk unfollow', async () => {
   await thunk(dispatchMock, getStateMock, {});
   expect(dispatchMock).toBeCalledTimes(3);
   expect(dispatchMock).toHaveBeenCalledWith(1, UserActions.toggleFollowingProgressive(true, 3));
-  expect(dispatchMock).toHaveBeenCalledWith(1, UserActions.unFollowSucces(3));
+  expect(dispatchMock).toHaveBeenCalledWith(1, UserActions.unFollowSuccess(3));
   expect(dispatchMock).toHaveBeenCalledWith(1, UserActions.toggleFollowingProgressive(false, 3));
 });

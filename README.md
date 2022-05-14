@@ -20,6 +20,7 @@
 - used Rest APi & WebSocket
 
 ![Превьюшка](https://github.com/Myakis/social-network-app/raw/master/preview.png)
+![Превьюшка](https://github.com/Myakis/social-network-app/raw/master/preview3.png)
 ![Превьюшка](https://github.com/Myakis/social-network-app/raw/master/preview2.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

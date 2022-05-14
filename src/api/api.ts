@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { GetUsersListType, MeResponseType, ICaptcha, IResponse } from '../types/api-types';
-import { ProfileType } from '../types/reducers-types';
+import { IMessageData, IUserNameTypes, ProfileType } from '../types/reducers-types';
 
 const instanceAxios = axios.create({
   withCredentials: true,
@@ -39,8 +39,26 @@ export const userAPI = {
 };
 
 export const securityAPI = {
-  getCaptha() {
+  getCaptcha() {
     return instanceAxios.get<ICaptcha>(`security/get-captcha-url`);
+  },
+};
+
+export const dialogsAPI = {
+  getDialogs() {
+    return instanceAxios.get<IUserNameTypes[]>(`dialogs`).then(res => res.data);
+  },
+  getListMessages(id: number) {
+    return instanceAxios.get<IMessageData>(`dialogs/${id}/messages`).then(res => res.data);
+  },
+
+  sendMessage(id: number, message: string) {
+    return instanceAxios
+      .post<any>(`dialogs/${id}/messages`, { body: message })
+      .then(res => res.data);
+  },
+  startDialog(id: number) {
+    return instanceAxios.put<any>(`dialogs/${id}`).then(res => res.data);
   },
 };
 

@@ -110,7 +110,7 @@ export const login =
   };
 
 export const getCaptcha = (): ThunkState => async dispatch => {
-  const response = await securityAPI.getCaptha();
+  const response = await securityAPI.getCaptcha();
   dispatch(actions.setCaptchaUrl(response.data.url));
 };
 

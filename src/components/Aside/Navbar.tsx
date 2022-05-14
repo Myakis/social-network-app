@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import { SvgChat, SvgNews, SvgProfile, SvgUsers } from '../svg/SvgComponents';
+import { SvgChat, SvgDialogs, SvgNews, SvgProfile, SvgUsers } from '../svg/SvgComponents';
 import classes from './Navbar.module.css';
 
 const Navbar = () => {
@@ -20,7 +20,12 @@ const Navbar = () => {
               <SvgNews />
             </NavLink>
           </li>
-
+          <li className={classes.item}>
+            <NavLink className={link => (link.isActive ? classes.active : '')} to='/messages'>
+              <span> Сообщения </span>
+              <SvgDialogs />
+            </NavLink>
+          </li>
           <li className={classes.item}>
             <NavLink className={link => (link.isActive ? classes.active : '')} to='/chat'>
               <span> Общий чат</span>

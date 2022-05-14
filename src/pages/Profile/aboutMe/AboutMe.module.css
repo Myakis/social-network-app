@@ -67,3 +67,18 @@
   border: none;
   color: none;
 }
+
+.newMessage {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.newMessage:hover {
+  background: rgb(131, 184, 228);
+}
+.newMessage:focus {
+  outline: 1px solid rgb(131, 184, 228);
+}
