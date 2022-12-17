@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Field, Form, Formik } from 'formik';
 import { useSelector } from 'react-redux';
 
-import { filterType } from '../../redux/reducer/user-reducer';
+import { filterType } from '../../redux/reducer/user';
 import classes from './Users.module.css';
 import { getUsersFilter } from '../../redux/selectors/user-selector';
 

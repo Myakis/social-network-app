@@ -3,18 +3,18 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { useParams } from 'react-router-dom';
 
-import ProfilePage from './ProfilPage';
+import ProfilePage from '.';
 import {
   getStatus,
   ProfileActions,
   updateUserStatus,
   savePhoto,
   saveData,
-} from '../../redux/reducer/profile-reducer';
-import { isAuthorization } from '../../redux/reducer/auth-reducer';
+} from '../../redux/reducer/profile';
+import { isAuthorization } from '../../redux/reducer/auth';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { userAPI } from '../../api/api';
-import { RootStateType } from '../../redux/store-redux';
+import { RootStateType } from '../../redux/store';
 import { ProfileType } from '../../types/reducers-types';
 
 const { setUserProfile } = ProfileActions;

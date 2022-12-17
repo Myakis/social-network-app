@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import classes from './Users.module.css';
-import avatarPhoto from '../../assets/img/avatar.png';
-import { UserType } from '../../types/reducers-types';
-import { RootStateType } from '../../redux/store-redux';
-import { SvgDelete, SvgUserPlus } from '../../components/svg/SvgComponents';
-import { follow, unFollow } from '../../redux/reducer/user-reducer';
+import avatarPhoto from 'images/avatar.png';
+import { UserType } from 'types/reducers-types';
+import { RootStateType } from 'redux/store';
+import { follow, unFollow } from 'redux/reducer/user';
+import { SvgDelete, SvgUserPlus } from 'components/Header/components/Icon';
 
 interface UserPropsType {
   user: UserType;
@@ -25,7 +25,7 @@ const User: FC<UserPropsType> = ({ user, follow, unFollow, isFollowing, status }
         <NavLink to={'/profile/' + user.id}>
           <img src={user.photos.small ? user.photos.small : avatarPhoto} alt='avatar' />
         </NavLink>
-        {myId! == user.id ? (
+        {myId! === user.id ? (
           <NavLink to={'/profile/' + user.id}>
             <button disabled={isFollowing.some(id => id === user.id)}>Мой профиль</button>
           </NavLink>

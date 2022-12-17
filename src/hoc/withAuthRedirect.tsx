@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { RootStateType } from '../redux/store-redux';
+import { RootStateType } from '../redux/store';
 
 const mapStateToProps = (state: RootStateType) => {
   return {
@@ -20,4 +20,3 @@ export const withAuthRedirect = (Component: React.ComponentType) => {
   return ConnectedAuthRedirectComponent;
 };
 
-type TProps = ReturnType<typeof mapStateToProps>;

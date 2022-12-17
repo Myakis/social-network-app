@@ -1,5 +1,5 @@
 import { ActionsTypes, ThunkType } from './../../types/reducers-types';
-import { isAuthorization } from './auth-reducer';
+import { isAuthorization } from './auth';
 
 const SET_INITIALIZING = 'SET_INITIALIZING';
 

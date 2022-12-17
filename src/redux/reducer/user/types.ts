@@ -1,0 +1,8 @@
+export const FOLLOW = 'FOLLOW';
+export const UNFOLLOW = 'UNFOLLOW';
+export const SET_USERS = 'SET-USERS';
+export const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+export const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
+export const SET_FETCHING = 'SET-FETCHING';
+export const SET_FILTER = 'SET_FILTER';
+export const TOGGLE_FOLLOWING_PROGRESSIVE = 'TOGGLE-FOLLOWING-PROGRESSIVE';

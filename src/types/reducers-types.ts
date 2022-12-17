@@ -2,7 +2,7 @@ import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
-import { RootStateType } from '../redux/store-redux';
+import { RootStateType } from '../redux/store';
 
 //Типизирование Action
 type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
