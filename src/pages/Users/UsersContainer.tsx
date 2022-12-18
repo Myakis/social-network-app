@@ -2,7 +2,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import React from 'react';
 import { compose } from 'redux';
 
-import Users from './Users';
+import Users from '.';
 
 import {
   follow,
@@ -10,7 +10,7 @@ import {
   UserActions,
   getsUsers,
   filterType,
-} from '../../redux/reducer/user-reducer';
+} from '../../redux/reducer/user';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import {
   getCurrentPageSelector,
@@ -21,7 +21,7 @@ import {
   getFetchSelector,
   getUsersFilter,
 } from '../../redux/selectors/user-selector';
-import { RootStateType } from '../../redux/store-redux';
+import { RootStateType } from '../../redux/store';
 import { UserType } from '../../types/reducers-types';
 const { setCurrentPage, toggleFollowingProgressive } = UserActions;
 

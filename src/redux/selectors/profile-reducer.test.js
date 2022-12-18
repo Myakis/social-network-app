@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import profileReducer, { ProfileActions } from '../reducer/profile-reducer';
+import profileReducer, { ProfileActions } from '../reducer/profile';
 let state = {
   post: [
     {

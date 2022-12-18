@@ -1,0 +1,7 @@
+export const ADD_USERS = 'ADD_USERS'
+export const GET_MESSAGES = 'GET_MESSAGES'
+export const PENDING_USER = 'PENDING_USER'
+export const PENDING_MESSAGE = 'PENDING_MESSAGE'
+export const SET_LAST_DIALOGS = 'SET_LAST_DIALOGS'
+export const START_DIALOG = 'START_DIALOG'
+export const ADD_MESSAGE = 'ADD_MESSAGE'

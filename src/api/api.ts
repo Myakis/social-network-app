@@ -1,7 +1,16 @@
-import axios from 'axios';
+import axios from 'axios'
 
-import { GetUsersListType, MeResponseType, ICaptcha, IResponse } from '../types/api-types';
-import { IMessageData, IUserNameTypes, ProfileType } from '../types/reducers-types';
+import {
+  GetUsersListType,
+  MeResponseType,
+  ICaptcha,
+  IResponse,
+} from '../types/api-types'
+import {
+  IMessageData,
+  IUserNameTypes,
+  ProfileType,
+} from '../types/reducers-types'
 
 const instanceAxios = axios.create({
   withCredentials: true,
@@ -9,92 +18,130 @@ const instanceAxios = axios.create({
   headers: {
     'API-KEY': 'ed0127cc-e53e-4779-b436-6cd965e8ebe0',
   },
-});
+})
 
 //Ассинхронные операции
 export interface IFormSearch {
-  currentPage: string;
-  usersCount: string;
-  term: string;
-  friend: boolean | null;
+  currentPage: string
+  usersCount: string
+  term: string
+  friend: boolean | null
 }
 
 export const userAPI = {
-  getUser(currentPage = 1, usersCount = 5, term = '', friend: null | boolean = null) {
+  getUser(
+    currentPage = 1,
+    usersCount = 5,
+    term = '',
+    friend: null | boolean = null
+  ) {
     return instanceAxios.get<GetUsersListType>(
       `users?page=${currentPage}&count=${usersCount}&term=${term}` +
-        (friend ? `&friend=${friend}` : ''),
-    );
+        (friend ? `&friend=${friend}` : '')
+    )
   },
   follow(id: number) {
-    return instanceAxios.post<IResponse>(`follow/${id}`, {}).then(res => res.data);
+    return instanceAxios
+      .post<IResponse>(`follow/${id}`, {})
+      .then((res) => res.data)
   },
   unFollow(id: number) {
-    return instanceAxios.delete<IResponse>(`follow/${id}`).then(res => res.data);
+    return instanceAxios
+      .delete<IResponse>(`follow/${id}`)
+      .then((res) => res.data)
   },
 
   getProfile(id: number) {
-    return profileAPI.getProfile(id);
+    return profileAPI.getProfile(id)
   },
-};
+}
 
 export const securityAPI = {
   getCaptcha() {
-    return instanceAxios.get<ICaptcha>(`security/get-captcha-url`);
+    return instanceAxios.get<ICaptcha>(`security/get-captcha-url`)
   },
-};
+}
 
 export const dialogsAPI = {
   getDialogs() {
-    return instanceAxios.get<IUserNameTypes[]>(`dialogs`).then(res => res.data);
+    return instanceAxios
+      .get<IUserNameTypes[]>(`dialogs`)
+      .then((res) => res.data)
   },
   getListMessages(id: number) {
-    return instanceAxios.get<IMessageData>(`dialogs/${id}/messages`).then(res => res.data);
+    return instanceAxios
+      .get<IMessageData>(`dialogs/${id}/messages`)
+      .then((res) => res.data)
   },
 
   sendMessage(id: number, message: string) {
     return instanceAxios
       .post<any>(`dialogs/${id}/messages`, { body: message })
-      .then(res => res.data);
+      .then((res) => res.data)
   },
   startDialog(id: number) {
-    return instanceAxios.put<any>(`dialogs/${id}`).then(res => res.data);
+    return instanceAxios.put<any>(`dialogs/${id}`).then((res) => res.data)
   },
-};
+}
 
 export const profileAPI = {
   getProfile(id: number) {
-    return instanceAxios.get<ProfileType>(`profile/${id}`);
+    return instanceAxios.get<ProfileType>(`profile/${id}`)
   },
   getStatus(id: number) {
-    return instanceAxios.get<string | null>(`profile/status/${id}`);
+    return instanceAxios.get<string | null>(`profile/status/${id}`)
   },
   updateStatus(status: string) {
-    return instanceAxios.put<IResponse>(`profile/status`, { status });
+    return instanceAxios.put<IResponse>(`profile/status`, { status })
   },
   savePhoto(photo: any) {
-    const data = new FormData();
-    data.append('image', photo);
+    const data = new FormData()
+    data.append('image', photo)
     return instanceAxios.put(`profile/photo`, data, {
       headers: { 'Content-Type': `multipart/form-data` },
-    });
+    })
   },
   getPhoto() {
-    return instanceAxios.put(`profile/photo`);
+    return instanceAxios.put(`profile/photo`)
   },
   saveData(profileData: ProfileType) {
-    return instanceAxios.put(`profile`, profileData);
+    return instanceAxios.put(`profile`, profileData)
   },
-};
+}
 
 export const authAPI = {
   me() {
-    return instanceAxios.get<MeResponseType>(`auth/me`);
+    return instanceAxios.get<MeResponseType>(`auth/me`)
   },
-  login(email: string, password: string, rememberMe = false, captcha: null | string = null) {
-    return instanceAxios.post(`auth//login`, { email, password, rememberMe, captcha });
+  login(
+    email: string,
+    password: string,
+    rememberMe = false,
+    captcha: null | string = null
+  ) {
+    return instanceAxios.post(`auth//login`, {
+      email,
+      password,
+      rememberMe,
+      captcha,
+    })
   },
   logout() {
-    return instanceAxios.delete(`auth/login`);
+    return instanceAxios.delete(`auth/login`)
   },
-};
+}
+// !! ПОМЕНЯТЬ ПОТОМ ВСЕ ЗАПРОСЫ НА ЭТО
+export const api = {
+  get(url: string) {
+    return instanceAxios.get<any[]>(url).then((res) => res.data)
+  },
+  post(url: string, data: any) {
+    return instanceAxios.post<any[]>(url, data).then((res) => res.data)
+  },
+  put(url: string, data:any) {
+    return instanceAxios.put<any[]>(url, data).then((res) => res.data)
+  },
+  delete(url: string) {
+    return instanceAxios.delete<any[]>(url)
+  },
+}
